@@ -6,7 +6,7 @@
 
 An explainable career-transition engine that turns hidden work experience into verified, hireable evidence.
 
-HackShift 2026 · Entrepreneurship & Employment · Team Maniac Coders
+HackShift 2026 · Entrepreneurship & Employment · Team RankShift
 
 </div>
 
@@ -307,7 +307,7 @@ cd backend && pytest
 
 ## Team
 
-**Team Maniac Coders** — add member names and GitHub handles here.
+**Team RankShift** — add member names and GitHub handles here.
 
 ## References
 
