@@ -1,0 +1,18 @@
+{
+  "name": "second-act",
+  "private": true,
+  "description": "Second Act — explainable career-transition platform (SAP Hackfest 2026). Root scripts delegate to apps/api and apps/mobile.",
+  "scripts": {
+    "install:all": "npm --prefix apps/api install && npm --prefix apps/mobile install",
+    "api:dev": "npm --prefix apps/api run dev",
+    "api:test": "npm --prefix apps/api test",
+    "mobile:start": "npm --prefix apps/mobile start",
+    "mobile:web": "npm --prefix apps/mobile run web",
+    "db:migrate": "npm --prefix apps/api run db:migrate",
+    "demo:seed": "npm --prefix apps/api run demo:seed",
+    "demo:reset": "npm --prefix apps/api run demo:reset",
+    "demo:check": "npm --prefix apps/api run demo:check",
+    "demo:smoke": "npm --prefix apps/api run demo:smoke",
+    "check": "npm --prefix apps/api run typecheck && npm --prefix apps/api test && npm --prefix apps/mobile run typecheck && npm --prefix apps/mobile run lint"
+  }
+}
