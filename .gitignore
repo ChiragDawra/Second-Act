@@ -4,3 +4,15 @@ dist
 frontend/node_modules
 frontend/dist
 frontend/tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# Secrets and local demo credentials (never commit)
+.env
+.env.*
+!.env.example
+demo-credentials.local.*
+
+# Expo
+.expo/
+web-build/
+apps/mobile/dist/
