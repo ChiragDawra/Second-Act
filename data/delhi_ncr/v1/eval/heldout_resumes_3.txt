@@ -1,0 +1,104 @@
+=== RESUME START: resume_16_heldout_bank_ops_ncr ===
+RAJESH KUMAR VERMA
+Gurugram, Haryana | +91 98000 00001 | rajesh.verma.synthetic@example.test
+
+CAREER OBJECTIVE
+Banking operations officer with 9 years in retail liabilities, looking to move into business analysis or UAT roles at a fintech company in Gurugram.
+
+KEY SKILLS
+- Retail banking operations, NEFT / RTGS / IMPS payment processing, cheque clearing
+- KYC and AML checks as per RBI guidelines
+- MIS reporting in advanced Excel (VLOOKUP, pivot tables, macros)
+- Basic SQL (SELECT queries, joins) for data checks
+- Jira for tracking operational tickets
+- Process mapping using Visio
+
+WORK EXPERIENCE
+Assistant Manager, Operations | Northern Union Bank | Gurugram, Haryana
+April 2018 - Present
+- Reconcile daily NEFT and RTGS settlement files against core banking ledger entries and clear breaks within the SLA.
+- Wrote 40 standard operating procedures for branch back-office staff and trained 30 new joiners.
+- Coordinated user acceptance testing for the bank's mobile banking release, preparing test scenarios with the product team and logging defects in Jira.
+- Led a team of 7 operations executives and handled monthly performance reviews.
+- Prepared weekly MIS reports for the regional head using Excel and shared dashboards.
+
+Operations Executive | Capital Trust Finance | Noida, Uttar Pradesh
+June 2014 - March 2018
+- Processed loan disbursement requests and verified customer documents for KYC compliance.
+- Handled customer queries over phone and email and resolved escalations within turnaround time.
+
+EDUCATION
+B.Com, Delhi University, 2014
+
+CERTIFICATIONS
+- NISM Series VII: Securities Operations and Risk Management
+- JAIIB (Part 1 completed)
+
+CURRENTLY UPSKILLING
+- Keen to pick up Power BI and have started a short YouTube course on dashboards; yet to build a real report.
+- Planning to learn Python for automating reconciliation reports.
+- Have not worked on any API testing tools so far.
+=== RESUME END: resume_16_heldout_bank_ops_ncr ===
+
+=== RESUME START: resume_17_heldout_support_ncr ===
+PRIYANKA SHARMA
+Noida, Uttar Pradesh | priyanka.sharma.synthetic@example.test
+
+PROFILE
+Technical support executive with 4 years in a BPO handling international voice and chat customers. Aspiring to become a Service Desk Analyst.
+
+TECHNICAL SKILLS
+Operating Systems: Windows 10, Windows 11, Ubuntu (basic)
+Ticketing Tools: ServiceNow, Freshdesk
+Networking: LAN/WAN basics, DHCP, DNS, VPN troubleshooting
+Directory: AD user account creation, password resets and group membership changes
+Other: MS Office, TeamViewer for remote sessions
+
+EXPERIENCE
+Senior Technical Support Executive - Orbit Customer Care Services | Gurugram | 2021 - Present
+- Resolve 45+ tickets per day in ServiceNow with 96% CSAT and first-call resolution above target.
+- Reset passwords and unlock accounts in Active Directory for 300+ remote employees.
+- Troubleshot VPN, Wi-Fi and printer issues for work-from-home staff.
+- Documented 20 knowledge base articles for common L1 issues.
+- Escalated unresolved incidents to L2 with clear steps to reproduce.
+
+Customer Support Associate - Brightline BPO | Delhi | 2019 - 2021
+- Handled 60 inbound calls daily for a telecom client and met SLA targets.
+
+EDUCATION
+B.Sc. Computer Science, Ghaziabad, 2019
+
+LEARNING
+- Completed ITIL 4 Foundation training course online (certificate awaited).
+- Intend to take the Microsoft Azure fundamentals exam next year.
+- No experience yet with Linux administration or shell scripting.
+=== RESUME END: resume_17_heldout_support_ncr ===
+
+=== RESUME START: resume_18_heldout_mis_returner_ncr ===
+ANITA CHOPRA
+Faridabad, Haryana | anita.chopra.synthetic@example.test
+
+SUMMARY
+MIS and reporting professional returning after a 3-year maternity and caregiving break. Previously handled finance reporting for a manufacturing unit in Faridabad.
+
+CORE SKILLS
+Advanced Excel (pivot tables, HLOOKUP/VLOOKUP, conditional formatting), Tally ERP, Power BI (intermediate), SQL Server (basic queries), MIS reports, data cleaning
+
+PROFESSIONAL EXPERIENCE
+MIS Executive | Shivalik Components Pvt Ltd | Faridabad | 2015 - 2021
+- Built daily production and dispatch MIS reports in Excel and automated them with macros, saving 8 hours a week.
+- Created Power BI dashboards for plant heads showing rejection rates and downtime.
+- Reconciled vendor ledgers with purchase registers each month and flagged mismatches to accounts.
+- Extracted data from SQL Server using SELECT queries with joins for ad-hoc requests.
+- Analysed monthly sales data to identify top customers and slow-moving inventory.
+
+CAREER BREAK (2021 - 2024)
+- Full-time caregiver. Completed Google Data Analytics Professional Certificate on Coursera during this period.
+
+EDUCATION
+M.Com, Kurukshetra University, 2014
+
+GOALS
+- Wants to move into a Junior Data Analyst role. Currently learning Tableau and exploring Python for data analysis.
+- Has not used Python in any project.
+=== RESUME END: resume_18_heldout_mis_returner_ncr ===

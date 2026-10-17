@@ -7,6 +7,7 @@ import { ApiError, errorHandler } from './http/errors.ts';
 import { adminRoutes } from './routes/admin.ts';
 import { commonRoutes } from './routes/common.ts';
 import { mentorRoutes } from './routes/mentor.ts';
+import { ncrRoutes } from './routes/ncr.ts';
 import { recruiterRoutes } from './routes/recruiter.ts';
 import { workerRoutes } from './routes/worker.ts';
 
@@ -43,6 +44,7 @@ export function createApp(options: AppOptions) {
   api.use(authenticate(options));
   api.use(commonRoutes(options));
   api.use(workerRoutes(options));
+  api.use(ncrRoutes(options));
   api.use(mentorRoutes(options));
   api.use(recruiterRoutes(options));
   api.use(adminRoutes(options));

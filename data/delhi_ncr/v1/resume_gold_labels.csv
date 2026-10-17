@@ -1,0 +1,166 @@
+candidate_id,resume_id,skill_id,expected_label,evidence_quote,evidence_location,reviewer,review_status
+candidate_001,resume_01,manual-testing,explicit_current,Expert in manual test execution,Professional Summary,claude-draft,pending_human_review
+candidate_001,resume_01,test-case-design,explicit_current,Test Case Design,Core Competencies,claude-draft,pending_human_review
+candidate_001,resume_01,functional-testing,explicit_current,Functional Testing,Core Competencies,claude-draft,pending_human_review
+candidate_001,resume_01,regression-testing,explicit_current,Regression Testing,Core Competencies,claude-draft,pending_human_review
+candidate_001,resume_01,uat,explicit_current,User Acceptance Testing (UAT) Coordination,Core Competencies,claude-draft,pending_human_review
+candidate_001,resume_01,defect-management,explicit_current,defect life cycle management,Professional Summary,claude-draft,pending_human_review
+candidate_001,resume_01,test-management-tools,explicit_current,"HP ALM / Quality Center, TestRail",Core Competencies,claude-draft,pending_human_review
+candidate_001,resume_01,sql-querying,explicit_current,SQL for Data Verification (Intermediate),Core Competencies,claude-draft,pending_human_review
+candidate_001,resume_01,api-testing,explicit_current,Postman API Testing (Basic),Core Competencies,claude-draft,pending_human_review
+candidate_001,resume_01,work-tracking-tools,explicit_current,Jira,Core Competencies,claude-draft,pending_human_review
+candidate_001,resume_01,banking-payments-domain,explicit_current,Core Banking & Payments,Core Competencies,claude-draft,pending_human_review
+candidate_001,resume_01,regulatory-compliance,explicit_current,AML/KYC Workflow Verification,Core Competencies,claude-draft,pending_human_review
+candidate_001,resume_01,test-documentation,explicit_current,Requirement Traceability Matrices (RTM),Professional Experience,claude-draft,pending_human_review
+candidate_001,resume_01,excel-spreadsheets,explicit_current,Microsoft Excel pivot tables,Professional Experience,claude-draft,pending_human_review
+candidate_001,resume_01,rest-apis,explicit_current,Inspected REST API endpoints using Postman,Professional Experience,claude-draft,pending_human_review
+candidate_001,resume_01,agile-scrum,explicit_current,Certified Scrum Master (CSM),Certifications,claude-draft,pending_human_review
+candidate_001,resume_01,reconciliation,ambiguous,assert ledger balancing,Professional Experience,claude-draft,pending_human_review
+candidate_001,resume_01,python-programming,ambiguous,Python for Automation evening course,Learning Goals,claude-draft,pending_human_review
+candidate_001,resume_01,test-automation,future_goal,explicit learning goal to eventually transition into Selenium test script automation,Learning Goals,claude-draft,pending_human_review
+candidate_002,resume_02,manual-testing,explicit_current,Direct all manual verification activities,Work History,claude-draft,pending_human_review
+candidate_002,resume_02,test-case-design,explicit_current,Designed comprehensive test scripts,Work History,claude-draft,pending_human_review
+candidate_002,resume_02,functional-testing,explicit_current,"Black Box Testing, System Integration Testing (SIT)",Skills Summary,claude-draft,pending_human_review
+candidate_002,resume_02,defect-management,explicit_current,Organized defect triage meetings,Work History,claude-draft,pending_human_review
+candidate_002,resume_02,test-management-tools,explicit_current,"TestRail, Bugzilla, Confluence",Skills Summary,claude-draft,pending_human_review
+candidate_002,resume_02,banking-payments-domain,explicit_current,"Retail Banking, Mortgage Origination",Skills Summary,claude-draft,pending_human_review
+candidate_002,resume_02,regulatory-compliance,explicit_current,Payment Card Industry Data Security Standard (PCI-DSS),Skills Summary,claude-draft,pending_human_review
+candidate_002,resume_02,excel-spreadsheets,explicit_current,Microsoft Excel (Advanced VLOOKUP/PivotTables),Skills Summary,claude-draft,pending_human_review
+candidate_002,resume_02,sql-querying,explicit_current,querying Microsoft SQL Server instances using DBeaver,Work History,claude-draft,pending_human_review
+candidate_002,resume_02,test-documentation,explicit_current,release sign-off checklists,Work History,claude-draft,pending_human_review
+candidate_002,resume_02,linux-administration,explicit_current,basic Linux command-line operations,Work History,claude-draft,pending_human_review
+candidate_002,resume_02,agile-scrum,explicit_current,Agile/Scrum team,Work History,claude-draft,pending_human_review
+candidate_002,resume_02,work-tracking-tools,explicit_current,Confluence,Skills Summary,claude-draft,pending_human_review
+candidate_002,resume_02,customer-support,explicit_current,Customer Care Representative,Earlier Employment,claude-draft,pending_human_review
+candidate_002,resume_02,requirements-documentation,ambiguous,business requirement documents (BRDs),Work History,claude-draft,pending_human_review
+candidate_002,resume_02,reconciliation,ambiguous,merchant clearance reconciliation systems,Work History,claude-draft,pending_human_review
+candidate_001,resume_01,requirements-documentation,ambiguous,functional specification documents,Professional Experience,claude-draft,pending_human_review
+candidate_002,resume_02,test-automation,future_goal,future aspiration of building UI automation frameworks,Technical Development in Progress,claude-draft,pending_human_review
+candidate_002,resume_02,javascript-typescript,future_goal,Pursuing an introduction to Cypress and JavaScript,Technical Development in Progress,claude-draft,pending_human_review
+candidate_003,resume_03,requirements-analysis,explicit_current,"Requirements Elicitation, Gap Analysis",Functional & Technical Capabilities,claude-draft,pending_human_review
+candidate_003,resume_03,requirements-documentation,explicit_current,User Stories & Acceptance Criteria Definition,Functional & Technical Capabilities,claude-draft,pending_human_review
+candidate_003,resume_03,process-modeling,explicit_current,Business Process Model and Notation (BPMN 2.0),Functional & Technical Capabilities,claude-draft,pending_human_review
+candidate_003,resume_03,stakeholder-management,explicit_current,Stakeholder Management,Functional & Technical Capabilities,claude-draft,pending_human_review
+candidate_003,resume_03,banking-payments-domain,explicit_current,"Institutional Custody, Asset Servicing, SWIFT Messages",Functional & Technical Capabilities,claude-draft,pending_human_review
+candidate_003,resume_03,work-tracking-tools,explicit_current,"Jira, Confluence",Functional & Technical Capabilities,claude-draft,pending_human_review
+candidate_003,resume_03,excel-spreadsheets,explicit_current,Microsoft Excel (Advanced),Functional & Technical Capabilities,claude-draft,pending_human_review
+candidate_003,resume_03,sql-querying,explicit_current,Structured Query Language (SQL - Basic,Functional & Technical Capabilities,claude-draft,pending_human_review
+candidate_003,resume_03,uat,explicit_current,Executed User Acceptance Testing (UAT),Professional Experience,claude-draft,pending_human_review
+candidate_003,resume_03,process-documentation,explicit_current,Authored standard operating procedures (SOPs),Professional Experience,claude-draft,pending_human_review
+candidate_003,resume_03,regulatory-compliance,explicit_current,Certified Anti-Money Laundering Specialist (CAMS),Professional Credentials,claude-draft,pending_human_review
+candidate_003,resume_03,reconciliation,explicit_current,nostro-vostro account reconciliation reports,Professional Experience,claude-draft,pending_human_review
+candidate_003,resume_03,business-case-analysis,explicit_current,drafted an 8-page business case,Professional Experience,claude-draft,pending_human_review
+candidate_003,resume_03,test-case-design,explicit_current,authoring test scenarios,Professional Experience,claude-draft,pending_human_review
+candidate_003,resume_03,python-programming,negated_or_no_experience,"theoretical understanding, not applied in production",Aspirational Goals,claude-draft,pending_human_review
+candidate_003,resume_03,bi-dashboarding,future_goal,Long-term goal: Learn Tableau,Aspirational Goals,claude-draft,pending_human_review
+candidate_004,resume_04,requirements-analysis,explicit_current,Requirements Analysis & Documentation,Areas of Expertise,claude-draft,pending_human_review
+candidate_004,resume_04,requirements-documentation,explicit_current,Functional Specification Documents (FSD),Areas of Expertise,claude-draft,pending_human_review
+candidate_004,resume_04,process-modeling,explicit_current,visual BPMN process maps,Career Experience,claude-draft,pending_human_review
+candidate_004,resume_04,business-case-analysis,explicit_current,Cost-Benefit Analysis & Business Case Formulation,Areas of Expertise,claude-draft,pending_human_review
+candidate_004,resume_04,banking-payments-domain,explicit_current,Trade Lifecycle & Clearance,Areas of Expertise,claude-draft,pending_human_review
+candidate_004,resume_04,regulatory-compliance,explicit_current,"Dodd-Frank Trade Reporting, MiFID II Transaction Records",Areas of Expertise,claude-draft,pending_human_review
+candidate_004,resume_04,work-tracking-tools,explicit_current,"Jira, Confluence, MS Visio, Trello, Miro",Areas of Expertise,claude-draft,pending_human_review
+candidate_004,resume_04,excel-spreadsheets,explicit_current,Advanced Excel,Areas of Expertise,claude-draft,pending_human_review
+candidate_004,resume_04,bi-dashboarding,explicit_current,Power BI (Basic/Beginner),Areas of Expertise,claude-draft,pending_human_review
+candidate_004,resume_04,agile-scrum,explicit_current,quarterly Agile sprints,Career Experience,claude-draft,pending_human_review
+candidate_004,resume_04,root-cause-analysis,explicit_current,root-cause analysis on trade execution breaks,Career Experience,claude-draft,pending_human_review
+candidate_004,resume_04,reconciliation,explicit_current,Reconciled daily multi-asset collateral margins,Career Experience,claude-draft,pending_human_review
+candidate_004,resume_04,project-management,explicit_current,Project Management Professional (PMP),Professional Certifications,claude-draft,pending_human_review
+candidate_004,resume_04,process-documentation,explicit_current,authored detailed release notes,Career Experience,claude-draft,pending_human_review
+candidate_004,resume_04,defect-management,explicit_current,Compiled defect severity logs,Career Experience,claude-draft,pending_human_review
+candidate_004,resume_04,test-documentation,ambiguous,trace matrices,Career Experience,claude-draft,pending_human_review
+candidate_004,resume_04,sql-querying,ambiguous,Introduction to Relational Databases and SQL,Volunteer & Other Engagements,claude-draft,pending_human_review
+candidate_005,resume_05,customer-support,explicit_current,Technical Customer Support Lead,Work Experience,claude-draft,pending_human_review
+candidate_005,resume_05,active-directory-admin,explicit_current,"Active Directory (Intermediate: user creation, group policy assignment, password resets)",Core IT & Technical Skills,claude-draft,pending_human_review
+candidate_005,resume_05,itsm-ticketing,explicit_current,"Zendesk, ServiceNow (Intermediate), Freshdesk, Jira Service Management",Core IT & Technical Skills,claude-draft,pending_human_review
+candidate_005,resume_05,endpoint-cloud-admin,explicit_current,Microsoft 365 Admin Center,Core IT & Technical Skills,claude-draft,pending_human_review
+candidate_005,resume_05,desktop-hardware-support,explicit_current,"Windows 10/11 troubleshooting, macOS support",Core IT & Technical Skills,claude-draft,pending_human_review
+candidate_005,resume_05,networking-fundamentals,explicit_current,"TCP/IP fundamentals, DNS/DHCP concepts",Core IT & Technical Skills,claude-draft,pending_human_review
+candidate_005,resume_05,process-documentation,explicit_current,Authored 35+ internal knowledge base articles in Confluence,Work Experience,claude-draft,pending_human_review
+candidate_005,resume_05,work-tracking-tools,explicit_current,Authored 35+ internal knowledge base articles in Confluence,Work Experience,claude-draft,pending_human_review
+candidate_005,resume_05,team-leadership,explicit_current,Supervise an 8-person Tier 2 customer service team,Work Experience,claude-draft,pending_human_review
+candidate_005,resume_05,itil-practices,explicit_current,ITIL Foundation (v4),Certifications,claude-draft,pending_human_review
+candidate_005,resume_05,crm-platforms,ambiguous,Ticketing & CRM,Core IT & Technical Skills,claude-draft,pending_human_review
+candidate_005,resume_05,rest-apis,ambiguous,identifying REST API authentication errors,Work Experience,claude-draft,pending_human_review
+candidate_005,resume_05,shell-scripting,future_goal,Intends to learn Bash and PowerShell scripting,Personal Projects & Goals,claude-draft,pending_human_review
+candidate_006,resume_06,itsm-ticketing,explicit_current,"ServiceNow, Jira Service Desk",Key Technical & Operational Skills,claude-draft,pending_human_review
+candidate_006,resume_06,crm-platforms,explicit_current,Salesforce Service Cloud,Key Technical & Operational Skills,claude-draft,pending_human_review
+candidate_006,resume_06,active-directory-admin,explicit_current,"Microsoft Entra ID (Azure AD - user provisioning, MFA resets)",Key Technical & Operational Skills,claude-draft,pending_human_review
+candidate_006,resume_06,desktop-hardware-support,explicit_current,"Laptop imaging, RAM upgrades",Key Technical & Operational Skills,claude-draft,pending_human_review
+candidate_006,resume_06,networking-fundamentals,explicit_current,"Ping, Traceroute, nslookup, IP subnetting",Key Technical & Operational Skills,claude-draft,pending_human_review
+candidate_006,resume_06,customer-support,explicit_current,Customer Service Specialist,Summary,claude-draft,pending_human_review
+candidate_006,resume_06,root-cause-analysis,explicit_current,methodical root-cause analysis,Summary,claude-draft,pending_human_review
+candidate_006,resume_06,python-programming,future_goal,Learning Goal: Enrolled in an independent self-study course for Python script automation,Personal Interests & Objectives,claude-draft,pending_human_review
+candidate_007,resume_07,go-programming,explicit_current,Go (Golang - Advanced),Technical Expertise,claude-draft,pending_human_review
+candidate_007,resume_07,c-cpp-programming,explicit_current,C (C99/C11 - Advanced),Technical Expertise,claude-draft,pending_human_review
+candidate_007,resume_07,python-programming,explicit_current,Python (Intermediate for scripting/tooling),Technical Expertise,claude-draft,pending_human_review
+candidate_007,resume_07,shell-scripting,explicit_current,Bash/Shell,Technical Expertise,claude-draft,pending_human_review
+candidate_007,resume_07,linux-administration,explicit_current,Linux Kernel Tracing,Technical Expertise,claude-draft,pending_human_review
+candidate_007,resume_07,concurrent-programming,explicit_current,"multi-threading, asynchronous I/O (epoll, io_uring)",Summary,claude-draft,pending_human_review
+candidate_007,resume_07,networking-fundamentals,explicit_current,"TCP/IP Stack internals, UDP multicast",Technical Expertise,claude-draft,pending_human_review
+candidate_007,resume_07,rest-apis,explicit_current,"HTTP/2, gRPC, Protocol Buffers",Technical Expertise,claude-draft,pending_human_review
+candidate_007,resume_07,docker-containers,explicit_current,"Docker, Git, Make, CMake",Technical Expertise,claude-draft,pending_human_review
+candidate_007,resume_07,git-version-control,explicit_current,"Docker, Git, Make, CMake",Technical Expertise,claude-draft,pending_human_review
+candidate_007,resume_07,debugging-profiling,explicit_current,"using GDB, Valgrind, and AddressSanitizer (ASan)",Professional Experience,claude-draft,pending_human_review
+candidate_007,resume_07,embedded-systems,explicit_current,Programmed embedded network appliance firmware modules in C,Professional Experience,claude-draft,pending_human_review
+candidate_007,resume_07,test-automation,explicit_current,Automated regression test suites for network interface controllers,Professional Experience,claude-draft,pending_human_review
+candidate_007,resume_07,regression-testing,explicit_current,Automated regression test suites for network interface controllers,Professional Experience,claude-draft,pending_human_review
+candidate_007,resume_07,rust-programming,future_goal,intention to study Rust in the future,Notable Learning Aspirations,claude-draft,pending_human_review
+candidate_008,resume_08,go-programming,explicit_current,"Go (Advanced: concurrency patterns, goroutines, channels, sync package)",Core Technical Skills,claude-draft,pending_human_review
+candidate_008,resume_08,c-cpp-programming,explicit_current,"C (Intermediate: pointers, structs, socket APIs)",Core Technical Skills,claude-draft,pending_human_review
+candidate_008,resume_08,python-programming,explicit_current,Python (Basic utility scripts),Core Technical Skills,claude-draft,pending_human_review
+candidate_008,resume_08,shell-scripting,explicit_current,"Python (Basic utility scripts), Bash",Core Technical Skills,claude-draft,pending_human_review
+candidate_008,resume_08,linux-administration,explicit_current,"Linux (Debian, Alpine, RHEL)",Core Technical Skills,claude-draft,pending_human_review
+candidate_008,resume_08,concurrent-programming,explicit_current,"Go (Advanced: concurrency patterns, goroutines, channels, sync package)",Core Technical Skills,claude-draft,pending_human_review
+candidate_008,resume_08,networking-fundamentals,explicit_current,"TCP, UDP, TLS 1.3 Handshakes, DNS Resolver internals",Core Technical Skills,claude-draft,pending_human_review
+candidate_008,resume_08,rest-apis,explicit_current,"gRPC, REST APIs",Core Technical Skills,claude-draft,pending_human_review
+candidate_008,resume_08,git-version-control,explicit_current,"Git, GCC, Clang, Docker",Core Technical Skills,claude-draft,pending_human_review
+candidate_008,resume_08,docker-containers,explicit_current,"Git, GCC, Clang, Docker",Core Technical Skills,claude-draft,pending_human_review
+candidate_008,resume_08,debugging-profiling,explicit_current,"`strace`, `lsof`, and `gdb`",Professional Experience,claude-draft,pending_human_review
+candidate_008,resume_08,ci-cd-pipelines,explicit_current,Automated Continuous Integration (CI) build pipelines,Professional Experience,claude-draft,pending_human_review
+candidate_008,resume_08,kubernetes,future_goal,Exploring Kubernetes Operator patterns in Go,Forward-Looking Interests,claude-draft,pending_human_review
+candidate_009,resume_09,bi-dashboarding,explicit_current,Microsoft Power BI (Advanced: DAX calculations,Technical Skill Inventory,claude-draft,pending_human_review
+candidate_009,resume_09,sql-querying,explicit_current,Advanced SQL (Common Table Expressions,Technical Skill Inventory,claude-draft,pending_human_review
+candidate_009,resume_09,excel-spreadsheets,explicit_current,"Microsoft Excel (Advanced: Complex nested formulas, Power Pivot, VBA/Macros",Technical Skill Inventory,claude-draft,pending_human_review
+candidate_009,resume_09,data-analysis,explicit_current,"Exploratory Data Analysis (EDA), Cohort Retention Analysis",Technical Skill Inventory,claude-draft,pending_human_review
+candidate_009,resume_09,git-version-control,explicit_current,"Jira, Git, Confluence, Microsoft SharePoint",Technical Skill Inventory,claude-draft,pending_human_review
+candidate_009,resume_09,work-tracking-tools,explicit_current,"Jira, Git, Confluence, Microsoft SharePoint",Technical Skill Inventory,claude-draft,pending_human_review
+candidate_009,resume_09,etl-data-preparation,explicit_current,Power Query ETL,Technical Skill Inventory,claude-draft,pending_human_review
+candidate_009,resume_09,data-modeling,explicit_current,Data Modeling,Technical Skill Inventory,claude-draft,pending_human_review
+candidate_009,resume_09,operational-reporting,explicit_current,operational reporting dashboards,Career Summary,claude-draft,pending_human_review
+candidate_009,resume_09,regulatory-compliance,explicit_current,validating data integrity against HIPAA guidelines,Experience,claude-draft,pending_human_review
+candidate_009,resume_09,process-documentation,explicit_current,Documented data dictionary standards,Experience,claude-draft,pending_human_review
+candidate_009,resume_09,supply-chain-logistics,ambiguous,supply-chain stakeholders across North America,Experience,claude-draft,pending_human_review
+candidate_009,resume_09,machine-learning,future_goal,currently practicing basic linear regression on Kaggle datasets as a learning goal,Upcoming Learning Goals,claude-draft,pending_human_review
+candidate_009,resume_09,python-programming,future_goal,Machine Learning with Python,Upcoming Learning Goals,claude-draft,pending_human_review
+candidate_010,resume_10,bi-dashboarding,explicit_current,"Power BI (Data Modeling, DAX measures",Core Skills & Technologies,claude-draft,pending_human_review
+candidate_010,resume_10,sql-querying,explicit_current,"MySQL, SQL Server (T-SQL",Core Skills & Technologies,claude-draft,pending_human_review
+candidate_010,resume_10,excel-spreadsheets,explicit_current,Microsoft Excel (VLOOKUP/XLOOKUP,Core Skills & Technologies,claude-draft,pending_human_review
+candidate_010,resume_10,etl-data-preparation,explicit_current,"Data Cleansing, Star Schema Design, KPI Dashboarding, Data Quality Auditing",Core Skills & Technologies,claude-draft,pending_human_review
+candidate_010,resume_10,data-modeling,explicit_current,Star Schema Design,Core Skills & Technologies,claude-draft,pending_human_review
+candidate_010,resume_10,operational-reporting,explicit_current,Maintained core financial reporting templates,Employment History,claude-draft,pending_human_review
+candidate_010,resume_10,data-analysis,explicit_current,revenue analytics,Professional Summary,claude-draft,pending_human_review
+candidate_010,resume_10,reconciliation,explicit_current,billing reconciliation discrepancies,Employment History,claude-draft,pending_human_review
+candidate_010,resume_10,r-programming,future_goal,Intends to study R programming for statistical computing,Outside Activities & Future Skill Targets,claude-draft,pending_human_review
+candidate_011,resume_11,agile-scrum,explicit_current,"Agile (Scrum, Kanban)",Core Competencies,claude-draft,pending_human_review
+candidate_011,resume_11,project-management,explicit_current,Project Governance,Core Competencies,claude-draft,pending_human_review
+candidate_011,resume_11,stakeholder-management,explicit_current,Stakeholder Engagement,Core Competencies,claude-draft,pending_human_review
+candidate_011,resume_11,work-tracking-tools,explicit_current,"Jira, Confluence, Microsoft Project, Asana, Trello",Core Competencies,claude-draft,pending_human_review
+candidate_011,resume_11,excel-spreadsheets,explicit_current,managed budget variance logs in Microsoft Excel,Prior Professional Experience,claude-draft,pending_human_review
+candidate_011,resume_11,root-cause-analysis,explicit_current,Root Cause Analysis,Core Competencies,claude-draft,pending_human_review
+candidate_011,resume_11,vendor-management,explicit_current,Vendor Management,Core Competencies,claude-draft,pending_human_review
+candidate_011,resume_11,team-leadership,explicit_current,Cross-Functional Team Leadership,Core Competencies,claude-draft,pending_human_review
+candidate_011,resume_11,process-documentation,explicit_current,Documented standard operating procedures,Prior Professional Experience,claude-draft,pending_human_review
+candidate_011,resume_11,banking-payments-domain,ambiguous,banking software implementation projects,Prior Professional Experience,claude-draft,pending_human_review
+candidate_011,resume_11,python-programming,future_goal,Python scripting as an interest area to explore,Future Exploration Goal,claude-draft,pending_human_review
+candidate_012,resume_12,supply-chain-logistics,explicit_current,"Supply Chain Coordination, Inventory Management",Key Assets & Expertise,claude-draft,pending_human_review
+candidate_012,resume_12,vendor-management,explicit_current,"Vendor Relations, Contract Negotiation",Key Assets & Expertise,claude-draft,pending_human_review
+candidate_012,resume_12,sla-management,explicit_current,SLA Management,Key Assets & Expertise,claude-draft,pending_human_review
+candidate_012,resume_12,account-management,explicit_current,"B2B Account Retention, Customer Onboarding",Key Assets & Expertise,claude-draft,pending_human_review
+candidate_012,resume_12,crm-platforms,explicit_current,"Salesforce CRM, HubSpot",Key Assets & Expertise,claude-draft,pending_human_review
+candidate_012,resume_12,work-tracking-tools,explicit_current,"Asana, Monday.com",Key Assets & Expertise,claude-draft,pending_human_review
+candidate_012,resume_12,excel-spreadsheets,explicit_current,"Microsoft Excel, utilizing pivot tables",Prior Career History,claude-draft,pending_human_review
+candidate_012,resume_12,team-leadership,explicit_current,Team Mentorship,Key Assets & Expertise,claude-draft,pending_human_review
+candidate_012,resume_12,project-management,ambiguous,Certified Associate in Project Management (CAPM),Education & Formal Credentials,claude-draft,pending_human_review
+candidate_012,resume_12,sql-querying,future_goal,intends to begin studying SQL fundamentals,Career Aspiration,claude-draft,pending_human_review
+candidate_012,resume_12,data-analysis,future_goal,Exploring entry-level data analytics,Career Aspiration,claude-draft,pending_human_review

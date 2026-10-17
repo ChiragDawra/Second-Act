@@ -1,0 +1,247 @@
+{
+  "extractor_version": "ncr-rules-0.2",
+  "dataset_version": "ncr-roles-v1",
+  "resumes": 12,
+  "gold_rows": 165,
+  "counts": {
+    "true_positive": 138,
+    "false_positive": 0,
+    "false_negative": 0
+  },
+  "precision": {
+    "num": 138,
+    "den": 138,
+    "value": 1
+  },
+  "recall": {
+    "num": 138,
+    "den": 138,
+    "value": 1
+  },
+  "f1": 1,
+  "future_goal_leakage": {
+    "num": 0,
+    "den": 14,
+    "value": 0
+  },
+  "negation_leakage": {
+    "num": 0,
+    "den": 1,
+    "value": 0
+  },
+  "unsupported_skill_rate": {
+    "num": 0,
+    "den": 146,
+    "value": 0
+  },
+  "evidence_coverage": {
+    "num": 165,
+    "den": 165,
+    "value": 1
+  },
+  "canonicalization_accuracy": {
+    "num": 162,
+    "den": 163,
+    "value": 0.994
+  },
+  "candidate_leakage": {
+    "skills_with_foreign_evidence": 0,
+    "examples": []
+  },
+  "canonicalization_errors": [
+    {
+      "resume_id": "resume_05",
+      "skill_id": "team-leadership",
+      "category": "gold_skill_not_among_skills_from_same_evidence",
+      "gold_label": "explicit_current",
+      "extracted_as": "customer-support,customer-support,itsm-ticketing,customer-support,customer-support",
+      "sentence": "Supervise an 8-person Tier 2 customer service team"
+    }
+  ],
+  "ambiguous_gold": {
+    "predicted_current": 8,
+    "total": 12
+  },
+  "by_group": {
+    "manual_qa_banking": {
+      "precision": {
+        "num": 30,
+        "den": 30,
+        "value": 1
+      },
+      "recall": {
+        "num": 30,
+        "den": 30,
+        "value": 1
+      },
+      "f1": 1
+    },
+    "banking_ops_to_ba": {
+      "precision": {
+        "num": 29,
+        "den": 29,
+        "value": 1
+      },
+      "recall": {
+        "num": 29,
+        "den": 29,
+        "value": 1
+      },
+      "f1": 1
+    },
+    "support_to_it": {
+      "precision": {
+        "num": 17,
+        "den": 17,
+        "value": 1
+      },
+      "recall": {
+        "num": 17,
+        "den": 17,
+        "value": 1
+      },
+      "f1": 1
+    },
+    "developer_go_c_linux": {
+      "precision": {
+        "num": 26,
+        "den": 26,
+        "value": 1
+      },
+      "recall": {
+        "num": 26,
+        "den": 26,
+        "value": 1
+      },
+      "f1": 1
+    },
+    "data_analyst_excel_sql_pb": {
+      "precision": {
+        "num": 19,
+        "den": 19,
+        "value": 1
+      },
+      "recall": {
+        "num": 19,
+        "den": 19,
+        "value": 1
+      },
+      "f1": 1
+    },
+    "career_break_returner": {
+      "precision": {
+        "num": 17,
+        "den": 17,
+        "value": 1
+      },
+      "recall": {
+        "num": 17,
+        "den": 17,
+        "value": 1
+      },
+      "f1": 1
+    }
+  },
+  "per_resume": [
+    {
+      "resume_id": "resume_01",
+      "group": "manual_qa_banking",
+      "extracted": 20,
+      "tp": 16,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_02",
+      "group": "manual_qa_banking",
+      "extracted": 18,
+      "tp": 14,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_03",
+      "group": "banking_ops_to_ba",
+      "extracted": 17,
+      "tp": 14,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_04",
+      "group": "banking_ops_to_ba",
+      "extracted": 17,
+      "tp": 15,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_05",
+      "group": "support_to_it",
+      "extracted": 12,
+      "tp": 10,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_06",
+      "group": "support_to_it",
+      "extracted": 8,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_07",
+      "group": "developer_go_c_linux",
+      "extracted": 15,
+      "tp": 14,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_08",
+      "group": "developer_go_c_linux",
+      "extracted": 13,
+      "tp": 12,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_09",
+      "group": "data_analyst_excel_sql_pb",
+      "extracted": 14,
+      "tp": 11,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_10",
+      "group": "data_analyst_excel_sql_pb",
+      "extracted": 9,
+      "tp": 8,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_11",
+      "group": "career_break_returner",
+      "extracted": 11,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_12",
+      "group": "career_break_returner",
+      "extracted": 11,
+      "tp": 8,
+      "fp": 0,
+      "fn": 0
+    }
+  ],
+  "error_categories": {},
+  "false_negatives": [],
+  "false_positives": [],
+  "non_current_leaks": []
+}

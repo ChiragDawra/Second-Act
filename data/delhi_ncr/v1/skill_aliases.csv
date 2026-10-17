@@ -1,0 +1,528 @@
+alias,canonical_skill_id,language_or_locale,source,review_status
+manual testing,manual-testing,en-IN,team_curated,draft_unreviewed
+manual test execution,manual-testing,en-IN,team_curated,draft_unreviewed
+manual test scenarios,manual-testing,en-IN,team_curated,draft_unreviewed
+manual test cases,manual-testing,en-IN,team_curated,draft_unreviewed
+manual verification,manual-testing,en-IN,team_curated,draft_unreviewed
+manual qa,manual-testing,en-IN,team_curated,draft_unreviewed
+manual tester,manual-testing,en-IN,team_curated,draft_unreviewed
+test case design,test-case-design,en-IN,team_curated,draft_unreviewed
+test cases,test-case-design,en-IN,team_curated,draft_unreviewed
+test scenarios,test-case-design,en-IN,team_curated,draft_unreviewed
+test scripts,test-case-design,en-IN,team_curated,draft_unreviewed
+boundary value analysis,test-case-design,en-IN,team_curated,draft_unreviewed
+negative testing,test-case-design,en-IN,team_curated,draft_unreviewed
+test matrices,test-case-design,en-IN,team_curated,draft_unreviewed
+functional testing,functional-testing,en-IN,team_curated,draft_unreviewed
+black box testing,functional-testing,en-IN,team_curated,draft_unreviewed
+black-box testing,functional-testing,en-IN,team_curated,draft_unreviewed
+system integration testing,functional-testing,en-IN,team_curated,draft_unreviewed
+end-to-end validation,functional-testing,en-IN,team_curated,draft_unreviewed
+end-to-end testing,functional-testing,en-IN,team_curated,draft_unreviewed
+sanity checks,functional-testing,en-IN,team_curated,draft_unreviewed
+smoke testing,functional-testing,en-IN,team_curated,draft_unreviewed
+exploratory testing,functional-testing,en-IN,team_curated,draft_unreviewed
+system testing,functional-testing,en-IN,team_curated,draft_unreviewed
+cross-browser compatibility,functional-testing,en-IN,team_curated,draft_unreviewed
+regression testing,regression-testing,en-IN,team_curated,draft_unreviewed
+regression test suites,regression-testing,en-IN,team_curated,draft_unreviewed
+regression suites,regression-testing,en-IN,team_curated,draft_unreviewed
+user acceptance testing,uat,en-IN,team_curated,draft_unreviewed
+uat,uat,en-IN,team_curated,draft_unreviewed
+user acceptance test,uat,en-IN,team_curated,draft_unreviewed
+acceptance testing,uat,en-IN,team_curated,draft_unreviewed
+defect life cycle,defect-management,en-IN,team_curated,draft_unreviewed
+defect lifecycle,defect-management,en-IN,team_curated,draft_unreviewed
+defect tracking,defect-management,en-IN,team_curated,draft_unreviewed
+bug tracking,defect-management,en-IN,team_curated,draft_unreviewed
+defect triage,defect-management,en-IN,team_curated,draft_unreviewed
+defect management,defect-management,en-IN,team_curated,draft_unreviewed
+bug reports,defect-management,en-IN,team_curated,draft_unreviewed
+bug reporting,defect-management,en-IN,team_curated,draft_unreviewed
+defect reports,defect-management,en-IN,team_curated,draft_unreviewed
+defect metric,defect-management,en-IN,team_curated,draft_unreviewed
+software bugs,defect-management,en-IN,team_curated,draft_unreviewed
+defect severity,defect-management,en-IN,team_curated,draft_unreviewed
+defect logs,defect-management,en-IN,team_curated,draft_unreviewed
+logging defects,defect-management,en-IN,team_curated,draft_unreviewed
+logged defects,defect-management,en-IN,team_curated,draft_unreviewed
+log defects,defect-management,en-IN,team_curated,draft_unreviewed
+bugzilla,defect-management,en-IN,team_curated,draft_unreviewed
+testrail,test-management-tools,en-IN,team_curated,draft_unreviewed
+hp alm,test-management-tools,en-IN,team_curated,draft_unreviewed
+quality center,test-management-tools,en-IN,team_curated,draft_unreviewed
+zephyr,test-management-tools,en-IN,team_curated,draft_unreviewed
+qtest,test-management-tools,en-IN,team_curated,draft_unreviewed
+api testing,api-testing,en-IN,team_curated,draft_unreviewed
+postman,api-testing,en-IN,team_curated,draft_unreviewed
+rest api testing,api-testing,en-IN,team_curated,draft_unreviewed
+soapui,api-testing,en-IN,team_curated,draft_unreviewed
+test automation,test-automation,en-IN,team_curated,draft_unreviewed
+automated testing,test-automation,en-IN,team_curated,draft_unreviewed
+automation testing,test-automation,en-IN,team_curated,draft_unreviewed
+automated test scripts,test-automation,en-IN,team_curated,draft_unreviewed
+automation framework,test-automation,en-IN,team_curated,draft_unreviewed
+ui automation,test-automation,en-IN,team_curated,draft_unreviewed
+selenium,test-automation,en-IN,team_curated,draft_unreviewed
+cypress,test-automation,en-IN,team_curated,draft_unreviewed
+playwright,test-automation,en-IN,team_curated,draft_unreviewed
+appium,test-automation,en-IN,team_curated,draft_unreviewed
+webdriver,test-automation,en-IN,team_curated,draft_unreviewed
+test script automation,test-automation,en-IN,team_curated,draft_unreviewed
+automated regression test suites,test-automation;regression-testing,en-IN,team_curated,draft_unreviewed
+test documentation,test-documentation,en-IN,team_curated,draft_unreviewed
+test plan,test-documentation,en-IN,team_curated,draft_unreviewed
+test planning,test-documentation,en-IN,team_curated,draft_unreviewed
+test strategy,test-documentation,en-IN,team_curated,draft_unreviewed
+test summary reports,test-documentation,en-IN,team_curated,draft_unreviewed
+test execution reports,test-documentation,en-IN,team_curated,draft_unreviewed
+release sign-off checklists,test-documentation,en-IN,team_curated,draft_unreviewed
+requirement traceability matrix,test-documentation,en-IN,team_curated,draft_unreviewed
+requirements traceability matrix,test-documentation,en-IN,team_curated,draft_unreviewed
+rtm,test-documentation,en-IN,team_curated,draft_unreviewed
+traceability matrix,test-documentation,en-IN,team_curated,draft_unreviewed
+trace matrices,test-documentation,en-IN,team_curated,draft_unreviewed
+requirements elicitation,requirements-analysis,en-IN,team_curated,draft_unreviewed
+requirements gathering,requirements-analysis,en-IN,team_curated,draft_unreviewed
+requirement gathering,requirements-analysis,en-IN,team_curated,draft_unreviewed
+requirements analysis,requirements-analysis,en-IN,team_curated,draft_unreviewed
+requirement discovery,requirements-analysis,en-IN,team_curated,draft_unreviewed
+requirements discovery,requirements-analysis,en-IN,team_curated,draft_unreviewed
+gap analysis,requirements-analysis,en-IN,team_curated,draft_unreviewed
+joint application design,requirements-analysis,en-IN,team_curated,draft_unreviewed
+jad sessions,requirements-analysis,en-IN,team_curated,draft_unreviewed
+requirements workshops,requirements-analysis,en-IN,team_curated,draft_unreviewed
+business requirement documents,requirements-documentation,en-IN,team_curated,draft_unreviewed
+business requirements,requirements-documentation,en-IN,team_curated,draft_unreviewed
+brd,requirements-documentation,en-IN,team_curated,draft_unreviewed
+brds,requirements-documentation,en-IN,team_curated,draft_unreviewed
+functional requirement documents,requirements-documentation,en-IN,team_curated,draft_unreviewed
+frd,requirements-documentation,en-IN,team_curated,draft_unreviewed
+frds,requirements-documentation,en-IN,team_curated,draft_unreviewed
+functional specification documents,requirements-documentation,en-IN,team_curated,draft_unreviewed
+functional specifications,requirements-documentation,en-IN,team_curated,draft_unreviewed
+fsd,requirements-documentation,en-IN,team_curated,draft_unreviewed
+user stories,requirements-documentation,en-IN,team_curated,draft_unreviewed
+acceptance criteria,requirements-documentation,en-IN,team_curated,draft_unreviewed
+functional rules,requirements-documentation,en-IN,team_curated,draft_unreviewed
+data mapping specifications,requirements-documentation,en-IN,team_curated,draft_unreviewed
+bpmn,process-modeling,en-IN,team_curated,draft_unreviewed
+business process modeling,process-modeling,en-IN,team_curated,draft_unreviewed
+process modeling,process-modeling,en-IN,team_curated,draft_unreviewed
+process flowcharts,process-modeling,en-IN,team_curated,draft_unreviewed
+process maps,process-modeling,en-IN,team_curated,draft_unreviewed
+flowcharts,process-modeling,en-IN,team_curated,draft_unreviewed
+uml,process-modeling,en-IN,team_curated,draft_unreviewed
+use cases,process-modeling,en-IN,team_curated,draft_unreviewed
+visio,process-modeling,en-IN,team_curated,draft_unreviewed
+lucidchart,process-modeling,en-IN,team_curated,draft_unreviewed
+business process re-engineering,process-modeling,en-IN,team_curated,draft_unreviewed
+process re-engineering,process-modeling,en-IN,team_curated,draft_unreviewed
+stakeholder management,stakeholder-management,en-IN,team_curated,draft_unreviewed
+stakeholder engagement,stakeholder-management,en-IN,team_curated,draft_unreviewed
+stakeholder negotiation,stakeholder-management,en-IN,team_curated,draft_unreviewed
+stakeholder reviews,stakeholder-management,en-IN,team_curated,draft_unreviewed
+executive status briefings,stakeholder-management,en-IN,team_curated,draft_unreviewed
+stakeholder communication,stakeholder-management,en-IN,team_curated,draft_unreviewed
+business case,business-case-analysis,en-IN,team_curated,draft_unreviewed
+cost-benefit analysis,business-case-analysis,en-IN,team_curated,draft_unreviewed
+cost benefit analysis,business-case-analysis,en-IN,team_curated,draft_unreviewed
+root cause analysis,root-cause-analysis,en-IN,team_curated,draft_unreviewed
+root-cause analysis,root-cause-analysis,en-IN,team_curated,draft_unreviewed
+standard operating procedures,process-documentation,en-IN,team_curated,draft_unreviewed
+sops,process-documentation,en-IN,team_curated,draft_unreviewed
+sop,process-documentation,en-IN,team_curated,draft_unreviewed
+process documentation,process-documentation,en-IN,team_curated,draft_unreviewed
+knowledge base articles,process-documentation,en-IN,team_curated,draft_unreviewed
+knowledge base,process-documentation,en-IN,team_curated,draft_unreviewed
+runbooks,process-documentation,en-IN,team_curated,draft_unreviewed
+operational training playbooks,process-documentation,en-IN,team_curated,draft_unreviewed
+release notes,process-documentation,en-IN,team_curated,draft_unreviewed
+data dictionary,process-documentation,en-IN,team_curated,draft_unreviewed
+core banking,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+retail banking,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+banking operations,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+banking systems,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+banking software,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+digital banking,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+commercial lending,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+payment processing,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+wire transfers,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+wire transfer,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+swift,banking-payments-domain,en-IN,team_curated,context_required
+ach processing,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+card settlement,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+mortgage origination,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+loan origination,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+trade settlement,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+settlements,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+treasury,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+custody,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+asset servicing,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+foreign exchange,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+trade lifecycle,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+remittances,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+check stop payments,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+payment gateways,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+iso 20022,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+aml,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+kyc,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+sox,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+sarbanes-oxley,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+pci-dss,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+pci dss,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+hipaa,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+dodd-frank,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+mifid ii,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+cfpb,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+regulatory compliance,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+regulatory reporting,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+sanctions screening,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+anti-money laundering,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+rbi guidelines,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+reconciliation,reconciliation,en-IN,team_curated,draft_unreviewed
+reconciled,reconciliation,en-IN,team_curated,draft_unreviewed
+reconciling,reconciliation,en-IN,team_curated,draft_unreviewed
+reconcile,reconciliation,en-IN,team_curated,draft_unreviewed
+reconciles,reconciliation,en-IN,team_curated,draft_unreviewed
+nostro-vostro,reconciliation,en-IN,team_curated,draft_unreviewed
+ledger balancing,reconciliation,en-IN,team_curated,draft_unreviewed
+ledger reconciliation,reconciliation,en-IN,team_curated,draft_unreviewed
+billing reconciliation,reconciliation,en-IN,team_curated,draft_unreviewed
+customer support,customer-support,en-IN,team_curated,draft_unreviewed
+customer service,customer-support,en-IN,team_curated,draft_unreviewed
+customer care,customer-support,en-IN,team_curated,draft_unreviewed
+customer experience,customer-support,en-IN,team_curated,draft_unreviewed
+customer advocacy,customer-support,en-IN,team_curated,draft_unreviewed
+first-contact resolution,customer-support,en-IN,team_curated,draft_unreviewed
+omnichannel,customer-support,en-IN,team_curated,draft_unreviewed
+csat,customer-support,en-IN,team_curated,draft_unreviewed
+customer satisfaction,customer-support,en-IN,team_curated,draft_unreviewed
+inbound calls,customer-support,en-IN,team_curated,draft_unreviewed
+customer queries,customer-support,en-IN,team_curated,draft_unreviewed
+customer inquiries,customer-support,en-IN,team_curated,draft_unreviewed
+customer enquiries,customer-support,en-IN,team_curated,draft_unreviewed
+contact centre,customer-support,en-IN,team_curated,draft_unreviewed
+call centre,customer-support,en-IN,team_curated,draft_unreviewed
+servicenow,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+zendesk,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+freshdesk,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+jira service management,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+jira service desk,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+ticketing system,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+incident management,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+incident escalation,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+service desk,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+helpdesk,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+help desk,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+itsm,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+incident tickets,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+active directory,active-directory-admin,en-IN,team_curated,draft_unreviewed
+azure active directory,active-directory-admin,en-IN,team_curated,draft_unreviewed
+azure ad,active-directory-admin,en-IN,team_curated,draft_unreviewed
+microsoft entra id,active-directory-admin,en-IN,team_curated,draft_unreviewed
+entra id,active-directory-admin,en-IN,team_curated,draft_unreviewed
+group policy,active-directory-admin,en-IN,team_curated,draft_unreviewed
+user provisioning,active-directory-admin,en-IN,team_curated,draft_unreviewed
+mfa resets,active-directory-admin,en-IN,team_curated,draft_unreviewed
+password resets,active-directory-admin,en-IN,team_curated,draft_unreviewed
+ad,active-directory-admin,en-IN,team_curated,context_required
+hardware support,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+pc assembly,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+laptop imaging,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+ram upgrades,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+peripheral setup,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+hardware provisioning,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+windows 10,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+macos,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+remote desktop,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+teamviewer,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+desktop support,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+hardware resets,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+re-imaged operating systems,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+diagnosed consumer computing hardware,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+microsoft 365,endpoint-cloud-admin,en-IN,team_curated,draft_unreviewed
+m365,endpoint-cloud-admin,en-IN,team_curated,draft_unreviewed
+intune,endpoint-cloud-admin,en-IN,team_curated,draft_unreviewed
+mdm,endpoint-cloud-admin,en-IN,team_curated,draft_unreviewed
+mobile device management,endpoint-cloud-admin,en-IN,team_curated,draft_unreviewed
+tcp/ip,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+dns,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+dhcp,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+vpn,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+wi-fi,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+subnetting,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+traceroute,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+nslookup,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+ethernet,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+networking basics,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+networking fundamentals,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+ip addressing,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+wireshark,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+tcpdump,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+udp,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+tls,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+socket programming,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+network sockets,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+router configurations,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+itil,itil-practices,en-IN,team_curated,draft_unreviewed
+itil foundation,itil-practices,en-IN,team_curated,draft_unreviewed
+salesforce,crm-platforms,en-IN,team_curated,draft_unreviewed
+hubspot,crm-platforms,en-IN,team_curated,draft_unreviewed
+crm,crm-platforms,en-IN,team_curated,draft_unreviewed
+salesforce service cloud,crm-platforms,en-IN,team_curated,draft_unreviewed
+sla management,sla-management,en-IN,team_curated,draft_unreviewed
+sla adherence,sla-management,en-IN,team_curated,draft_unreviewed
+service level agreements,sla-management,en-IN,team_curated,draft_unreviewed
+sla,sla-management,en-IN,team_curated,draft_unreviewed
+sql,sql-querying,en-IN,team_curated,draft_unreviewed
+t-sql,sql-querying,en-IN,team_curated,draft_unreviewed
+mysql,sql-querying,en-IN,team_curated,draft_unreviewed
+postgresql,sql-querying,en-IN,team_curated,draft_unreviewed
+sql server,sql-querying,en-IN,team_curated,draft_unreviewed
+structured query language,sql-querying,en-IN,team_curated,draft_unreviewed
+oracle db,sql-querying,en-IN,team_curated,draft_unreviewed
+snowflake,sql-querying,en-IN,team_curated,draft_unreviewed
+dbeaver,sql-querying,en-IN,team_curated,draft_unreviewed
+database queries,sql-querying,en-IN,team_curated,draft_unreviewed
+relational databases,sql-querying,en-IN,team_curated,draft_unreviewed
+microsoft excel,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+ms excel,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+excel,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+advanced excel,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+pivot tables,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+pivot table,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+pivottables,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+pivot charts,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+vlookup,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+xlookup,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+index/match,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+power pivot,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+vba,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+macros,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+spreadsheets,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+sumifs,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+google sheets,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+power bi,bi-dashboarding,en-IN,team_curated,draft_unreviewed
+tableau,bi-dashboarding,en-IN,team_curated,draft_unreviewed
+looker studio,bi-dashboarding,en-IN,team_curated,draft_unreviewed
+dax,bi-dashboarding,en-IN,team_curated,draft_unreviewed
+kpi dashboarding,bi-dashboarding,en-IN,team_curated,draft_unreviewed
+kpi scorecards,bi-dashboarding,en-IN,team_curated,draft_unreviewed
+data visualization,bi-dashboarding,en-IN,team_curated,draft_unreviewed
+data visualisation,bi-dashboarding,en-IN,team_curated,draft_unreviewed
+qlik,bi-dashboarding,en-IN,team_curated,draft_unreviewed
+data cleansing,etl-data-preparation,en-IN,team_curated,draft_unreviewed
+data cleaning,etl-data-preparation,en-IN,team_curated,draft_unreviewed
+power query,etl-data-preparation,en-IN,team_curated,draft_unreviewed
+etl,etl-data-preparation,en-IN,team_curated,draft_unreviewed
+data pipelines,etl-data-preparation,en-IN,team_curated,draft_unreviewed
+data transformation,etl-data-preparation,en-IN,team_curated,draft_unreviewed
+data quality auditing,etl-data-preparation,en-IN,team_curated,draft_unreviewed
+data quality,etl-data-preparation,en-IN,team_curated,draft_unreviewed
+data wrangling,etl-data-preparation,en-IN,team_curated,draft_unreviewed
+data modeling,data-modeling,en-IN,team_curated,draft_unreviewed
+data modelling,data-modeling,en-IN,team_curated,draft_unreviewed
+star schema,data-modeling,en-IN,team_curated,draft_unreviewed
+star-schema,data-modeling,en-IN,team_curated,draft_unreviewed
+dimensional data models,data-modeling,en-IN,team_curated,draft_unreviewed
+data model,data-modeling,en-IN,team_curated,draft_unreviewed
+relational data models,data-modeling,en-IN,team_curated,draft_unreviewed
+data lineage,data-modeling,en-IN,team_curated,draft_unreviewed
+data analysis,data-analysis,en-IN,team_curated,draft_unreviewed
+data analytics,data-analysis,en-IN,team_curated,draft_unreviewed
+exploratory data analysis,data-analysis,en-IN,team_curated,draft_unreviewed
+eda,data-analysis,en-IN,team_curated,draft_unreviewed
+cohort retention analysis,data-analysis,en-IN,team_curated,draft_unreviewed
+cohort analysis,data-analysis,en-IN,team_curated,draft_unreviewed
+a/b testing,data-analysis,en-IN,team_curated,draft_unreviewed
+revenue analytics,data-analysis,en-IN,team_curated,draft_unreviewed
+customer lifetime value,data-analysis,en-IN,team_curated,draft_unreviewed
+churn modeling,data-analysis,en-IN,team_curated,draft_unreviewed
+statistical analysis,data-analysis,en-IN,team_curated,draft_unreviewed
+operational reporting,operational-reporting,en-IN,team_curated,draft_unreviewed
+mis reports,operational-reporting,en-IN,team_curated,draft_unreviewed
+mis,operational-reporting,en-IN,team_curated,draft_unreviewed
+management reports,operational-reporting,en-IN,team_curated,draft_unreviewed
+reporting dashboards,operational-reporting,en-IN,team_curated,draft_unreviewed
+weekly reports,operational-reporting,en-IN,team_curated,draft_unreviewed
+daily reports,operational-reporting,en-IN,team_curated,draft_unreviewed
+kpi reporting,operational-reporting,en-IN,team_curated,draft_unreviewed
+key performance indicators,operational-reporting,en-IN,team_curated,draft_unreviewed
+financial reporting,operational-reporting,en-IN,team_curated,draft_unreviewed
+report generation,operational-reporting,en-IN,team_curated,draft_unreviewed
+business intelligence,operational-reporting,en-IN,team_curated,draft_unreviewed
+machine learning,machine-learning,en-IN,team_curated,draft_unreviewed
+scikit-learn,machine-learning,en-IN,team_curated,draft_unreviewed
+supervised ml,machine-learning,en-IN,team_curated,draft_unreviewed
+ml model,machine-learning,en-IN,team_curated,draft_unreviewed
+neural networks,machine-learning,en-IN,team_curated,draft_unreviewed
+yolo,machine-learning,en-IN,team_curated,draft_unreviewed
+model training,machine-learning,en-IN,team_curated,draft_unreviewed
+linear regression,machine-learning,en-IN,team_curated,draft_unreviewed
+python,python-programming,en-IN,team_curated,draft_unreviewed
+python scripting,python-programming,en-IN,team_curated,draft_unreviewed
+python scripts,python-programming,en-IN,team_curated,draft_unreviewed
+numpy,python-programming,en-IN,team_curated,draft_unreviewed
+pandas,python-programming,en-IN,team_curated,draft_unreviewed
+java,java-programming,en-IN,team_curated,draft_unreviewed
+c,c-cpp-programming,en-IN,team_curated,context_required
+c++,c-cpp-programming,en-IN,team_curated,draft_unreviewed
+c/c++,c-cpp-programming,en-IN,team_curated,draft_unreviewed
+c99,c-cpp-programming,en-IN,team_curated,draft_unreviewed
+c11,c-cpp-programming,en-IN,team_curated,draft_unreviewed
+embedded c,c-cpp-programming,en-IN,team_curated,draft_unreviewed
+c programming,c-cpp-programming,en-IN,team_curated,draft_unreviewed
+golang,go-programming,en-IN,team_curated,draft_unreviewed
+go programming,go-programming,en-IN,team_curated,draft_unreviewed
+go,go-programming,en-IN,team_curated,context_required
+javascript,javascript-typescript,en-IN,team_curated,draft_unreviewed
+typescript,javascript-typescript,en-IN,team_curated,draft_unreviewed
+node.js,javascript-typescript,en-IN,team_curated,draft_unreviewed
+nodejs,javascript-typescript,en-IN,team_curated,draft_unreviewed
+react,javascript-typescript,en-IN,team_curated,draft_unreviewed
+rust,rust-programming,en-IN,team_curated,draft_unreviewed
+rust programming,rust-programming,en-IN,team_curated,draft_unreviewed
+r programming,r-programming,en-IN,team_curated,draft_unreviewed
+r language,r-programming,en-IN,team_curated,draft_unreviewed
+bash,shell-scripting,en-IN,team_curated,draft_unreviewed
+powershell,shell-scripting,en-IN,team_curated,draft_unreviewed
+shell scripting,shell-scripting,en-IN,team_curated,draft_unreviewed
+shell scripts,shell-scripting,en-IN,team_curated,draft_unreviewed
+bash/shell,shell-scripting,en-IN,team_curated,draft_unreviewed
+linux,linux-administration,en-IN,team_curated,draft_unreviewed
+unix,linux-administration,en-IN,team_curated,draft_unreviewed
+ubuntu,linux-administration,en-IN,team_curated,draft_unreviewed
+centos,linux-administration,en-IN,team_curated,draft_unreviewed
+rhel,linux-administration,en-IN,team_curated,draft_unreviewed
+debian,linux-administration,en-IN,team_curated,draft_unreviewed
+alpine,linux-administration,en-IN,team_curated,draft_unreviewed
+putty,linux-administration,en-IN,team_curated,draft_unreviewed
+systemd,linux-administration,en-IN,team_curated,draft_unreviewed
+posix,linux-administration,en-IN,team_curated,draft_unreviewed
+procfs,linux-administration,en-IN,team_curated,draft_unreviewed
+git,git-version-control,en-IN,team_curated,draft_unreviewed
+github,git-version-control,en-IN,team_curated,draft_unreviewed
+gitlab,git-version-control,en-IN,team_curated,draft_unreviewed
+version control,git-version-control,en-IN,team_curated,draft_unreviewed
+bitbucket,git-version-control,en-IN,team_curated,draft_unreviewed
+docker,docker-containers,en-IN,team_curated,draft_unreviewed
+containers,docker-containers,en-IN,team_curated,draft_unreviewed
+containerized,docker-containers,en-IN,team_curated,draft_unreviewed
+containerization,docker-containers,en-IN,team_curated,draft_unreviewed
+kubernetes,kubernetes,en-IN,team_curated,draft_unreviewed
+k8s,kubernetes,en-IN,team_curated,draft_unreviewed
+kubernetes operator,kubernetes,en-IN,team_curated,draft_unreviewed
+ci/cd,ci-cd-pipelines,en-IN,team_curated,draft_unreviewed
+continuous integration,ci-cd-pipelines,en-IN,team_curated,draft_unreviewed
+continuous delivery,ci-cd-pipelines,en-IN,team_curated,draft_unreviewed
+jenkins,ci-cd-pipelines,en-IN,team_curated,draft_unreviewed
+github actions,ci-cd-pipelines,en-IN,team_curated,draft_unreviewed
+ci build pipelines,ci-cd-pipelines,en-IN,team_curated,draft_unreviewed
+ci pipelines,ci-cd-pipelines,en-IN,team_curated,draft_unreviewed
+aws,cloud-platforms,en-IN,team_curated,draft_unreviewed
+amazon web services,cloud-platforms,en-IN,team_curated,draft_unreviewed
+microsoft azure,cloud-platforms,en-IN,team_curated,draft_unreviewed
+azure,cloud-platforms,en-IN,team_curated,draft_unreviewed
+google cloud,cloud-platforms,en-IN,team_curated,draft_unreviewed
+gcp,cloud-platforms,en-IN,team_curated,draft_unreviewed
+cloud computing,cloud-platforms,en-IN,team_curated,draft_unreviewed
+rest api,rest-apis,en-IN,team_curated,draft_unreviewed
+rest apis,rest-apis,en-IN,team_curated,draft_unreviewed
+restful,rest-apis,en-IN,team_curated,draft_unreviewed
+grpc,rest-apis,en-IN,team_curated,draft_unreviewed
+protocol buffers,rest-apis,en-IN,team_curated,draft_unreviewed
+http/2,rest-apis,en-IN,team_curated,draft_unreviewed
+web services,rest-apis,en-IN,team_curated,draft_unreviewed
+multi-threading,concurrent-programming,en-IN,team_curated,draft_unreviewed
+multithreaded,concurrent-programming,en-IN,team_curated,draft_unreviewed
+multi-threaded,concurrent-programming,en-IN,team_curated,draft_unreviewed
+concurrency,concurrent-programming,en-IN,team_curated,draft_unreviewed
+goroutines,concurrent-programming,en-IN,team_curated,draft_unreviewed
+mutexes,concurrent-programming,en-IN,team_curated,draft_unreviewed
+pthreads,concurrent-programming,en-IN,team_curated,draft_unreviewed
+thread safety,concurrent-programming,en-IN,team_curated,draft_unreviewed
+race conditions,concurrent-programming,en-IN,team_curated,draft_unreviewed
+deadlocks,concurrent-programming,en-IN,team_curated,draft_unreviewed
+epoll,concurrent-programming,en-IN,team_curated,draft_unreviewed
+asynchronous i/o,concurrent-programming,en-IN,team_curated,draft_unreviewed
+gdb,debugging-profiling,en-IN,team_curated,draft_unreviewed
+valgrind,debugging-profiling,en-IN,team_curated,draft_unreviewed
+strace,debugging-profiling,en-IN,team_curated,draft_unreviewed
+lsof,debugging-profiling,en-IN,team_curated,draft_unreviewed
+pprof,debugging-profiling,en-IN,team_curated,draft_unreviewed
+perf,debugging-profiling,en-IN,team_curated,draft_unreviewed
+addresssanitizer,debugging-profiling,en-IN,team_curated,draft_unreviewed
+asan,debugging-profiling,en-IN,team_curated,draft_unreviewed
+thread sanitizer,debugging-profiling,en-IN,team_curated,draft_unreviewed
+profiling,debugging-profiling,en-IN,team_curated,draft_unreviewed
+debugged,debugging-profiling,en-IN,team_curated,draft_unreviewed
+arduino,embedded-systems,en-IN,team_curated,draft_unreviewed
+embedded systems,embedded-systems,en-IN,team_curated,draft_unreviewed
+embedded programming,embedded-systems,en-IN,team_curated,draft_unreviewed
+firmware,embedded-systems,en-IN,team_curated,draft_unreviewed
+iot,embedded-systems,en-IN,team_curated,draft_unreviewed
+sensor integration,embedded-systems,en-IN,team_curated,draft_unreviewed
+microcontroller,embedded-systems,en-IN,team_curated,draft_unreviewed
+agile,agile-scrum,en-IN,team_curated,draft_unreviewed
+scrum,agile-scrum,en-IN,team_curated,draft_unreviewed
+kanban,agile-scrum,en-IN,team_curated,draft_unreviewed
+sprint planning,agile-scrum,en-IN,team_curated,draft_unreviewed
+stand-ups,agile-scrum,en-IN,team_curated,draft_unreviewed
+retrospective,agile-scrum,en-IN,team_curated,draft_unreviewed
+scrum master,agile-scrum,en-IN,team_curated,draft_unreviewed
+sprints,agile-scrum,en-IN,team_curated,draft_unreviewed
+sprint,agile-scrum,en-IN,team_curated,draft_unreviewed
+jira,work-tracking-tools,en-IN,team_curated,draft_unreviewed
+confluence,work-tracking-tools,en-IN,team_curated,draft_unreviewed
+trello,work-tracking-tools,en-IN,team_curated,draft_unreviewed
+asana,work-tracking-tools,en-IN,team_curated,draft_unreviewed
+monday.com,work-tracking-tools,en-IN,team_curated,draft_unreviewed
+smartsheet,work-tracking-tools,en-IN,team_curated,draft_unreviewed
+miro,work-tracking-tools,en-IN,team_curated,draft_unreviewed
+microsoft project,work-tracking-tools,en-IN,team_curated,draft_unreviewed
+project management,project-management,en-IN,team_curated,draft_unreviewed
+project governance,project-management,en-IN,team_curated,draft_unreviewed
+project planning,project-management,en-IN,team_curated,draft_unreviewed
+project chartering,project-management,en-IN,team_curated,draft_unreviewed
+work breakdown structure,project-management,en-IN,team_curated,draft_unreviewed
+wbs,project-management,en-IN,team_curated,draft_unreviewed
+milestone tracking,project-management,en-IN,team_curated,draft_unreviewed
+risk registers,project-management,en-IN,team_curated,draft_unreviewed
+critical path,project-management,en-IN,team_curated,draft_unreviewed
+scope change,project-management,en-IN,team_curated,draft_unreviewed
+project budgets,project-management,en-IN,team_curated,draft_unreviewed
+pmp,project-management,en-IN,team_curated,draft_unreviewed
+capm,project-management,en-IN,team_curated,draft_unreviewed
+project schedules,project-management,en-IN,team_curated,draft_unreviewed
+resource leveling,project-management,en-IN,team_curated,draft_unreviewed
+change management,project-management,en-IN,team_curated,draft_unreviewed
+vendor management,vendor-management,en-IN,team_curated,draft_unreviewed
+vendor relations,vendor-management,en-IN,team_curated,draft_unreviewed
+vendor contract,vendor-management,en-IN,team_curated,draft_unreviewed
+contract negotiation,vendor-management,en-IN,team_curated,draft_unreviewed
+vendor contracts,vendor-management,en-IN,team_curated,draft_unreviewed
+procurement,vendor-management,en-IN,team_curated,draft_unreviewed
+team leadership,team-leadership,en-IN,team_curated,draft_unreviewed
+team lead,team-leadership,en-IN,team_curated,draft_unreviewed
+supervised a team,team-leadership,en-IN,team_curated,draft_unreviewed
+supervise a team,team-leadership,en-IN,team_curated,draft_unreviewed
+led a team,team-leadership,en-IN,team_curated,draft_unreviewed
+led cross-functional teams,team-leadership,en-IN,team_curated,draft_unreviewed
+managed a team,team-leadership,en-IN,team_curated,draft_unreviewed
+team mentorship,team-leadership,en-IN,team_curated,draft_unreviewed
+performance evaluations,team-leadership,en-IN,team_curated,draft_unreviewed
+performance appraisals,team-leadership,en-IN,team_curated,draft_unreviewed
+staff training,team-leadership,en-IN,team_curated,draft_unreviewed
+account management,account-management,en-IN,team_curated,draft_unreviewed
+account retention,account-management,en-IN,team_curated,draft_unreviewed
+client relationship management,account-management,en-IN,team_curated,draft_unreviewed
+b2b account,account-management,en-IN,team_curated,draft_unreviewed
+customer onboarding,account-management,en-IN,team_curated,draft_unreviewed
+client services,account-management,en-IN,team_curated,draft_unreviewed
+account manager,account-management,en-IN,team_curated,draft_unreviewed
+supply chain,supply-chain-logistics,en-IN,team_curated,draft_unreviewed
+inventory management,supply-chain-logistics,en-IN,team_curated,draft_unreviewed
+dispatch coordination,supply-chain-logistics,en-IN,team_curated,draft_unreviewed
+load scheduling,supply-chain-logistics,en-IN,team_curated,draft_unreviewed
+logistics operations,supply-chain-logistics,en-IN,team_curated,draft_unreviewed

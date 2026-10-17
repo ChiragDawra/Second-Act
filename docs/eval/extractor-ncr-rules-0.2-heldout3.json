@@ -1,0 +1,138 @@
+{
+  "extractor_version": "ncr-rules-0.2",
+  "dataset_version": "ncr-roles-v1",
+  "resumes": 3,
+  "gold_rows": 37,
+  "counts": {
+    "true_positive": 28,
+    "false_positive": 0,
+    "false_negative": 1
+  },
+  "precision": {
+    "num": 28,
+    "den": 28,
+    "value": 1
+  },
+  "recall": {
+    "num": 28,
+    "den": 29,
+    "value": 0.966
+  },
+  "f1": 0.983,
+  "future_goal_leakage": {
+    "num": 0,
+    "den": 4,
+    "value": 0
+  },
+  "negation_leakage": {
+    "num": 0,
+    "den": 2,
+    "value": 0
+  },
+  "unsupported_skill_rate": {
+    "num": 0,
+    "den": 29,
+    "value": 0
+  },
+  "evidence_coverage": {
+    "num": 37,
+    "den": 37,
+    "value": 1
+  },
+  "canonicalization_accuracy": {
+    "num": 36,
+    "den": 36,
+    "value": 1
+  },
+  "candidate_leakage": {
+    "skills_with_foreign_evidence": 0,
+    "examples": []
+  },
+  "canonicalization_errors": [],
+  "ambiguous_gold": {
+    "predicted_current": 1,
+    "total": 2
+  },
+  "by_group": {
+    "heldout_bank_ops_ncr": {
+      "precision": {
+        "num": 15,
+        "den": 15,
+        "value": 1
+      },
+      "recall": {
+        "num": 15,
+        "den": 15,
+        "value": 1
+      },
+      "f1": 1
+    },
+    "heldout_support_ncr": {
+      "precision": {
+        "num": 7,
+        "den": 7,
+        "value": 1
+      },
+      "recall": {
+        "num": 7,
+        "den": 7,
+        "value": 1
+      },
+      "f1": 1
+    },
+    "heldout_mis_returner_ncr": {
+      "precision": {
+        "num": 6,
+        "den": 6,
+        "value": 1
+      },
+      "recall": {
+        "num": 6,
+        "den": 7,
+        "value": 0.857
+      },
+      "f1": 0.923
+    }
+  },
+  "per_resume": [
+    {
+      "resume_id": "resume_16",
+      "group": "heldout_bank_ops_ncr",
+      "extracted": 18,
+      "tp": 15,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_17",
+      "group": "heldout_support_ncr",
+      "extracted": 11,
+      "tp": 7,
+      "fp": 0,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_18",
+      "group": "heldout_mis_returner_ncr",
+      "extracted": 8,
+      "tp": 6,
+      "fp": 0,
+      "fn": 1
+    }
+  ],
+  "error_categories": {
+    "FN:context_classification": 1
+  },
+  "false_negatives": [
+    {
+      "resume_id": "resume_18",
+      "skill_id": "data-analysis",
+      "category": "context_classification",
+      "gold_label": "explicit_current",
+      "extracted_as": "future_goal",
+      "sentence": "Analysed monthly sales data"
+    }
+  ],
+  "false_positives": [],
+  "non_current_leaks": []
+}

@@ -1,0 +1,38 @@
+candidate_id,resume_id,skill_id,expected_label,evidence_quote,evidence_location,reviewer,review_status
+candidate_016,resume_16,banking-payments-domain,explicit_current,"Retail banking operations, NEFT / RTGS",Key Skills,claude-draft,pending_human_review
+candidate_016,resume_16,regulatory-compliance,explicit_current,KYC and AML checks as per RBI guidelines,Key Skills,claude-draft,pending_human_review
+candidate_016,resume_16,excel-spreadsheets,explicit_current,"advanced Excel (VLOOKUP, pivot tables, macros)",Key Skills,claude-draft,pending_human_review
+candidate_016,resume_16,sql-querying,explicit_current,"Basic SQL (SELECT queries, joins)",Key Skills,claude-draft,pending_human_review
+candidate_016,resume_16,work-tracking-tools,explicit_current,Jira for tracking operational tickets,Key Skills,claude-draft,pending_human_review
+candidate_016,resume_16,process-modeling,explicit_current,Process mapping using Visio,Key Skills,claude-draft,pending_human_review
+candidate_016,resume_16,operational-reporting,explicit_current,Prepared weekly MIS reports,Work Experience,claude-draft,pending_human_review
+candidate_016,resume_16,reconciliation,explicit_current,Reconcile daily NEFT and RTGS settlement files,Work Experience,claude-draft,pending_human_review
+candidate_016,resume_16,sla-management,explicit_current,within the SLA,Work Experience,claude-draft,pending_human_review
+candidate_016,resume_16,process-documentation,explicit_current,Wrote 40 standard operating procedures,Work Experience,claude-draft,pending_human_review
+candidate_016,resume_16,uat,explicit_current,Coordinated user acceptance testing,Work Experience,claude-draft,pending_human_review
+candidate_016,resume_16,test-case-design,explicit_current,preparing test scenarios with the product team,Work Experience,claude-draft,pending_human_review
+candidate_016,resume_16,defect-management,explicit_current,logging defects in Jira,Work Experience,claude-draft,pending_human_review
+candidate_016,resume_16,team-leadership,explicit_current,Led a team of 7 operations executives,Work Experience,claude-draft,pending_human_review
+candidate_016,resume_16,customer-support,explicit_current,Handled customer queries over phone and email,Work Experience,claude-draft,pending_human_review
+candidate_016,resume_16,bi-dashboarding,future_goal,Keen to pick up Power BI,Currently Upskilling,claude-draft,pending_human_review
+candidate_016,resume_16,python-programming,future_goal,Planning to learn Python,Currently Upskilling,claude-draft,pending_human_review
+candidate_016,resume_16,api-testing,negated_or_no_experience,Have not worked on any API testing tools so far,Currently Upskilling,claude-draft,pending_human_review
+candidate_017,resume_17,desktop-hardware-support,explicit_current,"Windows 10, Windows 11",Technical Skills,claude-draft,pending_human_review
+candidate_017,resume_17,itsm-ticketing,explicit_current,"ServiceNow, Freshdesk",Technical Skills,claude-draft,pending_human_review
+candidate_017,resume_17,networking-fundamentals,explicit_current,"LAN/WAN basics, DHCP, DNS, VPN troubleshooting",Technical Skills,claude-draft,pending_human_review
+candidate_017,resume_17,active-directory-admin,explicit_current,"AD user account creation, password resets",Technical Skills,claude-draft,pending_human_review
+candidate_017,resume_17,customer-support,explicit_current,Handled 60 inbound calls daily,Experience,claude-draft,pending_human_review
+candidate_017,resume_17,sla-management,explicit_current,met SLA targets,Experience,claude-draft,pending_human_review
+candidate_017,resume_17,process-documentation,explicit_current,Documented 20 knowledge base articles,Experience,claude-draft,pending_human_review
+candidate_017,resume_17,linux-administration,ambiguous,Ubuntu (basic),Technical Skills,claude-draft,pending_human_review
+candidate_017,resume_17,itil-practices,ambiguous,Completed ITIL 4 Foundation training course online,Learning,claude-draft,pending_human_review
+candidate_017,resume_17,cloud-platforms,future_goal,Intend to take the Microsoft Azure fundamentals exam,Learning,claude-draft,pending_human_review
+candidate_017,resume_17,shell-scripting,negated_or_no_experience,No experience yet with Linux administration or shell scripting,Learning,claude-draft,pending_human_review
+candidate_018,resume_18,excel-spreadsheets,explicit_current,"Advanced Excel (pivot tables, HLOOKUP/VLOOKUP",Core Skills,claude-draft,pending_human_review
+candidate_018,resume_18,bi-dashboarding,explicit_current,Power BI (intermediate),Core Skills,claude-draft,pending_human_review
+candidate_018,resume_18,sql-querying,explicit_current,SQL Server (basic queries),Core Skills,claude-draft,pending_human_review
+candidate_018,resume_18,operational-reporting,explicit_current,MIS reports,Core Skills,claude-draft,pending_human_review
+candidate_018,resume_18,etl-data-preparation,explicit_current,data cleaning,Core Skills,claude-draft,pending_human_review
+candidate_018,resume_18,reconciliation,explicit_current,Reconciled vendor ledgers,Professional Experience,claude-draft,pending_human_review
+candidate_018,resume_18,data-analysis,explicit_current,Analysed monthly sales data,Professional Experience,claude-draft,pending_human_review
+candidate_018,resume_18,python-programming,future_goal,exploring Python for data analysis,Goals,claude-draft,pending_human_review
