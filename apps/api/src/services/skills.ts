@@ -12,9 +12,16 @@ export async function insertExtractedSkills(
   q: Queryable,
   profileId: string,
 ): Promise<{ candidates: ExtractedCandidate[]; inserted: string[] }> {
-  const profile = await q.query<{ experience_summary: string }>('select experience_summary from public.profiles where id = $1', [profileId]);
+  const profile = await q.query<{ experience_summary: string; catalogue: string }>(
+    'select experience_summary, catalogue from public.profiles where id = $1',
+    [profileId],
+  );
   const text = profile.rows[0]?.experience_summary ?? '';
-  const catalog = await q.query<SkillInfo>('select id, canonical_name, aliases, learning_hours_per_level from public.skills order by id');
+  // The demo phrase matcher only runs over the profile's own catalogue.
+  const catalog = await q.query<SkillInfo>(
+    'select id, canonical_name, aliases, learning_hours_per_level from public.skills where catalogue = $1 order by id',
+    [profile.rows[0]?.catalogue ?? 'demo'],
+  );
   const candidates = extractSkills(text, catalog.rows, EXTRACTION_RULES);
 
   const inserted: string[] = [];

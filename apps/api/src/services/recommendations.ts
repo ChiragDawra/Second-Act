@@ -2,6 +2,8 @@ import type { Db, Queryable } from '../db/types.ts';
 import { rankRoles } from '../engine/scoring.ts';
 import type { RecommendationResult, RoleDefinition, SkillInfo, WorkerPreferences, WorkerSkillState } from '../engine/types.ts';
 import type { SkillStatus } from '../engine/vocabulary.ts';
+import { applyRecommendationBar } from '../ncr/adjacency.ts';
+import { getNcrDataset } from '../ncr/dataset.ts';
 import { recordAudit } from './audit.ts';
 
 export interface Catalog {
@@ -10,21 +12,26 @@ export interface Catalog {
   datasetVersion: string;
 }
 
-export async function loadCatalog(q: Queryable): Promise<Catalog> {
+/** Roles, requirements and skills of one catalogue ('demo' or 'ncr'). */
+export async function loadCatalog(q: Queryable, catalogue = 'demo'): Promise<Catalog> {
   const roles = await q.query<{
     id: string; title: string; family: string; employment_type: RoleDefinition['employment_type'];
     work_mode: RoleDefinition['work_mode']; locations: string[]; salary_min_lpa: number | null;
     salary_max_lpa: number | null; dataset_version: string;
   }>(
     `select id, title, family, employment_type, work_mode, locations, salary_min_lpa, salary_max_lpa, dataset_version
-     from public.roles order by id`,
+     from public.roles where catalogue = $1 order by id`,
+    [catalogue],
   );
   const reqs = await q.query<{ role_id: string; skill_id: string; importance_weight: number; required_level: number; is_mandatory: boolean }>(
     `select role_id, skill_id, importance_weight, required_level, is_mandatory
-     from public.role_requirements order by role_id, skill_id`,
+     from public.role_requirements rr join public.roles r on r.id = rr.role_id
+     where r.catalogue = $1 order by role_id, skill_id`,
+    [catalogue],
   );
   const skills = await q.query<SkillInfo>(
-    'select id, canonical_name, aliases, learning_hours_per_level from public.skills order by id',
+    'select id, canonical_name, aliases, learning_hours_per_level from public.skills where catalogue = $1 order by id',
+    [catalogue],
   );
 
   const byRole = new Map<string, RoleDefinition['requirements']>();
@@ -52,8 +59,14 @@ export async function loadCatalog(q: Queryable): Promise<Catalog> {
   };
 }
 
-export async function loadWorkerState(q: Queryable, profileId: string): Promise<{ preferences: WorkerPreferences; skills: WorkerSkillState[] } | null> {
-  const profile = await q.query<{ preferences: WorkerPreferences }>('select preferences from public.profiles where id = $1', [profileId]);
+export async function loadWorkerState(
+  q: Queryable,
+  profileId: string,
+): Promise<{ preferences: WorkerPreferences; skills: WorkerSkillState[]; catalogue: string } | null> {
+  const profile = await q.query<{ preferences: WorkerPreferences; catalogue: string }>(
+    'select preferences, catalogue from public.profiles where id = $1',
+    [profileId],
+  );
   const row = profile.rows[0];
   if (!row) return null;
   const skills = await q.query<{ skill_id: string; status: SkillStatus; proficiency: number | null }>(
@@ -61,6 +74,7 @@ export async function loadWorkerState(q: Queryable, profileId: string): Promise<
     [profileId],
   );
   return {
+    catalogue: row.catalogue,
     preferences: row.preferences ?? {},
     skills: skills.rows.map((s) => ({ ...s, proficiency: s.proficiency === null ? null : Number(s.proficiency) })),
   };
@@ -103,18 +117,23 @@ export async function recompute(
   opts: { actorUserId: string | null; actorRole: string | null; profileId: string; trigger: string; requestId?: string },
 ): Promise<StoredRun> {
   const read = <T>(fn: (q: Queryable) => Promise<T>) => (opts.actorUserId ? db.asUser(opts.actorUserId, fn) : db.asService(fn));
-  const { catalog, worker } = await read(async (q) => ({ catalog: await loadCatalog(q), worker: await loadWorkerState(q, opts.profileId) }));
-  if (!worker) {
+  const { catalog, worker } = await read(async (q) => {
+    const state = await loadWorkerState(q, opts.profileId);
+    return { worker: state, catalog: state ? await loadCatalog(q, state.catalogue) : null };
+  });
+  if (!worker || !catalog) {
     throw new Error('Profile not readable for recompute.');
   }
 
-  const result = rankRoles({
+  const ranked = rankRoles({
     roles: catalog.roles,
     catalog: catalog.skills,
     workerSkills: worker.skills,
     preferences: worker.preferences,
     datasetVersion: catalog.datasetVersion,
   });
+  // Delhi-NCR profiles only see a role as "top" when it clears the configured recommendation bar.
+  const result = worker.catalogue === 'ncr' ? applyRecommendationBar(ranked, getNcrDataset().config.recommendation_bar) : ranked;
 
   return db.asService(async (q) => {
     const run = await storeRun(q, opts.profileId, result, opts.trigger);

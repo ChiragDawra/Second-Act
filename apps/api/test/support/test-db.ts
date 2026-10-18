@@ -24,6 +24,13 @@ export const USERS = {
   otherMentor: '00000000-0000-4000-a000-000000000012',
   otherRecruiter: '00000000-0000-4000-a000-000000000013',
   unprovisioned: '00000000-0000-4000-a000-000000000099',
+  // Self-service (Google) sign-ins with no Second Act account until they onboard.
+  newSeeker: '00000000-0000-4000-a000-000000000101',
+  newSeeker2: '00000000-0000-4000-a000-000000000106',
+  newMentor: '00000000-0000-4000-a000-000000000102',
+  newRecruiter: '00000000-0000-4000-a000-000000000103',
+  newAdmin: '00000000-0000-4000-a000-000000000104',
+  unverified: '00000000-0000-4000-a000-000000000105',
 } as const;
 export type TestUser = keyof typeof USERS;
 

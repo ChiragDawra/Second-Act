@@ -1,9 +1,18 @@
 import { createClient } from '@supabase/supabase-js';
 import { sha256 } from '../engine/hash.ts';
 
-/** Resolves a bearer token to a Supabase Auth user id, or null if invalid. */
+/** Who the token belongs to, as asserted by Supabase Auth. Never trusted for authorization by itself. */
+export interface VerifiedIdentity {
+  userId: string;
+  email: string | null;
+  emailVerified: boolean;
+  /** Display name from the identity provider (Google), used only as a suggestion. */
+  name: string | null;
+}
+
+/** Resolves a bearer token to a Supabase Auth identity, or null if invalid. */
 export interface AuthVerifier {
-  verify(token: string): Promise<{ userId: string } | null>;
+  verify(token: string): Promise<VerifiedIdentity | null>;
 }
 
 const JWT_SHAPE = /^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/;
@@ -18,7 +27,7 @@ export function createSupabaseVerifier(url: string, anonKey: string): AuthVerifi
   const client = createClient(url, anonKey, {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
   });
-  const cache = new Map<string, { userId: string; until: number }>();
+  const cache = new Map<string, { identity: VerifiedIdentity; until: number }>();
 
   return {
     async verify(token) {
@@ -26,26 +35,35 @@ export function createSupabaseVerifier(url: string, anonKey: string): AuthVerifi
       const key = sha256(token);
       const hit = cache.get(key);
       const now = Date.now();
-      if (hit && hit.until > now) return { userId: hit.userId };
+      if (hit && hit.until > now) return hit.identity;
 
       const { data, error } = await client.auth.getUser(token);
       if (error || !data.user) {
         cache.delete(key);
         return null;
       }
+      const meta = (data.user.user_metadata ?? {}) as { full_name?: unknown; name?: unknown };
+      const rawName = typeof meta.full_name === 'string' ? meta.full_name : typeof meta.name === 'string' ? meta.name : null;
+      const identity: VerifiedIdentity = {
+        userId: data.user.id,
+        email: data.user.email ?? null,
+        emailVerified: Boolean(data.user.email_confirmed_at),
+        name: rawName ? rawName.slice(0, 80) : null,
+      };
       if (cache.size > 1000) cache.clear();
-      cache.set(key, { userId: data.user.id, until: now + CACHE_MS });
-      return { userId: data.user.id };
+      cache.set(key, { identity, until: now + CACHE_MS });
+      return identity;
     },
   };
 }
 
-/** Test verifier: fixed token → user id map. Never wired into the server. */
-export function createStaticVerifier(tokens: Record<string, string>): AuthVerifier {
+/** Test verifier: fixed token → identity map. Never wired into the server. */
+export function createStaticVerifier(tokens: Record<string, string | VerifiedIdentity>): AuthVerifier {
   return {
     async verify(token) {
-      const userId = tokens[token];
-      return userId ? { userId } : null;
+      const entry = tokens[token];
+      if (!entry) return null;
+      return typeof entry === 'string' ? { userId: entry, email: null, emailVerified: false, name: null } : entry;
     },
   };
 }

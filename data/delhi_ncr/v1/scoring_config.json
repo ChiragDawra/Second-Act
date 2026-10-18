@@ -4,7 +4,13 @@
   "adjacency_version": "ncr-adjacency-v1",
   "collected_at": "2026-10-18",
   "region_scope": "Delhi-NCR (Delhi, Gurugram, Noida, Ghaziabad, Faridabad)",
-  "cities": ["Delhi", "Gurugram", "Noida", "Ghaziabad", "Faridabad"],
+  "cities": [
+    "Delhi",
+    "Gurugram",
+    "Noida",
+    "Ghaziabad",
+    "Faridabad"
+  ],
   "recommendation_bar": {
     "min_estimated_fit": 30,
     "min_matched_requirements": 2,
@@ -24,5 +30,44 @@
     "Demand and vacancy data are simulated samples. No live vacancy feed is connected and no demand claim is made.",
     "No NCO, ESCO or O*NET identifiers have been mapped yet.",
     "Scores are estimated skill fit, not hiring probability."
-  ]
+  ],
+  "sectors": {
+    "qa": {
+      "label": "QA & software testing",
+      "roles": [
+        "manual-qa-tester",
+        "qa-analyst",
+        "uat-analyst",
+        "api-tester",
+        "junior-test-automation-engineer"
+      ]
+    },
+    "banking-ba": {
+      "label": "Banking operations & business analysis",
+      "roles": [
+        "banking-operations-associate",
+        "process-analyst",
+        "junior-business-analyst",
+        "uat-business-testing-analyst"
+      ]
+    },
+    "support": {
+      "label": "Customer & IT support",
+      "roles": [
+        "customer-support-specialist",
+        "service-desk-analyst",
+        "it-support-technician",
+        "junior-application-support-analyst"
+      ]
+    },
+    "data": {
+      "label": "Data & reporting",
+      "roles": [
+        "operations-analyst",
+        "reporting-analyst",
+        "junior-data-analyst",
+        "mis-executive"
+      ]
+    }
+  }
 }

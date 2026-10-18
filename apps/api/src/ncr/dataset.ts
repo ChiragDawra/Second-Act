@@ -89,7 +89,12 @@ export interface NcrConfig {
   recommendation_bar: { min_estimated_fit: number; min_matched_requirements: number; note: string };
   learning_hours_per_level: Record<string, number>;
   limitations: string[];
+  /** Onboarding sectors. Every role belongs to exactly one. */
+  sectors: Record<NcrSector, { label: string; roles: string[] }>;
 }
+
+export const NCR_SECTORS = ['qa', 'banking-ba', 'support', 'data'] as const;
+export type NcrSector = (typeof NCR_SECTORS)[number];
 
 export interface NcrDataset {
   config: NcrConfig;
@@ -222,6 +227,16 @@ export function validateNcrDataset(ds: NcrDataset): string[] {
   }
   for (const id of roleIds) if (!perRole.get(id)?.size) problems.push(`roles: ${id} has no requirements`);
 
+  const sectorOf = new Map<string, string>();
+  for (const sector of NCR_SECTORS) {
+    for (const id of ds.config.sectors?.[sector]?.roles ?? []) {
+      if (!roleIds.has(id)) problems.push(`sectors: unknown role ${id} in ${sector}`);
+      if (sectorOf.has(id)) problems.push(`sectors: role ${id} is in two sectors`);
+      sectorOf.set(id, sector);
+    }
+  }
+  for (const id of roleIds) if (!sectorOf.has(id)) problems.push(`sectors: role ${id} has no sector`);
+
   for (const t of ds.transitions) {
     if (!roleIds.has(t.source_role_id) || !roleIds.has(t.target_role_id)) problems.push(`transitions: unknown role in ${t.source_role_id}->${t.target_role_id}`);
     for (const id of [...t.transferable_skill_ids, ...t.gap_skill_ids]) if (!skillIds.has(id)) problems.push(`transitions: unknown skill ${id}`);
@@ -235,4 +250,16 @@ export function validateNcrDataset(ds: NcrDataset): string[] {
     if (!e.synthetic && !e.source_url) problems.push(`job_evidence: ${e.evidence_id} is not synthetic but has no source_url`);
   }
   return problems;
+}
+
+let cached: NcrDataset | null = null;
+/** Loads and validates the dataset once per process. Throws if the data is inconsistent. */
+export function getNcrDataset(): NcrDataset {
+  if (!cached) {
+    const ds = loadNcrDataset();
+    const problems = validateNcrDataset(ds);
+    if (problems.length > 0) throw new Error(`Delhi-NCR dataset is invalid: ${problems.slice(0, 5).join('; ')}`);
+    cached = ds;
+  }
+  return cached;
 }

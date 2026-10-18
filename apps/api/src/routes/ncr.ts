@@ -3,7 +3,7 @@ import type { Deps } from '../http/context.ts';
 import { ApiError, badRequest } from '../http/errors.ts';
 import { requireRole } from '../http/guards.ts';
 import { recommend } from '../ncr/adjacency.ts';
-import { loadNcrDataset, validateNcrDataset, type NcrDataset } from '../ncr/dataset.ts';
+import { getNcrDataset } from '../ncr/dataset.ts';
 import { extractResume } from '../ncr/extractor.ts';
 import { profileFromReview, ReviewError, reviewRequestSchema } from '../ncr/review.ts';
 import { DocumentError, extractDocumentText, MAX_UPLOAD_BYTES } from '../ncr/text.ts';
@@ -18,16 +18,7 @@ import { userLimiter } from './worker.ts';
  * caller's own session; no profile or object id is accepted from the client.
  */
 
-let cached: NcrDataset | null = null;
-export function ncrDataset(): NcrDataset {
-  if (!cached) {
-    const ds = loadNcrDataset();
-    const problems = validateNcrDataset(ds);
-    if (problems.length > 0) throw new Error(`Delhi-NCR dataset is invalid: ${problems.slice(0, 5).join('; ')}`);
-    cached = ds;
-  }
-  return cached;
-}
+export const ncrDataset = getNcrDataset;
 
 const UPLOAD_TYPES = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain', 'application/octet-stream'];
 

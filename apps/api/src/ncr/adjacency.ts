@@ -1,5 +1,5 @@
 import { rankRoles } from '../engine/scoring.ts';
-import type { RoleDefinition, RoleEvaluation, SkillInfo, WorkerPreferences, WorkerSkillState } from '../engine/types.ts';
+import type { RecommendationResult, RoleDefinition, RoleEvaluation, SkillInfo, WorkerPreferences, WorkerSkillState } from '../engine/types.ts';
 import { SCORING_VERSION, type SkillStatus } from '../engine/vocabulary.ts';
 import type { NcrDataset } from './dataset.ts';
 
@@ -84,6 +84,18 @@ export interface NcrRecommendation {
   message: string | null;
   bar: { min_estimated_fit: number; min_matched_requirements: number; note: string };
   limitations: string[];
+}
+
+/** True when a role clears the pilot recommendation bar (a configured cut-off, not a probability). */
+export function meetsRecommendationBar(e: RoleEvaluation, bar: NcrDataset['config']['recommendation_bar']): boolean {
+  const evidenced = e.breakdown.filter((b) => b.status !== 'unknown' && (b.worker_level ?? 0) > 0).length;
+  return (e.role_fit_score ?? 0) >= bar.min_estimated_fit && evidenced >= bar.min_matched_requirements;
+}
+
+/** Drops top roles that do not clear the bar; the full evaluation list is kept for explanations. */
+export function applyRecommendationBar(result: RecommendationResult, bar: NcrDataset['config']['recommendation_bar']): RecommendationResult {
+  const byId = new Map(result.evaluations.map((e) => [e.role_id, e]));
+  return { ...result, top_role_ids: result.top_role_ids.filter((id) => meetsRecommendationBar(byId.get(id)!, bar)) };
 }
 
 const SIMULATED_NOTE = 'Simulated listings written by the team to exercise the pipeline. They are not market demand and not live vacancies.';
@@ -195,8 +207,7 @@ export function recommend(ds: NcrDataset, skills: NcrProfileSkill[], preferences
   };
 
   const byId = new Map(result.evaluations.map((e) => [e.role_id, e]));
-  const meetsBar = (e: RoleEvaluation) =>
-    (e.role_fit_score ?? 0) >= bar.min_estimated_fit && e.breakdown.filter((b) => b.status !== 'unknown' && (b.worker_level ?? 0) > 0).length >= bar.min_matched_requirements;
+  const meetsBar = (e: RoleEvaluation) => meetsRecommendationBar(e, bar);
 
   const feasible = result.top_role_ids.map((id) => byId.get(id)!).filter(meetsBar);
   const stretch = result.stretch_role_ids.map((id) => byId.get(id)!).filter(meetsBar);

@@ -12,6 +12,9 @@ import {
   TAXONOMY_VERSION,
 } from '../data/demo-v1.ts';
 
+import { upsertNcrCatalog } from '../ncr/catalogue.ts';
+import { getNcrDataset } from '../ncr/dataset.ts';
+
 const TAXONOMY_SOURCE = 'Second Act curated skill list (ESCO/O*NET-aligned labels; not an import)';
 
 /**
@@ -128,4 +131,7 @@ export async function upsertCatalog(q: Queryable): Promise<void> {
       [o.id, o.role_id, o.org_id, o.title, o.employer_name, o.location, o.work_mode, o.salary_band_text],
     );
   }
+
+  // The Delhi-NCR pilot catalogue (ncr- prefixed ids) used by self-service accounts.
+  await upsertNcrCatalog(q, getNcrDataset());
 }

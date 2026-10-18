@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import type { NextFunction, Request, RequestHandler, Response } from 'express';
-import type { AuthVerifier } from '../auth/verifier.ts';
+import type { AuthVerifier, VerifiedIdentity } from '../auth/verifier.ts';
 import type { Db } from '../db/types.ts';
 import { ApiError } from './errors.ts';
 
@@ -17,9 +17,20 @@ export interface Actor {
   isSynthetic: boolean;
 }
 
+export type AccountStatus = 'active' | 'pending' | 'rejected';
+
+/** The caller's Second Act account as stored, whatever its status. Null before onboarding. */
+export interface Account {
+  role: AppRole;
+  status: AccountStatus;
+  displayName: string;
+}
+
 export interface Deps {
   db: Db;
   auth: AuthVerifier;
+  /** Verified emails that may onboard as admin. Empty means nobody can self-onboard as admin. */
+  adminEmails?: string[];
 }
 
 export function requestId(): RequestHandler {
@@ -62,10 +73,10 @@ export function authenticate({ db, auth }: Deps): RequestHandler {
 
     const rows = await db.asUser(verified.userId, (q) =>
       q.query<{
-        role: AppRole; display_name: string; org_id: string | null; org_name: string | null;
+        role: AppRole; status: AccountStatus; display_name: string; org_id: string | null; org_name: string | null;
         profile_id: string | null; mentor_id: string | null; is_synthetic: boolean;
       }>(
-        `select u.role, u.display_name, u.org_id, o.name as org_name, u.is_synthetic,
+        `select u.role, u.status, u.display_name, u.org_id, o.name as org_name, u.is_synthetic,
                 app_private.my_profile_id() as profile_id, app_private.my_mentor_id() as mentor_id
          from public.app_users u
          left join public.organizations o on o.id = u.org_id
@@ -73,9 +84,10 @@ export function authenticate({ db, auth }: Deps): RequestHandler {
       ),
     );
     const row = rows.rows[0];
-    if (!row) {
-      return next(new ApiError(403, 'account_not_provisioned', 'This account has no Second Act role. Ask the facilitator to run the demo seed.'));
-    }
+    res.locals.identity = verified satisfies VerifiedIdentity;
+    res.locals.account = row ? ({ role: row.role, status: row.status, displayName: row.display_name } satisfies Account) : null;
+    // Only an active account acts with its role. Others may only read /me and onboard.
+    if (!row || row.status !== 'active') return next();
     res.locals.actor = {
       userId: verified.userId,
       role: row.role,
@@ -88,6 +100,28 @@ export function authenticate({ db, auth }: Deps): RequestHandler {
     } satisfies Actor;
     next();
   };
+}
+
+/**
+ * Blocks every route below it unless the caller has an active account.
+ * Not onboarded: 403 onboarding_required. Waiting for approval: 403 account_pending.
+ */
+export function requireActiveAccount(): RequestHandler {
+  return (_req, res, next) => {
+    if (res.locals.actor) return next();
+    const account = res.locals.account as Account | null | undefined;
+    if (!account) return next(new ApiError(403, 'onboarding_required', 'Finish setting up your account first.'));
+    if (account.status === 'pending') {
+      return next(new ApiError(403, 'account_pending', 'Your account is waiting for an administrator to approve it.'));
+    }
+    return next(new ApiError(403, 'account_rejected', 'This account was not approved. Contact the Second Act team.'));
+  };
+}
+
+export function identityOf(res: Response): VerifiedIdentity {
+  const identity = res.locals.identity as VerifiedIdentity | undefined;
+  if (!identity) throw new ApiError(401, 'unauthenticated', 'Sign in to continue.');
+  return identity;
 }
 
 export function actorOf(res: Response): Actor {

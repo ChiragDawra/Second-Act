@@ -62,10 +62,16 @@ describe('unauthenticated and unprovisioned callers', () => {
     expect(bad.body.error.code).toBe('invalid_session');
   });
 
-  it('a valid identity without an app role gets nothing', async () => {
-    const res = await api.as('unprovisioned').get('/api/v1/me');
-    expect(res.status).toBe(403);
-    expect(res.body.error.code).toBe('account_not_provisioned');
+  it('a valid identity without an app role may only see that it must onboard', async () => {
+    const me = await api.as('unprovisioned').get('/api/v1/me');
+    expect(me.status).toBe(200);
+    expect(me.body.status).toBe('needs_onboarding');
+    expect(me.body.role).toBeUndefined();
+    for (const path of ['/api/v1/roles', '/api/v1/organizations', '/api/v1/mentor/requests', '/api/v1/admin/overview']) {
+      const res = await api.as('unprovisioned').get(path);
+      expect(res.status, path).toBe(403);
+      expect(res.body.error.code).toBe('onboarding_required');
+    }
   });
 
   it('errors are safe and carry a request id', async () => {
