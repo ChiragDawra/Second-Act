@@ -20,6 +20,8 @@ export type ReviewDecision = z.infer<typeof reviewDecisionSchema>;
 
 export const reviewRequestSchema = z.object({
   skills: z.array(reviewDecisionSchema).max(80),
+  /** Pilot roles the worker holds now (detected from the resume, confirmed by them). Shown as the start, not ranked. */
+  current_role_ids: z.array(z.string().regex(/^[a-z0-9-]{1,80}$/)).max(3).optional(),
   preferences: z
     .object({
       cities: z.array(z.string().min(1).max(40)).max(5).optional(),

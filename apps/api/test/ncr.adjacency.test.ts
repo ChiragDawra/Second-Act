@@ -216,3 +216,86 @@ describe('worker review step', () => {
     expect(reviewRequestSchema.safeParse({ skills: [{ skill_id: 'sql-querying', level: 2, mention_type: 'explicit_current', status: 'verified' }] }).success).toBe(true);
   });
 });
+
+describe('ncr-adjacency-v2: where you are, what to study next', () => {
+  it('never recommends the role the worker already holds, and reports it as the starting point', () => {
+    const base = recommend(ds, qaProfile());
+    expect(base.top_roles.map((r) => r.role_id)).toContain('manual-qa-tester');
+    const r = recommend(ds, qaProfile(), {}, { currentRoleIds: ['manual-qa-tester'] });
+    expect(r.top_roles.map((x) => x.role_id)).not.toContain('manual-qa-tester');
+    expect(r.stretch_roles.map((x) => x.role_id)).not.toContain('manual-qa-tester');
+    expect(r.current_roles.map((x) => x.role_id)).toEqual(['manual-qa-tester']);
+    expect(r.current_roles[0]!.is_current_role).toBe(true);
+    expect(r.top_roles.length).toBeGreaterThan(0);
+  });
+
+  it('shows the documented move from the current role, when the dataset has one', () => {
+    const r = recommend(ds, qaProfile(), {}, { currentRoleIds: ['manual-qa-tester'] });
+    const withPath = [...r.top_roles, ...r.stretch_roles].filter((x) => x.transition);
+    expect(withPath.length).toBeGreaterThan(0);
+    expect(withPath[0]!.transition!.from_role_id).toBe('manual-qa-tester');
+    expect(recommend(ds, qaProfile()).top_roles.every((x) => x.transition === null)).toBe(true);
+  });
+
+  it('gives every role an ordered learning plan whose gains add up to the fit after learning', () => {
+    const r = recommend(ds, qaProfile(), { weekly_learning_hours: 6 });
+    for (const role of [...r.top_roles, ...r.stretch_roles]) {
+      const plan = role.learning_plan;
+      expect(plan.fit_now).toBe(role.estimated_skill_fit);
+      const learn = plan.steps.filter((s) => s.kind !== 'prove');
+      expect(plan.total_hours).toBe(learn.reduce((s, x) => s + x.hours, 0));
+      expect(plan.weeks).toBe(Math.ceil(plan.total_hours / 6));
+      expect(plan.fit_after_learning!).toBeGreaterThanOrEqual(plan.fit_now!);
+      expect(plan.fit_after_learning!).toBeLessThanOrEqual(70.5); // learned skills stay self-reported (0.7)
+      // Mandatory gaps come before optional ones.
+      const firstOptional = plan.steps.findIndex((s) => !(s.is_mandatory && s.kind !== 'prove'));
+      expect(plan.steps.slice(firstOptional).some((s) => s.is_mandatory && s.kind !== 'prove')).toBe(false);
+    }
+  });
+
+  it('a verified, fully met role has nothing left to learn or prove', () => {
+    const r = recommend(ds, qaProfile('verified'));
+    const best = r.top_roles[0]!;
+    expect(best.learning_plan.steps.filter((s) => s.kind === 'prove')).toEqual([]);
+  });
+
+  it('ranks study-next skills by fit gained per hour across nearby roles, never from filtered or current roles', () => {
+    const r = recommend(ds, qaProfile(), {}, { currentRoleIds: ['manual-qa-tester'] });
+    expect(r.study_next.length).toBeGreaterThan(0);
+    expect(r.study_next.length).toBeLessThanOrEqual(5);
+    for (const s of r.study_next) {
+      expect(s.roles.map((x) => x.role_id)).not.toContain('manual-qa-tester');
+      expect(s.hours).toBeGreaterThan(0);
+      expect(s.fit_gain_total).toBeCloseTo(s.roles.reduce((t, x) => t + x.fit_gain, 0), 0);
+    }
+    const perHour = r.study_next.map((s) => s.fit_gain_total / Math.max(s.hours, 4));
+    expect(perHour).toEqual([...perHour].sort((a, b) => b - a));
+    const nothing = recommend(ds, qaProfile(), { cities: ['Mumbai'] });
+    expect(nothing.study_next).toEqual([]);
+  });
+
+  it('ignores current role ids that are not in the dataset', () => {
+    expect(recommend(ds, qaProfile(), {}, { currentRoleIds: ['astronaut'] }).current_roles).toEqual([]);
+  });
+});
+
+describe('step backs', () => {
+  it('ranks a less senior role the worker already meets after real moves, and labels it', () => {
+    // A QA analyst (junior-mid) who meets most of Manual QA Tester (junior).
+    const r = recommend(ds, qaProfile(), {}, { currentRoleIds: ['qa-analyst'] });
+    const all = [...r.top_roles, ...r.stretch_roles];
+    const manual = all.find((x) => x.role_id === 'manual-qa-tester');
+    if (manual) {
+      expect(manual.is_step_back).toBe(true);
+      const firstStepBack = r.top_roles.findIndex((x) => x.is_step_back);
+      if (firstStepBack !== -1) expect(r.top_roles.slice(firstStepBack).every((x) => x.is_step_back)).toBe(true);
+    }
+    // A pivot to automation is less senior on paper but needs new skills: not a step back.
+    const automation = all.find((x) => x.role_id === 'junior-test-automation-engineer');
+    if (automation) expect(automation.is_step_back).toBe(false);
+  });
+
+  it('flags nothing when the current role is unknown', () => {
+    expect([...recommend(ds, qaProfile()).top_roles].every((x) => !x.is_step_back)).toBe(true);
+  });
+});

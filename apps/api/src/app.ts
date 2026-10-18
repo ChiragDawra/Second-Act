@@ -25,10 +25,20 @@ export function createApp(options: AppOptions) {
   app.use(requestId());
   if (options.logRequests) app.use(accessLog());
   app.use(helmet());
+  // A rejected origin gets no CORS headers, so the browser only reports a generic network
+  // failure. Say so once per origin on the server, where the fix (CORS_ORIGINS) lives.
+  const rejectedOrigins = new Set<string>();
   app.use(
     cors({
-      // Native apps send no Origin header; browsers (Expo web) must be allow-listed.
-      origin: (origin, cb) => cb(null, !origin || options.corsOrigins.includes(origin)),
+      // Native apps send no Origin header; browsers (Expo web, website) must be allow-listed.
+      origin: (origin, cb) => {
+        const allowed = !origin || options.corsOrigins.includes(origin);
+        if (!allowed && rejectedOrigins.size < 50 && !rejectedOrigins.has(origin)) {
+          rejectedOrigins.add(origin);
+          console.warn(`CORS: blocked browser origin ${origin}. Add it to CORS_ORIGINS if it should call the API.`);
+        }
+        cb(null, allowed);
+      },
       allowedHeaders: ['authorization', 'content-type', 'x-request-id'],
       exposedHeaders: ['x-request-id'],
       methods: ['GET', 'POST', 'PATCH'],

@@ -28,7 +28,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   const parsed = schema.safeParse(env);
   if (!parsed.success) {
     const fields = parsed.error.issues.map((i) => i.path.join('.')).join(', ');
-    throw new Error(`Invalid or missing environment variables: ${fields}. Copy backend/.env.example to backend/.env and fill it in.`);
+    throw new Error(`Invalid or missing environment variables: ${fields}. Copy apps/api/.env.example to apps/api/.env and fill it in.`);
   }
   return parsed.data;
 }

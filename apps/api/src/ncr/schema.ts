@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 /** Extractor identities. Changing extraction behaviour means bumping one of these. */
 export const BASELINE_EXTRACTOR_VERSION = 'baseline-0.1';
-export const EXTRACTOR_VERSION = 'ncr-rules-0.2';
+export const EXTRACTOR_VERSION = 'ncr-rules-0.3';
 
 /**
  * What a resume sentence says about a skill. These match the labels used in
@@ -42,10 +42,12 @@ export const extractedSkillSchema = z
     status: z.enum(['self_reported', 'inferred', 'unknown']),
     mention_type: z.enum(MENTION_TYPES),
     suggested_level: z.number().int().min(1).max(4).nullable(),
+    /** Why that level was suggested, in words the worker can check ("Used at work for about 4 years"). */
+    level_basis: z.string().nullable().default(null),
     evidence: z.string(),
     evidence_unavailable_reason: z.string().nullable(),
     section: z.string(),
-    method: z.enum(['alias_rule', 'context_alias_rule', 'semantic_candidate']),
+    method: z.enum(['alias_rule', 'context_alias_rule', 'pattern_rule', 'semantic_candidate']),
     matched_text: z.string(),
     similarity_score: z.number().min(0).max(1).nullable(),
     mention_count: z.number().int().min(1),
@@ -69,9 +71,25 @@ export const extractionResultSchema = z.object({
   extractor_version: z.string().min(1),
   dataset_version: z.string().min(1),
   skills: z.array(extractedSkillSchema),
+  /** Pilot roles the resume says the person has held (job titles), most recent first. Never a skill claim. */
+  detected_roles: z
+    .array(
+      z.object({
+        role_id: z.string().min(1),
+        title: z.string().min(1),
+        matched_text: z.string(),
+        source: z.enum(['job_title', 'summary', 'headline']),
+        years: z.number().min(0).nullable(),
+        most_recent: z.boolean(),
+      }),
+    )
+    .default([]),
+  /** Total work experience the resume states or its dated jobs add up to; null when it gives neither. */
+  experience_years: z.number().min(0).nullable().default(null),
   warnings: z.array(z.string()),
 });
 export type ExtractionResult = z.infer<typeof extractionResultSchema>;
+export type DetectedRole = ExtractionResult['detected_roles'][number];
 
 export interface ExtractionInput {
   candidate_id: string;

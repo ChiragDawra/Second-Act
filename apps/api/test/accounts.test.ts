@@ -118,7 +118,9 @@ describe('job seeker', () => {
   });
 
   it('cannot read anyone else, and the demo worker cannot read them', async () => {
-    expect((await api.as('newSeeker').get('/api/v1/profiles/' + profileId.replace(/.$/, '0'))).status).toBe(403);
+    // Another id: change the last character, never to the one it already is.
+    const otherId = profileId.slice(0, -1) + (profileId.endsWith('0') ? '1' : '0');
+    expect((await api.as('newSeeker').get('/api/v1/profiles/' + otherId)).status).toBe(403);
     expect((await api.as('worker').get(`/api/v1/profiles/${profileId}`)).status).toBe(403);
   });
 });

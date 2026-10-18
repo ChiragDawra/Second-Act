@@ -1,3 +1,4 @@
+import { isStepBack, learningPlan, studyNext, type LearningPlan, type StudyItem } from '../engine/plan.ts';
 import { rankRoles } from '../engine/scoring.ts';
 import type { RecommendationResult, RoleDefinition, RoleEvaluation, SkillInfo, WorkerPreferences, WorkerSkillState } from '../engine/types.ts';
 import { SCORING_VERSION, type SkillStatus } from '../engine/vocabulary.ts';
@@ -69,6 +70,21 @@ export interface NcrRecommendedRole {
   /** Separate record again: no vacancy feed is connected. */
   vacancies: { status: 'none_connected'; items: []; note: string };
   known_transitions_into_role: Array<{ from_role_id: string; reviewer_status: string }>;
+  /** What to learn or prove for this role, in order, with hours and the fit it would add. */
+  learning_plan: LearningPlan;
+  /** The worker said (or the resume shows) they hold this role now. */
+  is_current_role: boolean;
+  /** Less senior than the current role and already mostly met: shown, but ranked after real moves. */
+  is_step_back: boolean;
+  /** A documented move from the worker's current role into this one, if the dataset has it. */
+  transition: {
+    from_role_id: string;
+    from_title: string;
+    transferable_skill_ids: string[];
+    gap_skill_ids: string[];
+    rationale: string;
+    reviewer_status: string;
+  } | null;
 }
 
 export interface NcrRecommendation {
@@ -80,6 +96,10 @@ export interface NcrRecommendation {
   top_roles: NcrRecommendedRole[];
   stretch_roles: NcrRecommendedRole[];
   excluded_roles: NcrRecommendedRole[];
+  /** The role(s) the worker holds now: shown as the starting point, never as a recommendation. */
+  current_roles: NcrRecommendedRole[];
+  /** Skills that move the most nearby roles per hour of study. */
+  study_next: StudyItem[];
   /** Set when no role clears the recommendation bar. */
   message: string | null;
   bar: { min_estimated_fit: number; min_matched_requirements: number; note: string };
@@ -146,7 +166,13 @@ function toEnginePreferences(p: NcrPreferences): WorkerPreferences {
   };
 }
 
-export function recommend(ds: NcrDataset, skills: NcrProfileSkill[], preferences: NcrPreferences = {}): NcrRecommendation {
+export interface RecommendOptions {
+  /** Pilot role ids the worker holds now (confirmed from the resume). Never ranked as a "next" role. */
+  currentRoleIds?: string[];
+}
+
+export function recommend(ds: NcrDataset, skills: NcrProfileSkill[], preferences: NcrPreferences = {}, options: RecommendOptions = {}): NcrRecommendation {
+  const current = new Set((options.currentRoleIds ?? []).filter((id) => ds.roles.some((r) => r.id === id)));
   const { catalog, roles } = engineInputs(ds);
   const workerSkills: WorkerSkillState[] = skills.map((s) => ({ skill_id: s.skill_id, status: s.status, proficiency: s.proficiency }));
   const evidenceBySkill = new Map(skills.map((s) => [s.skill_id, s.evidence ?? null]));
@@ -203,14 +229,42 @@ export function recommend(ds: NcrDataset, skills: NcrProfileSkill[], preferences
       known_transitions_into_role: ds.transitions
         .filter((t) => t.target_role_id === e.role_id)
         .map((t) => ({ from_role_id: t.source_role_id, reviewer_status: t.reviewer_status })),
+      learning_plan: learningPlan(e, preferences.weekly_learning_hours ?? null),
+      is_current_role: current.has(e.role_id),
+      is_step_back: stepBack(e),
+      transition: transitionInto(e.role_id),
+    };
+  };
+
+  const currentSeniority = [...current].map((id) => roleRows.get(id)?.seniority ?? null).sort().pop() ?? null;
+  const stepBack = (e: RoleEvaluation) => isStepBack(e, roleRows.get(e.role_id)?.seniority, currentSeniority);
+
+  const transitionInto = (roleId: string): NcrRecommendedRole['transition'] => {
+    const t = ds.transitions.find((x) => x.target_role_id === roleId && current.has(x.source_role_id));
+    if (!t) return null;
+    return {
+      from_role_id: t.source_role_id,
+      from_title: roleRows.get(t.source_role_id)?.title ?? t.source_role_id,
+      transferable_skill_ids: t.transferable_skill_ids,
+      gap_skill_ids: t.gap_skill_ids,
+      rationale: t.transition_rationale,
+      reviewer_status: t.reviewer_status,
     };
   };
 
   const byId = new Map(result.evaluations.map((e) => [e.role_id, e]));
   const meetsBar = (e: RoleEvaluation) => meetsRecommendationBar(e, bar);
+  const next = (e: RoleEvaluation) => !current.has(e.role_id);
 
-  const feasible = result.top_role_ids.map((id) => byId.get(id)!).filter(meetsBar);
-  const stretch = result.stretch_role_ids.map((id) => byId.get(id)!).filter(meetsBar);
+  // Eligible roles beyond the top three are pulled up when a current role was removed from the list.
+  // Real moves first; a step back only fills a slot when nothing else clears the bar.
+  const eligible = result.evaluations
+    .filter((e) => e.eligibility === 'eligible')
+    .filter(next)
+    .filter(meetsBar)
+    .sort((a, b) => Number(stepBack(a)) - Number(stepBack(b)));
+  const feasible = eligible.slice(0, result.top_role_ids.length || 3);
+  const stretch = result.stretch_role_ids.map((id) => byId.get(id)!).filter(next).filter(meetsBar);
   const excluded = result.evaluations.filter((e) => e.eligibility === 'filtered');
 
   const message =
@@ -229,6 +283,8 @@ export function recommend(ds: NcrDataset, skills: NcrProfileSkill[], preferences
     top_roles: feasible.map(present),
     stretch_roles: stretch.map(present),
     excluded_roles: excluded.map(present),
+    current_roles: result.evaluations.filter((e) => current.has(e.role_id)).map(present),
+    study_next: studyNext(result.evaluations, { exclude: [...current] }),
     message,
     bar,
     limitations: ds.config.limitations,

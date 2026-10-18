@@ -79,6 +79,8 @@ export interface GapItem {
   status: SkillStatus;
   importance_weight: number;
   is_mandatory: boolean;
+  /** Learning hours per proficiency level for this skill. Absent in runs stored before learning plans. */
+  hours_per_level?: number;
 }
 
 export interface ConstraintResult {

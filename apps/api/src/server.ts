@@ -20,6 +20,7 @@ const server = app.listen(config.PORT, config.HOST, async () => {
     .map((n) => `http://${n!.address}:${config.PORT}`);
   console.log(`Second Act API listening on http://localhost:${config.PORT}`);
   if (lan.length) console.log(`On your network (use one as EXPO_PUBLIC_API_URL for phones): ${lan.join(', ')}`);
+  console.log(`Browser origins allowed (CORS_ORIGINS): ${config.CORS_ORIGINS.join(', ') || 'none'}`);
   console.log(latency === null ? 'Database: UNREACHABLE — check SUPABASE_DB_URL' : `Database: ok (${latency} ms)`);
 });
 

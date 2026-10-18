@@ -13,9 +13,14 @@ export function createPgDb(connectionString: string): Db {
     connectionTimeoutMillis: 10_000,
     ssl: connectionString.includes('localhost') ? undefined : { rejectUnauthorized: false },
   });
+  // The Supabase pooler drops idle connections. Without a listener, the pool's 'error' event
+  // is unhandled and kills the process; the pool already discards the dead client.
+  pool.on('error', (e) => console.error(`Database idle connection error: ${e.message}`));
 
   async function inTransaction<T>(setup: (c: pg.PoolClient) => Promise<void>, fn: (q: Queryable) => Promise<T>): Promise<T> {
     const client = await pool.connect();
+    // A failed rollback means the connection itself is broken: destroy it instead of reusing it.
+    let broken = false;
     try {
       await client.query('begin');
       await setup(client);
@@ -28,10 +33,12 @@ export function createPgDb(connectionString: string): Db {
       await client.query('commit');
       return result;
     } catch (error) {
-      await client.query('rollback').catch(() => undefined);
+      await client.query('rollback').catch(() => {
+        broken = true;
+      });
       throw error;
     } finally {
-      client.release();
+      client.release(broken);
     }
   }
 

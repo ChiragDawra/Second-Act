@@ -28,24 +28,38 @@ export interface DocLine {
 }
 
 const HEADING_RULES: Array<[RegExp, SectionKind]> = [
-  [/^(objective|summary|professional summary|career summary|career statement|executive profile|executive summary|profile|professional profile|about me)\b/i, 'summary'],
-  [/re-?skilling|upskilling|re-?entry|modernization|coursework/i, 'learning'],
+  [/^(objective|summary|professional summary|career summary|career statement|career objective|executive profile|executive summary|profile|professional profile|profile summary|about me)\b/i, 'summary'],
+  [/re-?skilling|upskilling|re-?entry|modernization|coursework|^trainings?\b|^courses?\b/i, 'learning'],
   [/personal (projects|interests)|interests? & objectives|projects & goals/i, 'mixed'],
   [/goal|aspir|future|upcoming|exploration|forward|in progress|targets?\b/i, 'goals'],
-  [/skill|competenc|expertise|technolog|capabilit|assets|proficienc|technical/i, 'skills'],
-  [/experience|history|employment|career gap|sabbatical|pause/i, 'experience'],
-  [/education|academic|degree/i, 'education'],
+  [/skill|competenc|expertise|technolog|capabilit|assets|proficienc|technical|^tools\b/i, 'skills'],
+  [/experience|history|employment|career gap|sabbatical|pause|internships?|responsibilit|achievements|accomplishments/i, 'experience'],
+  [/education|academic|degree|qualification/i, 'education'],
   [/certif|credential|licen/i, 'certifications'],
   [/project/i, 'projects'],
-  [/volunteer|activities|engagements|awards|languages|references|publications/i, 'other'],
+  [/volunteer|activities|engagements|awards|languages|references|publications|personal (details|information)|declaration|hobbies|strengths/i, 'other'],
 ];
+
+/**
+ * Bare section words that also work as "Label: content" or "Label:" lines ("Skills: Excel, SQL",
+ * "Experience:"). Matched against the whole label, so "Target role:" never opens a section.
+ */
+const LABEL_HEADINGS = /^(?:(?:key|core|technical|it|professional|soft) )?(?:skills?|skill set|competencies|tools|experience|work experience|professional experience|employment|employment history|work history|education|educational qualifications?|academic qualifications?|qualifications?|certifications?|projects?|summary|profile|career objective|objective|internships?|trainings?)$/i;
 
 const BULLET = /^\s*(?:[-*•◦▪●·–—]|•)\s+/;
 const LABEL = /^([A-Za-z][A-Za-z0-9 &/+().,'’-]{1,70}?)\s*:\s*(.*)$/;
 const GOAL_LABEL = /goal|aspir|future|learning|interest|explor|planned/i;
 
+function kindOf(text: string): SectionKind | null {
+  for (const [pattern, kind] of HEADING_RULES) if (pattern.test(text)) return kind;
+  return null;
+}
+
 function headingKind(line: string): SectionKind | null {
-  const t = line.trim();
+  const raw = line.trim();
+  // "Experience:" / "WORK EXPERIENCE:" — a heading word with nothing after the colon.
+  if (/^[A-Za-z][A-Za-z &/-]{1,40}:$/.test(raw) && LABEL_HEADINGS.test(raw.slice(0, -1).trim())) return kindOf(raw.slice(0, -1));
+  const t = raw;
   if (t.length < 4 || t.length > 90 || /[.!?]$/.test(t) || BULLET.test(line)) return null;
   const letters = t.replace(/[^A-Za-z]/g, '');
   if (letters.length < 4) return null;
@@ -53,25 +67,27 @@ function headingKind(line: string): SectionKind | null {
   const words = t.split(/\s+/).length;
   const titleCase = words <= 4 && /^[A-Z][a-z]+(?:[\s&/-]+[A-Z]?[a-z]+)*$/.test(t);
   if (upper < 0.8 && !titleCase) return null;
-  for (const [pattern, kind] of HEADING_RULES) if (pattern.test(t)) return kind;
-  return null;
+  return kindOf(t);
 }
 
 const COMPANY_WORDS = /\b(inc\.?|corp\.?|llc|ltd|bank|partners|solutions|systems|services|group|supply chain|logistics|freight|networks|capital|securities|health|retail|financial|technologies|express|trading|platforms)\b/i;
 
+const HEADER_SPLIT = /\s+[|—–]\s+|\s+(?:at|@)\s+(?=(?:an?\s+|the\s+)?[A-Z0-9])/;
+
 function looksLikeHeaderLine(text: string): boolean {
   if (text.length > 160) return false;
-  const segments = text.split(/\s+[|—–]\s+/);
+  const segments = text.split(HEADER_SPLIT);
   if (segments.length < 2) return false;
-  return /,\s*[A-Z]{2}\b|\b(19|20)\d\d\b|\bPresent\b/.test(text);
+  // "Title | Company | City | 2019 – Present" or "Title at Company, City (2020-2023)".
+  return /,\s*[A-Z]{2}\b|\b(19|20)\d\d\b|\bPresent\b/.test(text) && !/[.!?]$/.test(text);
 }
 
 /**
- * Splits a header line ("Title | Company | City") into segments. Only a title-like first
- * segment can carry a skill claim; employer and place names are not evidence.
+ * Splits a header line ("Title | Company | City", "Title at Company") into segments. Only a
+ * title-like first segment can carry a skill claim; employer and place names are not evidence.
  */
 export function headerSegments(text: string): Array<{ text: string; claimAllowed: boolean }> {
-  return text.split(/\s+[|—–]\s+/).map((part, i) => ({ text: part, claimAllowed: i === 0 && !COMPANY_WORDS.test(part) }));
+  return text.split(HEADER_SPLIT).map((part, i) => ({ text: part, claimAllowed: i === 0 && !COMPANY_WORDS.test(part) }));
 }
 
 export function parseDocument(text: string): DocLine[] {
@@ -79,6 +95,8 @@ export function parseDocument(text: string): DocLine[] {
   let section = 'Document start';
   let kind: SectionKind = 'other';
   let pendingLabel: string | null = null;
+  // True while the current section was opened by a "Skills: …" style line rather than a heading.
+  let openedInline = false;
 
   const raw = text.split('\n');
   for (let i = 0; i < raw.length; i++) {
@@ -91,9 +109,10 @@ export function parseDocument(text: string): DocLine[] {
 
     const heading = headingKind(trimmed);
     if (heading) {
-      section = trimmed.replace(/\s+/g, ' ');
+      section = trimmed.replace(/:$/, '').replace(/\s+/g, ' ');
       kind = heading;
       pendingLabel = null;
+      openedInline = false;
       continue;
     }
 
@@ -118,6 +137,14 @@ export function parseDocument(text: string): DocLine[] {
       }
       label = m[1]!.trim();
       body = rest;
+      // Unstructured resumes use "Skills: …", "Experience: …" instead of headings. Only the bare
+      // section words count, and only before the first real heading (or after another such line).
+      const labelKind = LABEL_HEADINGS.test(label) ? kindOf(label) : null;
+      if (labelKind && (section === 'Document start' || openedInline)) {
+        section = label;
+        kind = labelKind;
+        openedInline = true;
+      }
     }
 
     out.push({

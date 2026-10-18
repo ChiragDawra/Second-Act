@@ -17,6 +17,7 @@ import { getNcrDataset } from '../ncr/dataset.ts';
 import { profileFromReview, ReviewError, reviewDecisionSchema } from '../ncr/review.ts';
 import { EXTRACTOR_VERSION } from '../ncr/schema.ts';
 import { recommendationView, roleChanges } from './views.ts';
+import { learningPlan } from '../engine/plan.ts';
 
 const uuid = z.uuid();
 const slug = z.string().regex(/^[a-z0-9-]{1,80}$/);
@@ -72,6 +73,14 @@ export function workerRoutes({ db }: Deps): Router {
 
   const recomputeFor = (actor: Actor, profileId: string, trigger: string, res: Response) =>
     recompute(db, { actorUserId: actor.userId, actorRole: actor.role, profileId, trigger, requestId: res.locals.requestId as string });
+
+  /** The recommendation view, annotated with the worker's current role (never shown as a "next" role). */
+  const viewOf = async (actor: Actor, profileId: string, run: StoredRun) => {
+    const p = await db.asUser(actor.userId, (q) =>
+      q.query<{ current_role_title: string | null }>('select current_role_title from public.profiles where id = $1', [profileId]),
+    );
+    return recommendationView(run, { currentRoleTitle: p.rows[0]?.current_role_title ?? null });
+  };
 
   // ---------------------------------------------------------------- profile
   r.get('/profiles/:id', async (req, res) => {
@@ -197,7 +206,7 @@ export function workerRoutes({ db }: Deps): Router {
     });
 
     const run = await recomputeFor(actor, id, 'skills_reviewed', res);
-    res.json({ applied, recommendations: recommendationView(run) });
+    res.json({ applied, recommendations: await viewOf(actor, id, run) });
   });
 
   r.post('/profiles/:id/skills/extract', writeLimiter, async (req, res) => {
@@ -213,7 +222,7 @@ export function workerRoutes({ db }: Deps): Router {
       return result;
     });
     const run = await recomputeFor(actor, id, 'skills_extracted', res);
-    res.json({ candidates: out.candidates.length, inserted: out.inserted, recommendations: recommendationView(run) });
+    res.json({ candidates: out.candidates.length, inserted: out.inserted, recommendations: await viewOf(actor, id, run) });
   });
 
   // ---------------------------------------------------- resume import (NCR)
@@ -223,8 +232,13 @@ export function workerRoutes({ db }: Deps): Router {
   r.post('/profiles/:id/skills/import', writeLimiter, async (req, res) => {
     const id = uuid.parse(req.params.id);
     const actor = await requireOwnProfile(db, res, id);
-    const { skills } = z.object({ skills: z.array(reviewDecisionSchema).min(1).max(80) }).parse(req.body);
+    const { skills, current_role_id } = z
+      .object({ skills: z.array(reviewDecisionSchema).min(1).max(80), current_role_id: z.string().regex(/^[a-z0-9-]{1,80}$/).nullable().optional() })
+      .parse(req.body);
     const ds = getNcrDataset();
+    // The job the worker confirmed they hold now (detected from the resume). Stored as a title only.
+    const currentTitle = current_role_id ? (ds.roles.find((x) => x.id === current_role_id)?.title ?? null) : null;
+    if (current_role_id && !currentTitle) throw badRequest('unknown_role', `Unknown role: ${current_role_id}`);
     let accepted;
     try {
       accepted = profileFromReview(ds, skills);
@@ -253,6 +267,9 @@ export function workerRoutes({ db }: Deps): Router {
         );
         if (row.rows[0]) written.push(row.rows[0].skill_id);
       }
+      if (currentTitle) {
+        await q.query('update public.profiles set current_role_title = $2, updated_at = now() where id = $1', [id, currentTitle]);
+      }
       await recordAudit(q, {
         actorUserId: actor.userId, actorRole: actor.role, action: 'skills.imported', objectType: 'profile', objectId: id,
         subjectProfileId: id, requestId: res.locals.requestId as string,
@@ -261,7 +278,7 @@ export function workerRoutes({ db }: Deps): Router {
       return written;
     });
     const run = await recomputeFor(actor, id, 'resume_imported', res);
-    res.json({ imported, recommendations: recommendationView(run) });
+    res.json({ imported, recommendations: await viewOf(actor, id, run) });
   });
 
   const Preferences = z
@@ -290,7 +307,7 @@ export function workerRoutes({ db }: Deps): Router {
       });
     });
     const run = await recomputeFor(actor, id, 'preferences_updated', res);
-    res.json({ recommendations: recommendationView(run) });
+    res.json({ recommendations: await viewOf(actor, id, run) });
   });
 
   // -------------------------------------------------------- recommendations
@@ -298,7 +315,7 @@ export function workerRoutes({ db }: Deps): Router {
     const { profile_id } = z.object({ profile_id: uuid }).parse(req.body);
     const actor = await requireOwnProfile(db, res, profile_id);
     const run = await recomputeFor(actor, profile_id, 'manual_recompute', res);
-    res.json(recommendationView(run));
+    res.json(await viewOf(actor, profile_id, run));
   });
 
   r.get('/recommendations/latest', async (req, res) => {
@@ -306,7 +323,7 @@ export function workerRoutes({ db }: Deps): Router {
     const actor = await requireOwnProfile(db, res, profileId);
     let run = await db.asUser(actor.userId, (q) => latestRun(q, profileId));
     if (!run) run = await recomputeFor(actor, profileId, 'first_view', res);
-    res.json(recommendationView(run));
+    res.json(await viewOf(actor, profileId, run));
   });
 
   r.get('/roles/:id/gaps', async (req, res) => {
@@ -327,7 +344,12 @@ export function workerRoutes({ db }: Deps): Router {
          from public.assessments a join public.skills s on s.id = a.skill_id where a.skill_id = any($1::text[])`,
         [skillIds],
       );
-      return { run, evaluation, resources: resources.rows, assessments: assessments.rows };
+      const prefs = await q.query<{ weekly: number | string | null }>(
+        "select preferences->>'weekly_learning_hours' as weekly from public.profiles where id = $1",
+        [profileId],
+      );
+      const weekly = prefs.rows[0]?.weekly == null ? null : Number(prefs.rows[0].weekly);
+      return { run, evaluation, resources: resources.rows, assessments: assessments.rows, weekly };
     });
     if (!data) throw notFound('No evaluation for this role yet.');
 
@@ -339,6 +361,7 @@ export function workerRoutes({ db }: Deps): Router {
       computed_at: data.run?.created_at,
       scoring_version: data.run?.result.scoring_version,
       evaluation: data.evaluation,
+      learning_plan: learningPlan(data.evaluation, Number.isFinite(data.weekly) ? data.weekly : null),
       learning_resources: data.resources,
       assessments: data.assessments,
       next_action: proveTarget
@@ -451,7 +474,7 @@ export function workerRoutes({ db }: Deps): Router {
       skill_after: outcome.next,
       skills_changed: outcome.changed ? [assessment.skill_id] : [],
       role_changes: roleChanges(before, run),
-      recommendations: recommendationView(run),
+      recommendations: await viewOf(actor, profileId, run),
     });
   });
 

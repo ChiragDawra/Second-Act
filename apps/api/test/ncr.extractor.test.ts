@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { loadNcrDataset } from '../src/ncr/dataset.ts';
 import { evaluateExtraction } from '../src/ncr/evaluate.ts';
 import { loadEvalSet, loadHeldoutSet, runExtraction, runMentions } from '../src/ncr/evalset.ts';
-import { collectMentions, extractResume, splitClauses } from '../src/ncr/extractor.ts';
+import { aliasStemCollisions, collectMentions, extractResume, rangeYears, splitClauses } from '../src/ncr/extractor.ts';
 import { extractionResultSchema, type ExtractedSkill, type SemanticProvider } from '../src/ncr/schema.ts';
 import { DocumentError, detectDocumentType, extractDocumentText } from '../src/ncr/text.ts';
 
@@ -240,5 +240,115 @@ describe('document intake', () => {
     expect(doc.type).toBe('pdf');
     expect(doc.text).toMatch(/SKILLS/);
     expect(doc.text).toMatch(/Python/);
+  });
+});
+
+describe('ncr-rules-0.3: real-world resume shapes', () => {
+  it('reads work history pasted without any headings', () => {
+    const r = run('I have 4 years of experience in customer support at a BPO in Gurgaon.\nWorked on Zendesk and Freshdesk for ticket handling.\nGood at MS Excel and basic SQL.\n');
+    const ids = r.skills.map((s) => s.skill_id);
+    expect(ids).toEqual(expect.arrayContaining(['customer-support', 'itsm-ticketing', 'excel-spreadsheets', 'sql-querying']));
+    expect(r.skills.find((s) => s.skill_id === 'sql-querying')?.suggested_level).toBe(1);
+  });
+
+  it('still ignores the name and headline block at the top', () => {
+    const r = run('Priya Jenkins\nCustomer Service Specialist\n\nSKILLS\n- Excel\n');
+    expect(r.skills.map((s) => s.skill_id)).toEqual(['excel-spreadsheets']);
+  });
+
+  it('treats "Experience:" and "Skills: …" lines as section headings', () => {
+    const r = run('Amit\nSkills: ServiceNow, Office 365\nExperience:\nDesktop Support Engineer at Wipro, Noida (2020-2023)\n- Resolved L1 tickets within SLA\n');
+    const sla = r.skills.find((s) => s.skill_id === 'sla-management');
+    expect(sla?.section).toBe('Experience');
+    expect(sla?.mention_type).toBe('explicit_current');
+    expect(r.skills.find((s) => s.skill_id === 'endpoint-cloud-admin')?.section).toBe('Skills');
+  });
+
+  it('matches word forms, not only the exact alias', () => {
+    expect(find('EXPERIENCE\n- Handled customer queries over phone\n', 'customer-support')?.matched_text).toBe('customer queries');
+    expect(find('EXPERIENCE\n- Reconciled vendor ledgers every month\n', 'reconciliation')).toBeDefined();
+  });
+
+  it('does not stretch an activity alias onto a noun modifier', () => {
+    expect(find('EXPERIENCE\n- Wrote user stories and acceptance test conditions for sprints.\n', 'uat')).toBeUndefined();
+    expect(find('EXPERIENCE\n- Coordinated user acceptance testing with branches.\n', 'uat')?.mention_type).toBe('explicit_current');
+  });
+
+  it('keeps everyday words out: "reacted" is not React, a customer profile is not profiling', () => {
+    const r = run('EXPERIENCE\n- Reacted quickly to outages and updated customer profiles.\n');
+    expect(r.skills.map((s) => s.skill_id)).not.toEqual(expect.arrayContaining(['javascript-typescript']));
+    expect(r.skills.map((s) => s.skill_id)).not.toEqual(expect.arrayContaining(['debugging-profiling']));
+  });
+
+  it('knows Indian banking terms', () => {
+    expect(find('EXPERIENCE\n- Processed NEFT, RTGS and IMPS payments within cut-off times.\n', 'banking-payments-domain')).toBeDefined();
+  });
+
+  it('finds work described with words in between (pattern rules)', () => {
+    const s = find('EXPERIENCE\n- Analysed monthly sales data to find slow-moving stock.\n', 'data-analysis');
+    expect(s?.method).toBe('pattern_rule');
+    expect(s?.mention_type).toBe('explicit_current');
+    expect(find('GOALS\n- Want to analyse sales data with Python one day.\n', 'data-analysis')?.mention_type).toBe('future_goal');
+  });
+
+  it('suggests a level from tenure and says why', () => {
+    const r = run('EXPERIENCE\nOperations Executive | HDFC Bank | Gurugram | Jun 2019 - May 2024\n- Daily reconciliation of nostro accounts\n');
+    const rec = r.skills.find((s) => s.skill_id === 'reconciliation')!;
+    expect(rec.suggested_level).toBe(3);
+    expect(rec.level_basis).toMatch(/about 5 years/);
+    const listed = run('SKILLS\n- Jira\n').skills[0]!;
+    expect(listed.suggested_level).toBe(2);
+    expect(listed.level_basis).toBe('Listed in your resume');
+  });
+
+  it('a stated level always wins over tenure', () => {
+    const r = run('SKILLS\nSQL (Basic)\nEXPERIENCE\nMIS Executive | Acme | 2015 - 2021\n- Wrote SQL queries for reports\n');
+    expect(r.skills.find((s) => s.skill_id === 'sql-querying')?.suggested_level).toBe(1);
+  });
+
+  it('detects the pilot role held now and total experience, never as a skill claim', () => {
+    const r = run('EXPERIENCE\nCustomer Service Executive | Concentrix | Jan 2016 - Dec 2018\n- Handled inbound calls\nIT Helpdesk Analyst | Wipro | Jan 2019 - Jan 2023\n- Resolved L1 tickets\n');
+    expect(r.detected_roles[0]).toMatchObject({ role_id: 'service-desk-analyst', most_recent: true, source: 'job_title' });
+    expect(r.detected_roles.map((d) => d.role_id)).toContain('customer-support-specialist');
+    expect(r.experience_years).toBe(7.1); // Jan 2016 – Jan 2023, end month inclusive
+  });
+
+  it('does not treat a target role in the objective as the current one', () => {
+    const r = run('CAREER OBJECTIVE\nSeeking a position as Junior Business Analyst.\nEXPERIENCE\n- Reconciled accounts\n');
+    expect(r.detected_roles).toEqual([]);
+  });
+
+  it('a goal next to a claim is not a contradiction; a denial is', () => {
+    expect(run('EXPERIENCE\n- Used Zendesk daily.\nGOALS\n- Move into a service desk role.\n').warnings).not.toContain('conflicting_evidence:itsm-ticketing');
+  });
+
+  it('parses date ranges in the common resume formats', () => {
+    const asOf = new Date('2026-10-01T00:00:00Z');
+    expect(rangeYears('Jun 2019 - May 2021', asOf)?.years).toBe(2);
+    expect(rangeYears('2015 – 2021', asOf)?.years).toBe(6);
+    expect(rangeYears('03/2020 to Present', asOf)?.years).toBe(6.6);
+    expect(rangeYears('no dates here', asOf)).toBeNull();
+  });
+
+  it('keeps the alias taxonomy unambiguous after stemming', () => {
+    expect(aliasStemCollisions(ds)).toEqual([]);
+  });
+});
+
+describe('ncr-rules-0.3: bugs found while generating landing-page examples', () => {
+  it('"currently learning X" is coursework, but machine learning stays a skill', () => {
+    expect(find('EXPERIENCE\n- Learning Selenium WebDriver with Java.\n', 'test-automation')?.mention_type).toBe('coursework');
+    expect(find('SKILLS\n- Currently learning Power BI\n', 'bi-dashboarding')?.mention_type).toBe('coursework');
+    expect(find('EXPERIENCE\n- Built machine learning models for churn.\n', 'machine-learning')?.mention_type).toBe('explicit_current');
+  });
+
+  it('an employer introduced with "at an …" is not part of the title claim', () => {
+    const s = find('EXPERIENCE\nDesktop Support Engineer at an IT services firm, Noida (2020 – 2024)\n', 'desktop-hardware-support');
+    expect(s?.mention_type).toBe('explicit_current');
+  });
+
+  it('setting up laptops "for new joiners" is not team leadership', () => {
+    expect(find('EXPERIENCE\n- Installed and configured Windows and Office 365 for new joiners.\n', 'team-leadership')).toBeUndefined();
+    expect(find('EXPERIENCE\n- Trained 4 new joiners on SOPs.\n', 'team-leadership')?.mention_type).toBe('explicit_current');
   });
 });

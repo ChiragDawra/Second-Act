@@ -188,6 +188,7 @@ export function evaluateRole(
       status,
       importance_weight: req.importance_weight,
       is_mandatory: req.is_mandatory,
+      hours_per_level: info.learning_hours_per_level,
     };
 
     if (status === 'unknown') {

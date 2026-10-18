@@ -26,7 +26,9 @@ const NEGATION =
   /\b(?:no|not|never|zero|without|lacks?|lacking|hasnt|havent|has not|have not|not yet)\b[^.;]{0,50}?\b(?:experience|exposure|applied|used|using|worked|knowledge|production|practical|practically|commercial|enterprise|workplace|hands on|developed|coding|cluster|querying)\b|\bnot applied\b|\bhas not (?:used|applied)\b|\bnever used\b|\blimited (?:exposure|experience)\b/;
 const COURSEWORK =
   /\b(enrolled|coursework|courses?|coursera|udemy|codecademy|edx|linkedin learning|bootcamp|nanodegree|self paced|self study|online learning|tutorials?|completed (?:online|basic|introductory)|theoretical|syntax modules|training modules?|learning phase|refresher|introduction to|crash course|skill badge)\b/;
-const COURSE_TITLE = /\b(course|introduction to|crash course|skill badge|badge|bootcamp|specialization|professional certificate|nanodegree|learning path|training)\b/;
+/** "Learning Selenium with Java", "currently learning Power BI": in progress, not a skill yet. Never "machine learning". */
+const LEARNING_NOW = /(?:^|\b(?:currently|presently|now|am|im|also|actively|still)\s+)learning\b(?!\s+(?:and|&)\s+development)/;
+const COURSE_TITLE =/\b(course|introduction to|crash course|skill badge|badge|bootcamp|specialization|professional certificate|nanodegree|learning path|training)\b/;
 const LAPSED = /\b(lapsed|expired|inactive)\b/;
 const LEVEL_WORDS: Array<[RegExp, number]> = [
   [/^(?:basic|basics|beginner|fundamentals|conceptual|introductory)$/, 1],
@@ -60,7 +62,7 @@ export function classifyMention(ctx: MentionContext): MentionType {
   if (afterTarget) return 'future_goal';
   if (FUTURE.test(cue) || (goalSection && GOAL_WORD.test(cue))) return 'future_goal';
   if (NEGATION.test(cue)) return 'negated_or_no_experience';
-  if (learningPhaseLabel || COURSEWORK.test(cue) || ctx.kind === 'learning') return 'coursework';
+  if (learningPhaseLabel || COURSEWORK.test(cue) || LEARNING_NOW.test(ctx.clause) || ctx.kind === 'learning') return 'coursework';
   if ((ctx.kind === 'certifications' || ctx.kind === 'education') && COURSE_TITLE.test(cue)) return 'coursework';
   if (ctx.kind === 'goals') return 'future_goal';
   return 'explicit_current';

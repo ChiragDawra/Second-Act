@@ -72,6 +72,8 @@ export function ncrRoutes({ db }: Deps): Router {
       const extraction = extractResume(
         { candidate_id: actor.profileId ?? 'self', resume_id: `upload_${res.locals.requestId as string}`, document_type: doc.type, text: doc.text },
         ds,
+        // "Present" in a job's date range means today for a live upload.
+        { asOf: new Date() },
       );
       await db.asService((q) =>
         recordAudit(q, {
@@ -102,7 +104,7 @@ export function ncrRoutes({ db }: Deps): Router {
       if (err instanceof ReviewError) throw new ApiError(422, err.code, err.message);
       throw err;
     }
-    const result = recommend(ds, profile, input.preferences ?? {});
+    const result = recommend(ds, profile, input.preferences ?? {}, { currentRoleIds: input.current_role_ids });
     await db.asService((q) =>
       recordAudit(q, {
         actorUserId: actor.userId,
