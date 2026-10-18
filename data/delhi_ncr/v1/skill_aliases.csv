@@ -526,3 +526,133 @@ inventory management,supply-chain-logistics,en-IN,team_curated,draft_unreviewed
 dispatch coordination,supply-chain-logistics,en-IN,team_curated,draft_unreviewed
 load scheduling,supply-chain-logistics,en-IN,team_curated,draft_unreviewed
 logistics operations,supply-chain-logistics,en-IN,team_curated,draft_unreviewed
+customer escalations,customer-support,en-IN,team_curated,draft_unreviewed
+customer complaints,customer-support,en-IN,team_curated,draft_unreviewed
+complaint handling,customer-support,en-IN,team_curated,draft_unreviewed
+complaint resolution,customer-support,en-IN,team_curated,draft_unreviewed
+grievance handling,customer-support,en-IN,team_curated,draft_unreviewed
+outbound calls,customer-support,en-IN,team_curated,draft_unreviewed
+phone support,customer-support,en-IN,team_curated,draft_unreviewed
+email support,customer-support,en-IN,team_curated,draft_unreviewed
+chat support,customer-support,en-IN,team_curated,draft_unreviewed
+voice process,customer-support,en-IN,team_curated,draft_unreviewed
+non-voice process,customer-support,en-IN,team_curated,draft_unreviewed
+call handling,customer-support,en-IN,team_curated,draft_unreviewed
+query resolution,customer-support,en-IN,team_curated,draft_unreviewed
+walk-in customers,customer-support,en-IN,team_curated,draft_unreviewed
+customer interactions,customer-support,en-IN,team_curated,draft_unreviewed
+customer handling,customer-support,en-IN,team_curated,draft_unreviewed
+ticket handling,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+ticketing tool,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+ticketing tools,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+support tickets,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+l1 tickets,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+l2 tickets,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+l1 support,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+l2 support,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+freshservice,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+bmc remedy,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+manageengine,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+servicedesk plus,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+service requests,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+incident logging,itsm-ticketing,en-IN,team_curated,draft_unreviewed
+reset passwords,active-directory-admin,en-IN,team_curated,draft_unreviewed
+password reset,active-directory-admin,en-IN,team_curated,draft_unreviewed
+account unlocks,active-directory-admin,en-IN,team_curated,draft_unreviewed
+user access management,active-directory-admin,en-IN,team_curated,draft_unreviewed
+access provisioning,active-directory-admin,en-IN,team_curated,draft_unreviewed
+hardware issues,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+hardware troubleshooting,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+printer troubleshooting,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+printers,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+printer issues,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+laptop troubleshooting,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+os installation,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+windows installation,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+software installation,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+windows os,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+windows 11,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+windows 7,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+desktop troubleshooting,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+system troubleshooting,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+peripherals,desktop-hardware-support,en-IN,team_curated,draft_unreviewed
+office 365,endpoint-cloud-admin,en-IN,team_curated,draft_unreviewed
+o365,endpoint-cloud-admin,en-IN,team_curated,draft_unreviewed
+exchange online,endpoint-cloud-admin,en-IN,team_curated,draft_unreviewed
+outlook configuration,endpoint-cloud-admin,en-IN,team_curated,draft_unreviewed
+lan,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+wan,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+lan/wan,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+network troubleshooting,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+network connectivity,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+ip configuration,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+routers,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+network switches,networking-fundamentals,en-IN,team_curated,draft_unreviewed
+neft,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+rtgs,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+imps,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+upi,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+finacle,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+flexcube,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+core banking solution,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+nach,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+cheque clearing,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+cheque processing,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+clearing operations,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+account opening,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+loan processing,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+trade finance,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+letters of credit,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+bank guarantees,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+cash management,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+branch banking,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+payment operations,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+payment transactions,banking-payments-domain,en-IN,team_curated,draft_unreviewed
+ckyc,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+fatca,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+pmla,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+kyc verification,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+kyc documentation,regulatory-compliance,en-IN,team_curated,draft_unreviewed
+nostro,reconciliation,en-IN,team_curated,draft_unreviewed
+bank reconciliation,reconciliation,en-IN,team_curated,draft_unreviewed
+brs,reconciliation,en-IN,team_curated,draft_unreviewed
+suspense account,reconciliation,en-IN,team_curated,draft_unreviewed
+suspense entries,reconciliation,en-IN,team_curated,draft_unreviewed
+conditional formatting,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+hlookup,excel-spreadsheets,en-IN,team_curated,draft_unreviewed
+daily mis,operational-reporting,en-IN,team_curated,draft_unreviewed
+monthly reports,operational-reporting,en-IN,team_curated,draft_unreviewed
+weekly mis,operational-reporting,en-IN,team_curated,draft_unreviewed
+management information system,operational-reporting,en-IN,team_curated,draft_unreviewed
+trend analysis,data-analysis,en-IN,team_curated,draft_unreviewed
+variance analysis,data-analysis,en-IN,team_curated,draft_unreviewed
+sales analysis,data-analysis,en-IN,team_curated,draft_unreviewed
+trained new joiners,team-leadership,en-IN,team_curated,draft_unreviewed
+mentored juniors,team-leadership,en-IN,team_curated,draft_unreviewed
+team handling,team-leadership,en-IN,team_curated,draft_unreviewed
+sanity testing,functional-testing,en-IN,team_curated,draft_unreviewed
+integration testing,functional-testing,en-IN,team_curated,draft_unreviewed
+web application testing,functional-testing,en-IN,team_curated,draft_unreviewed
+ui testing,functional-testing,en-IN,team_curated,draft_unreviewed
+gui testing,functional-testing,en-IN,team_curated,draft_unreviewed
+cross browser testing,functional-testing,en-IN,team_curated,draft_unreviewed
+mobile app testing,functional-testing,en-IN,team_curated,draft_unreviewed
+tracked defects,defect-management,en-IN,team_curated,draft_unreviewed
+defect logging,defect-management,en-IN,team_curated,draft_unreviewed
+bug logging,defect-management,en-IN,team_curated,draft_unreviewed
+raised defects,defect-management,en-IN,team_curated,draft_unreviewed
+raising defects,defect-management,en-IN,team_curated,draft_unreviewed
+logging bugs,defect-management,en-IN,team_curated,draft_unreviewed
+defect retesting,defect-management,en-IN,team_curated,draft_unreviewed
+api validation,api-testing,en-IN,team_curated,draft_unreviewed
+rest assured,api-testing,en-IN,team_curated,draft_unreviewed
+swagger,api-testing,en-IN,team_curated,draft_unreviewed
+zoho crm,crm-platforms,en-IN,team_curated,draft_unreviewed
+leadsquared,crm-platforms,en-IN,team_curated,draft_unreviewed
+freshsales,crm-platforms,en-IN,team_curated,draft_unreviewed
+stakeholder coordination,stakeholder-management,en-IN,team_curated,draft_unreviewed
+coordinated with stakeholders,stakeholder-management,en-IN,team_curated,draft_unreviewed
+process notes,process-documentation,en-IN,team_curated,draft_unreviewed
+work instructions,process-documentation,en-IN,team_curated,draft_unreviewed
+user manuals,process-documentation,en-IN,team_curated,draft_unreviewed
+rca,root-cause-analysis,en-IN,team_curated,draft_unreviewed

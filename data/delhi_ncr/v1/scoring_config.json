@@ -1,7 +1,7 @@
 {
   "dataset_version": "ncr-roles-v1",
-  "taxonomy_version": "ncr-taxonomy-v1",
-  "adjacency_version": "ncr-adjacency-v1",
+  "taxonomy_version": "ncr-taxonomy-v1.1",
+  "adjacency_version": "ncr-adjacency-v2",
   "collected_at": "2026-10-18",
   "region_scope": "Delhi-NCR (Delhi, Gurugram, Noida, Ghaziabad, Faridabad)",
   "cities": [
