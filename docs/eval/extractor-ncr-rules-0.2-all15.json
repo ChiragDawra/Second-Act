@@ -149,28 +149,15 @@
       },
       "f1": 1
     },
-    "student_dev": {
+    "individual": {
       "precision": {
-        "num": 23,
-        "den": 23,
+        "num": 32,
+        "den": 32,
         "value": 1
       },
       "recall": {
-        "num": 23,
-        "den": 23,
-        "value": 1
-      },
-      "f1": 1
-    },
-    "student_systems": {
-      "precision": {
-        "num": 9,
-        "den": 9,
-        "value": 1
-      },
-      "recall": {
-        "num": 9,
-        "den": 9,
+        "num": 32,
+        "den": 32,
         "value": 1
       },
       "f1": 1
@@ -275,7 +262,7 @@
     },
     {
       "resume_id": "resume_13",
-      "group": "student_dev",
+      "group": "individual",
       "extracted": 16,
       "tp": 12,
       "fp": 0,
@@ -283,7 +270,7 @@
     },
     {
       "resume_id": "resume_14",
-      "group": "student_dev",
+      "group": "individual",
       "extracted": 15,
       "tp": 11,
       "fp": 0,
@@ -291,7 +278,7 @@
     },
     {
       "resume_id": "resume_15",
-      "group": "student_systems",
+      "group": "individual",
       "extracted": 9,
       "tp": 9,
       "fp": 0,

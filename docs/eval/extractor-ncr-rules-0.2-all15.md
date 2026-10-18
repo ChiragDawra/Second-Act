@@ -27,8 +27,7 @@ Counts: TP 170, FP 0, FN 0.
 | developer_go_c_linux | 100.0% (26/26) | 100.0% (26/26) | 1.000 |
 | data_analyst_excel_sql_pb | 100.0% (19/19) | 100.0% (19/19) | 1.000 |
 | career_break_returner | 100.0% (17/17) | 100.0% (17/17) | 1.000 |
-| student_dev | 100.0% (23/23) | 100.0% (23/23) | 1.000 |
-| student_systems | 100.0% (9/9) | 100.0% (9/9) | 1.000 |
+| individual | 100.0% (32/32) | 100.0% (32/32) | 1.000 |
 
 ## Error categories
 

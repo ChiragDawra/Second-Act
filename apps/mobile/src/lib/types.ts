@@ -357,3 +357,77 @@ export interface AdminOverview {
   integrations: { name: string; status: 'live' | 'synthetic' | 'simulated' | 'planned'; detail: string }[];
   access_note: string;
 }
+
+// ---- Delhi-NCR resume pilot -------------------------------------------------
+
+export type NcrMentionType = 'explicit_current' | 'coursework' | 'future_goal' | 'negated_or_no_experience' | 'ambiguous';
+
+export interface NcrExtractedSkill {
+  skill_id: string;
+  canonical_name: string;
+  status: 'self_reported' | 'inferred' | 'unknown';
+  mention_type: NcrMentionType;
+  suggested_level: number | null;
+  evidence: string;
+  section: string;
+  method: 'alias_rule' | 'context_alias_rule' | 'semantic_candidate';
+}
+
+export interface NcrExtraction {
+  extraction: { extractor_version: string; dataset_version: string; skills: NcrExtractedSkill[]; warnings: string[] };
+  review_required: boolean;
+  notice: string;
+}
+
+export interface NcrMatchedSkill {
+  skill_id: string;
+  name: string;
+  status: SkillStatus;
+  worker_level: number | null;
+  required_level: number;
+  meets_required: boolean;
+  evidence: string | null;
+}
+
+export interface NcrGap {
+  skill_id: string;
+  name: string;
+  required_level: number;
+  worker_level: number | null;
+  is_mandatory: boolean;
+}
+
+export interface NcrRole {
+  role_id: string;
+  title: string;
+  sector: string;
+  estimated_skill_fit: number | null;
+  evidence_confidence: number;
+  readiness_status: Readiness;
+  matching_skills: NcrMatchedSkill[];
+  critical_gaps: NcrGap[];
+  mandatory_blockers: { skill_id: string; name: string; reason: string; gate: string }[];
+  unknown_requirements: NcrGap[];
+  constraint_exclusion: string | null;
+  explanation: string[];
+  requirement_source: { reviewer_status: string; freshness_note: string; dataset_collected_at: string };
+  demand_signal: { kind: 'simulated_sample'; sample_size: number; cities: string[]; note: string };
+  vacancies: { status: 'none_connected'; note: string };
+}
+
+export interface NcrRecommendation {
+  adjacency_version: string;
+  scoring_version: string;
+  dataset_version: string;
+  top_roles: NcrRole[];
+  stretch_roles: NcrRole[];
+  excluded_roles: NcrRole[];
+  message: string | null;
+  limitations: string[];
+}
+
+export interface NcrMeta {
+  cities: string[];
+  limitations: string[];
+  labels: { roles: string; listings: string };
+}

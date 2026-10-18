@@ -27,8 +27,7 @@ Counts: TP 167, FP 17, FN 3.
 | developer_go_c_linux | 92.3% (24/26) | 92.3% (24/26) | 0.923 |
 | data_analyst_excel_sql_pb | 86.4% (19/22) | 100.0% (19/19) | 0.927 |
 | career_break_returner | 81.0% (17/21) | 100.0% (17/17) | 0.895 |
-| student_dev | 100.0% (23/23) | 100.0% (23/23) | 1.000 |
-| student_systems | 100.0% (8/8) | 88.9% (8/9) | 0.941 |
+| individual | 100.0% (31/31) | 96.9% (31/32) | 0.984 |
 
 ## Error categories
 

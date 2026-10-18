@@ -19,7 +19,8 @@
     "demo:smoke": "tsx --env-file-if-exists=.env scripts/smoke-demo.ts",
     "demo:check": "tsx --env-file-if-exists=.env scripts/check-setup.ts",
     "ncr:eval": "tsx --env-file-if-exists=.env scripts/ncr-eval.ts",
-    "ncr:prepare": "tsx scripts/ncr-prepare.ts"
+    "ncr:prepare": "tsx scripts/ncr-prepare.ts",
+    "ncr:compare": "tsx scripts/ncr-compare.ts"
   },
   "license": "MIT",
   "dependencies": {

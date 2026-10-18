@@ -26,6 +26,7 @@ HackShift 2026 · Entrepreneurship & Employment · Team Maniac Coders
 - [Architecture](#architecture)
 - [Getting started](#getting-started)
 - [Testing](#testing)
+- [Delhi-NCR pilot](#delhi-ncr-pilot-resume-skill-extraction)
 - [Responsible AI and privacy](#responsible-ai-and-privacy)
 - [Roadmap](#roadmap)
 - [MVP checklist](#mvp-checklist)
@@ -279,6 +280,16 @@ cd backend && pytest
 | Fairness | Counterfactual résumés — changed name, graduation year, career gap, college tier, or a plain-English rewrite — yield the same extracted skills and levels; differences are reported, not hidden |
 | Proof | A review changes only the rubric's skills; a failed review never raises a level; every record has a reviewer, a date, an AI-use declaration and a debrief flag |
 | Privacy | Nothing is shared without consent; no résumé text appears in logs |
+
+## Delhi-NCR pilot: resume skill extraction
+
+A rule-based resume reader (no LLM) and a Delhi-NCR role dataset sit beside the demo. The reader separates what a resume
+*claims* from what it *aspires to* and what the person *has not done*, keeps the evidence sentence, and never marks anything
+verified. The context-blind baseline treated every future goal as a current skill (14 of 14); the production rules did not.
+
+The role data is a team-drafted, unreviewed pilot and all listings are simulated. Measured results, limits and next steps are
+in [docs/DELHI_NCR_SKILL_EXTRACTOR_PLAN.md](docs/DELHI_NCR_SKILL_EXTRACTOR_PLAN.md); the data is documented in
+[data/delhi_ncr/v1/README.md](data/delhi_ncr/v1/README.md).
 
 ## Responsible AI and privacy
 

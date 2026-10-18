@@ -13,6 +13,9 @@
     "demo:reset": "npm --prefix apps/api run demo:reset",
     "demo:check": "npm --prefix apps/api run demo:check",
     "demo:smoke": "npm --prefix apps/api run demo:smoke",
-    "check": "npm --prefix apps/api run typecheck && npm --prefix apps/api test && npm --prefix apps/mobile run typecheck && npm --prefix apps/mobile run lint"
+    "check": "npm --prefix apps/api run typecheck && npm --prefix apps/api test && npm --prefix apps/mobile run typecheck && npm --prefix apps/mobile run lint",
+    "ncr:prepare": "npm --prefix apps/api run ncr:prepare",
+    "ncr:eval": "npm --prefix apps/api run ncr:eval --",
+    "ncr:compare": "npm --prefix apps/api run ncr:compare --"
   }
 }

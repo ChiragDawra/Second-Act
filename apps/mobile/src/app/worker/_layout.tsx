@@ -19,6 +19,7 @@ export default function WorkerLayout() {
         <Tabs.Screen name="index" options={{ title: 'Skills' }} />
         <Tabs.Screen name="roles" options={{ title: 'Roles' }} />
         <Tabs.Screen name="prove" options={{ title: 'Prove' }} />
+        <Tabs.Screen name="resume" options={{ title: 'Resume' }} />
         <Tabs.Screen name="connect" options={{ title: 'Connect' }} />
         <Tabs.Screen name="activity" options={{ title: 'Activity' }} />
         <Tabs.Screen name="role/[roleId]" options={{ href: null }} />

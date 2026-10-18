@@ -27,3 +27,4 @@ data/delhi_ncr/**/private/
 # Eval working folder (real PDFs inside) - never commit
 resume_test_data/
 resume_test_samples/
+docs/eval/*all18*

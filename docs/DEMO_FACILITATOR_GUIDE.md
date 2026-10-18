@@ -88,6 +88,26 @@ Emails use `DEMO_EMAIL_DOMAIN` (default `demo.secondact.test`). Passwords are in
     - Optionally revoke the recruiter share from the worker; the candidate disappears from the recruiter list.
 11. Reset again for the next run.
 
+## Optional segment: Delhi-NCR resume pilot (about 3 minutes)
+
+Uses the same worker account. The API must be running. Nothing is stored: the resume is read in memory and discarded.
+
+| Item | Status |
+|---|---|
+| Roles and requirements | **Team-drafted, unreviewed** hypotheses |
+| Listings and "demand" | **Simulated** sample only; no vacancy feed, no market claim |
+| Resume reading | **Live** rule-based extractor (`ncr-rules-0.2`), no LLM |
+
+1. As the worker, call `POST /api/v1/ncr/resume/extract` with a resume file (PDF, DOCX or text) as the request body.
+   Use a synthetic resume from `data/delhi_ncr/v1/eval/`, never a real person's.
+2. Point out the mention types. Skills under "learning goals" come back as **future goal** and "no practical experience"
+   as **no experience**. Neither can be accepted as a skill.
+3. Send the accepted skills with levels to `POST /api/v1/ncr/recommend`. Roles appear with estimated skill fit, resume
+   evidence, gaps, blockers, unknowns, and a separate "simulated" demand note.
+4. Show that a client cannot make a skill verified: add `"status":"verified"` to a skill and it is ignored.
+
+The full method, measured results and limitations are in `docs/DELHI_NCR_SKILL_EXTRACTOR_PLAN.md`.
+
 ## Troubleshooting
 
 | Symptom | Fix |
