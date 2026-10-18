@@ -7,13 +7,13 @@ import { CandidateProfile } from '../../types';
 interface HeroSectionProps {
   profile: CandidateProfile;
   onExploreClick: () => void;
-  onHowItWorksClick: () => void;
+  onStartClick: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   profile,
   onExploreClick,
-  onHowItWorksClick,
+  onStartClick,
 }) => {
   return (
     <section className="relative min-h-[92svh] flex flex-col justify-between pt-28 pb-12 sm:pb-16 overflow-hidden">
@@ -71,7 +71,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             >
               <button
                 type="button"
-                onClick={onExploreClick}
+                onClick={onStartClick}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-sap-600 hover:bg-sap-700 text-white font-semibold text-sm shadow-sm hover:shadow-glow-sap transition-all active:scale-[0.98] group"
               >
                 <span>Discover your next role</span>
@@ -80,10 +80,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
               <button
                 type="button"
-                onClick={onHowItWorksClick}
+                onClick={onExploreClick}
                 className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/90 font-medium text-sm transition-all active:scale-[0.98]"
               >
-                <span>See how it works</span>
+                <span>See an example match</span>
               </button>
             </motion.div>
 

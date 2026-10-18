@@ -4,12 +4,12 @@ import { ArrowRight, ShieldCheck } from 'lucide-react';
 
 interface ClosingCTAProps {
   onExploreClick: () => void;
-  onHowItWorksClick: () => void;
+  onStartClick: () => void;
 }
 
 export const ClosingCTA: React.FC<ClosingCTAProps> = ({
   onExploreClick,
-  onHowItWorksClick,
+  onStartClick,
 }) => {
   return (
     <section className="py-24 sm:py-32 relative bg-ink-950 text-white overflow-hidden">
@@ -45,26 +45,26 @@ export const ClosingCTA: React.FC<ClosingCTAProps> = ({
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               type="button"
-              onClick={onExploreClick}
+              onClick={onStartClick}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-sap-600 hover:bg-sap-700 text-white font-semibold text-sm shadow-glow-sap transition-all active:scale-[0.98] group"
             >
-              <span>Explore the example match</span>
+              <span>Get started with Google</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
             </button>
 
             <button
               type="button"
-              onClick={onHowItWorksClick}
+              onClick={onExploreClick}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-medium text-sm transition-all active:scale-[0.98]"
             >
-              <span>Review Agent Pipeline</span>
+              <span>Explore the example match</span>
             </button>
           </div>
 
           {/* Small reassurance note */}
           <div className="mt-12 flex items-center justify-center gap-2 text-xs text-slate-400">
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>Candidate Data Privacy & Algorithmic Parity Guaranteed</span>
+            <span>You decide what is shared · Scores are estimated skill fit, never hiring odds</span>
           </div>
         </motion.div>
       </div>
