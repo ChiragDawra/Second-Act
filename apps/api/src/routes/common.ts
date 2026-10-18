@@ -10,27 +10,19 @@ const slug = z.string().regex(/^[a-z0-9-]{1,80}$/);
 export function commonRoutes({ db }: Deps): Router {
   const r = Router();
 
-  r.get('/me', (_req, res) => {
-    const a = actorOf(res);
-    res.json({
-      user_id: a.userId,
-      role: a.role,
-      display_name: a.displayName,
-      org: a.orgId ? { id: a.orgId, name: a.orgName } : null,
-      profile_id: a.profileId,
-      mentor_id: a.mentorId,
-      is_synthetic: a.isSynthetic,
-    });
-  });
-
   r.get('/share-fields', (_req, res) => {
     res.json({ fields: SHAREABLE_FIELDS.map((id) => ({ id, label: SHAREABLE_FIELD_LABELS[id] })) });
   });
 
-  r.get('/roles', async (_req, res) => {
+  r.get('/roles', async (req, res) => {
     const a = actorOf(res);
+    const catalogue = req.query.catalogue === undefined ? null : z.enum(['demo', 'ncr']).parse(req.query.catalogue);
     const rows = await db.asUser(a.userId, (q) =>
-      q.query('select id, title, family, employment_type, work_mode, locations, dataset_version from public.roles order by title'),
+      q.query(
+        `select id, title, family, employment_type, work_mode, locations, dataset_version, catalogue
+         from public.roles where $1::text is null or catalogue = $1 order by title`,
+        [catalogue],
+      ),
     );
     res.json({ roles: rows.rows });
   });
@@ -84,7 +76,7 @@ export function commonRoutes({ db }: Deps): Router {
 
   r.get('/organizations', async (_req, res) => {
     const a = actorOf(res);
-    const rows = await db.asUser(a.userId, (q) => q.query('select id, name, kind, is_synthetic from public.organizations order by name'));
+    const rows = await db.asUser(a.userId, (q) => q.query("select id, name, kind, is_synthetic from public.organizations where status = 'active' order by name"));
     res.json({ organizations: rows.rows });
   });
 

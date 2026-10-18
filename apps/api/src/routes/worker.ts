@@ -12,6 +12,10 @@ import { deny, requireOwnProfile } from '../http/guards.ts';
 import { recordAudit } from '../services/audit.ts';
 import { latestRun, recompute, type StoredRun } from '../services/recommendations.ts';
 import { insertExtractedSkills } from '../services/skills.ts';
+import { toDbId } from '../ncr/catalogue.ts';
+import { getNcrDataset } from '../ncr/dataset.ts';
+import { profileFromReview, ReviewError, reviewDecisionSchema } from '../ncr/review.ts';
+import { EXTRACTOR_VERSION } from '../ncr/schema.ts';
 import { recommendationView, roleChanges } from './views.ts';
 
 const uuid = z.uuid();
@@ -23,7 +27,8 @@ export function userLimiter(limit: number) {
   return rateLimit({
     windowMs: 60_000,
     limit,
-    keyGenerator: (_req, res) => (res.locals.actor as Actor | undefined)?.userId ?? 'anonymous',
+    keyGenerator: (_req, res) =>
+      (res.locals.actor as Actor | undefined)?.userId ?? (res.locals.identity as { userId?: string } | undefined)?.userId ?? 'anonymous',
     standardHeaders: 'draft-8',
     legacyHeaders: false,
     handler: (_req, _res, next) => next(new ApiError(429, 'rate_limited', 'Too many requests. Wait a minute and try again.')),
@@ -74,7 +79,8 @@ export function workerRoutes({ db }: Deps): Router {
     const actor = await requireOwnProfile(db, res, id);
     const rows = await db.asUser(actor.userId, (q) =>
       q.query(
-        `select id, display_name, headline, current_role_title, experience_summary, preferences, consent_version, is_synthetic, updated_at
+        `select id, display_name, headline, current_role_title, experience_summary, preferences, consent_version, is_synthetic, updated_at,
+                catalogue, sector
          from public.profiles where id = $1`,
         [id],
       ),
@@ -127,7 +133,10 @@ export function workerRoutes({ db }: Deps): Router {
     }
 
     const applied = await db.asService(async (q) => {
-      const known = await q.query<{ id: string }>('select id from public.skills where id = any($1::text[])', [updates.map((u) => u.skill_id)]);
+      const known = await q.query<{ id: string }>(
+        'select s.id from public.skills s join public.profiles p on p.catalogue = s.catalogue where p.id = $2 and s.id = any($1::text[])',
+        [updates.map((u) => u.skill_id), id],
+      );
       const knownIds = new Set(known.rows.map((k) => k.id));
       const current = await q.query<{ skill_id: string; status: SkillStatus; proficiency: number | null; evidence_snippet: string | null }>(
         'select skill_id, status, proficiency, evidence_snippet from public.worker_skills where profile_id = $1 and skill_id = any($2::text[]) for update',
@@ -205,6 +214,83 @@ export function workerRoutes({ db }: Deps): Router {
     });
     const run = await recomputeFor(actor, id, 'skills_extracted', res);
     res.json({ candidates: out.candidates.length, inserted: out.inserted, recommendations: recommendationView(run) });
+  });
+
+  // ---------------------------------------------------- resume import (NCR)
+  // Saves the skills the worker accepted in the resume review. Each becomes self_reported (the
+  // worker's own claim) with the resume sentence as evidence. Future goals and "no experience"
+  // statements are refused. Assessed skills are never overwritten.
+  r.post('/profiles/:id/skills/import', writeLimiter, async (req, res) => {
+    const id = uuid.parse(req.params.id);
+    const actor = await requireOwnProfile(db, res, id);
+    const { skills } = z.object({ skills: z.array(reviewDecisionSchema).min(1).max(80) }).parse(req.body);
+    const ds = getNcrDataset();
+    let accepted;
+    try {
+      accepted = profileFromReview(ds, skills);
+    } catch (err) {
+      if (err instanceof ReviewError) throw new ApiError(422, err.code, err.message);
+      throw err;
+    }
+
+    const imported = await db.asService(async (q) => {
+      const p = await q.query<{ catalogue: string }>('select catalogue from public.profiles where id = $1', [id]);
+      if (p.rows[0]?.catalogue !== 'ncr') throw conflict('wrong_catalogue', 'Resume import is available for Delhi-NCR profiles only.');
+      const written: string[] = [];
+      for (const s of accepted) {
+        const evidence = s.evidence ? s.evidence.slice(0, 400) : null;
+        const row = await q.query<{ skill_id: string }>(
+          `insert into public.worker_skills
+             (profile_id, skill_id, status, proficiency, evidence_snippet, evidence_source_type, confidence, confidence_method, review_state)
+           values ($1, $2, 'self_reported', $3, $4, $5, null, $6, 'confirmed')
+           on conflict (profile_id, skill_id) do update set status = 'self_reported', proficiency = excluded.proficiency,
+             evidence_snippet = coalesce(excluded.evidence_snippet, public.worker_skills.evidence_snippet),
+             evidence_source_type = excluded.evidence_source_type, confidence_method = excluded.confidence_method,
+             review_state = 'confirmed', updated_at = now()
+           where public.worker_skills.status not in ('verified', 'not_demonstrated')
+           returning skill_id`,
+          [id, toDbId(s.skill_id), s.proficiency, evidence, evidence ? 'work_history_text' : 'user_confirmation', `${EXTRACTOR_VERSION}+worker_review`],
+        );
+        if (row.rows[0]) written.push(row.rows[0].skill_id);
+      }
+      await recordAudit(q, {
+        actorUserId: actor.userId, actorRole: actor.role, action: 'skills.imported', objectType: 'profile', objectId: id,
+        subjectProfileId: id, requestId: res.locals.requestId as string,
+        metadata: { accepted: accepted.length, written: written.length, method: EXTRACTOR_VERSION },
+      });
+      return written;
+    });
+    const run = await recomputeFor(actor, id, 'resume_imported', res);
+    res.json({ imported, recommendations: recommendationView(run) });
+  });
+
+  const Preferences = z
+    .object({
+      headline: z.string().trim().min(2).max(120).optional(),
+      locations: z.array(z.string().trim().min(2).max(40)).max(5).optional(),
+      work_modes: z.array(z.enum(['remote', 'hybrid', 'onsite'])).max(3).optional(),
+      weekly_learning_hours: z.number().int().min(1).max(60).nullable().optional(),
+      max_transition_weeks: z.number().int().min(1).max(260).nullable().optional(),
+      languages: z.array(z.string().trim().min(2).max(30)).max(5).optional(),
+    })
+    .strict();
+
+  r.patch('/profiles/:id/preferences', writeLimiter, async (req, res) => {
+    const id = uuid.parse(req.params.id);
+    const actor = await requireOwnProfile(db, res, id);
+    const { headline, ...prefs } = Preferences.parse(req.body);
+    await db.asService(async (q) => {
+      await q.query(
+        'update public.profiles set preferences = preferences || $2::jsonb, headline = coalesce($3, headline), updated_at = now() where id = $1',
+        [id, JSON.stringify(prefs), headline ?? null],
+      );
+      await recordAudit(q, {
+        actorUserId: actor.userId, actorRole: actor.role, action: 'preferences.updated', objectType: 'profile', objectId: id,
+        subjectProfileId: id, requestId: res.locals.requestId as string, metadata: { keys: Object.keys(prefs) },
+      });
+    });
+    const run = await recomputeFor(actor, id, 'preferences_updated', res);
+    res.json({ recommendations: recommendationView(run) });
   });
 
   // -------------------------------------------------------- recommendations
@@ -379,9 +465,12 @@ export function workerRoutes({ db }: Deps): Router {
       const { evaluation } = await evaluationFor(q, profileId, roleId);
       const prefs = await q.query<{ preferences: WorkerPreferences }>('select preferences from public.profiles where id = $1', [profileId]);
       const mentors = await q.query<Omit<MentorCandidate, 'has_demo_login'> & { bio: string }>(
-        `select id, display_name, headline, bio, skill_ids, role_experience, transition_experience, languages, session_formats,
-                availability_hours_per_week, capacity_remaining, is_synthetic
-         from public.mentor_profiles order by display_name`,
+        `select m.id, m.display_name, m.headline, m.bio, m.skill_ids, m.role_experience, m.transition_experience, m.languages, m.session_formats,
+                m.availability_hours_per_week, m.capacity_remaining, m.is_synthetic
+         from public.mentor_profiles m join public.profiles p on p.id = $1 and p.catalogue = m.catalogue
+         where m.verification_status in ('synthetic_demo', 'verified')
+         order by m.display_name`,
+        [profileId],
       );
       const open = await q.query<{ mentor_id: string; status: string; id: string }>(
         `select id, mentor_id, status from public.mentor_requests where profile_id = $1 and status in ('requested', 'accepted')`,
@@ -392,7 +481,10 @@ export function workerRoutes({ db }: Deps): Router {
     });
     if (!data.evaluation) throw notFound('No evaluation for this role yet.');
     // Which catalogue mentors have a demo login (identity column is not client-readable).
-    const withLogin = await db.asService((q) => q.query<{ id: string }>('select id from public.mentor_profiles where user_id is not null'));
+    // Mentors who can actually answer: a linked account that is active.
+    const withLogin = await db.asService((q) =>
+      q.query<{ id: string }>("select m.id from public.mentor_profiles m join public.app_users u on u.user_id = m.user_id where u.status = 'active'"),
+    );
     const loginIds = new Set(withLogin.rows.map((m) => m.id));
 
     const gapNames = new Map(data.names.map((n) => [n.id, n.canonical_name]));
@@ -411,7 +503,7 @@ export function workerRoutes({ db }: Deps): Router {
       target_role: { id: roleId, title: data.evaluation.title },
       gap_skills: result.gap_skill_ids.map((id) => ({ id, name: gapNames.get(id) ?? id })),
       privacy_note: 'Matching uses only your gap list and preferences. Nothing is shared until you approve a request.',
-      matches: result.matches.map((m) => ({
+      matches: result.matches.filter((m) => m.mentor.is_synthetic || loginIds.has(m.mentor.id)).map((m) => ({
         ...m,
         mentor: { ...m.mentor, bio: bios.get(m.mentor.id) ?? '' },
         covered_gaps: m.covered_gap_ids.map((id) => ({ id, name: gapNames.get(id) ?? id })),
@@ -437,11 +529,16 @@ export function workerRoutes({ db }: Deps): Router {
     const fields = [...new Set(body.shared_fields)];
 
     const ctx = await db.asUser(actor.userId, async (q) => {
-      const mentor = await q.query<{ id: string; display_name: string; capacity_remaining: number; languages: string[] }>(
-        'select id, display_name, capacity_remaining, languages from public.mentor_profiles where id = $1',
-        [body.mentor_id],
+      const mentor = await q.query<{ id: string; display_name: string; capacity_remaining: number; languages: string[]; is_synthetic: boolean }>(
+        `select m.id, m.display_name, m.capacity_remaining, m.languages, m.is_synthetic
+         from public.mentor_profiles m join public.profiles p on p.id = $2 and p.catalogue = m.catalogue
+         where m.id = $1 and m.verification_status in ('synthetic_demo', 'verified')`,
+        [body.mentor_id, profileId],
       );
-      const role = await q.query<{ id: string; title: string }>('select id, title from public.roles where id = $1', [body.target_role_id]);
+      const role = await q.query<{ id: string; title: string }>(
+        'select r.id, r.title from public.roles r join public.profiles p on p.id = $2 and p.catalogue = r.catalogue where r.id = $1',
+        [body.target_role_id, profileId],
+      );
       const prefs = await q.query<{ preferences: WorkerPreferences }>('select preferences from public.profiles where id = $1', [profileId]);
       const { evaluation } = await evaluationFor(q, profileId, body.target_role_id);
       return { mentor: mentor.rows[0], role: role.rows[0], prefs: prefs.rows[0]?.preferences ?? {}, evaluation };
@@ -455,7 +552,7 @@ export function workerRoutes({ db }: Deps): Router {
     }
 
     const statement =
-      `I approve sharing these items with ${ctx.mentor.display_name} (synthetic demo mentor) for mentorship towards ` +
+      `I approve sharing these items with ${ctx.mentor.display_name}${ctx.mentor.is_synthetic ? ' (synthetic demo mentor)' : ''} for mentorship towards ` +
       `${ctx.role.title}: ${labelList(fields)}. Nothing else is shared, and I can revoke this at any time.`;
 
     const created = await db.asService(async (q) => {
@@ -552,7 +649,7 @@ export function workerRoutes({ db }: Deps): Router {
     const fields = [...new Set(body.fields)];
 
     const ctx = await db.asUser(actor.userId, async (q) => {
-      const org = await q.query<{ id: string; name: string }>("select id, name from public.organizations where id = $1 and kind = 'employer'", [body.recipient.org_id]);
+      const org = await q.query<{ id: string; name: string }>("select id, name from public.organizations where id = $1 and kind = 'employer' and status = 'active'", [body.recipient.org_id]);
       const role = body.target_role_id
         ? (await q.query<{ id: string; title: string }>('select id, title from public.roles where id = $1', [body.target_role_id])).rows[0]
         : undefined;

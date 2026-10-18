@@ -7,7 +7,7 @@ import { createPgDb } from './db/pg.ts';
 const config = loadConfig();
 const db = createPgDb(config.SUPABASE_DB_URL);
 const auth = createSupabaseVerifier(config.SUPABASE_URL, config.SUPABASE_ANON_KEY);
-const app = createApp({ db, auth, corsOrigins: config.CORS_ORIGINS, logRequests: true });
+const app = createApp({ db, auth, adminEmails: config.ADMIN_EMAILS, corsOrigins: config.CORS_ORIGINS, logRequests: true });
 
 const server = app.listen(config.PORT, config.HOST, async () => {
   const latency = await db.ping().catch((e: Error) => {

@@ -19,8 +19,13 @@ export interface TestApi {
 
 export async function createTestApi(): Promise<TestApi> {
   const t = await createTestDatabase();
-  const tokens = Object.fromEntries(Object.entries(USERS).map(([k, id]) => [tokenFor(k as TestUser), id]));
-  const app = createApp({ db: t.db, auth: createStaticVerifier(tokens), corsOrigins: [] });
+  const tokens = Object.fromEntries(
+    Object.entries(USERS).map(([k, id]) => [
+      tokenFor(k as TestUser),
+      { userId: id, email: `${k.toLowerCase()}@test.local`, emailVerified: k !== 'unverified', name: `Test ${k}` },
+    ]),
+  );
+  const app = createApp({ db: t.db, auth: createStaticVerifier(tokens), adminEmails: ['newadmin@test.local'], corsOrigins: [] });
   const agent = request(app);
   return {
     t,

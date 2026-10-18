@@ -16,7 +16,9 @@ export function recommendationView(run: StoredRun) {
     input_hash: run.result.input_hash,
     evidence_factors: run.result.evidence_factors,
     score_type: 'estimated_skill_fit_not_hiring_probability',
-    score_disclaimer: 'Estimated skill fit from the curated demo dataset. Not a hiring probability and not a vacancy.',
+    score_disclaimer: run.result.dataset_version.startsWith('ncr')
+      ? 'Estimated skill fit from the Delhi-NCR pilot roles (team-drafted, not yet expert-reviewed). Not a hiring probability and not a vacancy.'
+      : 'Estimated skill fit from the curated demo dataset. Not a hiring probability and not a vacancy.',
     top: pick(run.result.top_role_ids),
     other_eligible: eligible.filter((e) => !run.result.top_role_ids.includes(e.role_id)),
     stretch: pick(run.result.stretch_role_ids),

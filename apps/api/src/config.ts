@@ -11,9 +11,14 @@ const schema = z.object({
   SUPABASE_URL: z.url(),
   SUPABASE_ANON_KEY: z.string().min(20),
   SUPABASE_DB_URL: z.string().startsWith('postgres'),
+  /** Comma-separated verified emails allowed to onboard as admin (Google sign-in). */
+  ADMIN_EMAILS: z
+    .string()
+    .default('')
+    .transform((s) => s.split(',').map((e) => e.trim().toLowerCase()).filter(Boolean)),
   CORS_ORIGINS: z
     .string()
-    .default('http://localhost:8081,http://localhost:19006')
+    .default('http://localhost:5173,http://localhost:8081,http://localhost:19006')
     .transform((s) => s.split(',').map((o) => o.trim()).filter(Boolean)),
 });
 

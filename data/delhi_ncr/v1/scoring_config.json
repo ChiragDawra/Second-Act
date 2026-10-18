@@ -1,0 +1,73 @@
+{
+  "dataset_version": "ncr-roles-v1",
+  "taxonomy_version": "ncr-taxonomy-v1",
+  "adjacency_version": "ncr-adjacency-v1",
+  "collected_at": "2026-10-18",
+  "region_scope": "Delhi-NCR (Delhi, Gurugram, Noida, Ghaziabad, Faridabad)",
+  "cities": [
+    "Delhi",
+    "Gurugram",
+    "Noida",
+    "Ghaziabad",
+    "Faridabad"
+  ],
+  "recommendation_bar": {
+    "min_estimated_fit": 30,
+    "min_matched_requirements": 2,
+    "note": "Pilot threshold below which a role is not shown as a feasible adjacent role. A configured cut-off, not a probability."
+  },
+  "learning_hours_per_level": {
+    "Testing & QA": 15,
+    "Business analysis": 15,
+    "Domain": 20,
+    "Support": 12,
+    "Data & reporting": 20,
+    "Programming & systems": 30,
+    "Delivery & management": 10
+  },
+  "limitations": [
+    "Role requirements are team-drafted hypotheses, not yet reviewed by a human domain expert or validated against live Delhi-NCR listings.",
+    "Demand and vacancy data are simulated samples. No live vacancy feed is connected and no demand claim is made.",
+    "No NCO, ESCO or O*NET identifiers have been mapped yet.",
+    "Scores are estimated skill fit, not hiring probability."
+  ],
+  "sectors": {
+    "qa": {
+      "label": "QA & software testing",
+      "roles": [
+        "manual-qa-tester",
+        "qa-analyst",
+        "uat-analyst",
+        "api-tester",
+        "junior-test-automation-engineer"
+      ]
+    },
+    "banking-ba": {
+      "label": "Banking operations & business analysis",
+      "roles": [
+        "banking-operations-associate",
+        "process-analyst",
+        "junior-business-analyst",
+        "uat-business-testing-analyst"
+      ]
+    },
+    "support": {
+      "label": "Customer & IT support",
+      "roles": [
+        "customer-support-specialist",
+        "service-desk-analyst",
+        "it-support-technician",
+        "junior-application-support-analyst"
+      ]
+    },
+    "data": {
+      "label": "Data & reporting",
+      "roles": [
+        "operations-analyst",
+        "reporting-analyst",
+        "junior-data-analyst",
+        "mis-executive"
+      ]
+    }
+  }
+}

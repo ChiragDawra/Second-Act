@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../auth/AuthProvider';
 
 interface NavbarProps {
   onNavClick: (id: string) => void;
@@ -8,6 +10,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onNavClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { session } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,16 +85,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavClick }) => {
             ))}
           </nav>
 
-          {/* Demonstration Action CTA */}
-          <div className="hidden sm:flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => onNavClick('match-demo')}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-ink-950 hover:bg-ink-900 text-white text-xs font-semibold shadow-sm transition-all active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-sap-500"
-            >
-              <span>Explore Harpreet’s Match</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+          {/* Account actions */}
+          <div className="hidden sm:flex items-center gap-2">
+            {session ? (
+              <Link to="/app" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-ink-950 hover:bg-ink-900 text-white text-xs font-semibold shadow-sm transition-all active:scale-[0.98]">
+                <span>Open dashboard</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            ) : (
+              <>
+                <Link to="/login" className="px-3 py-2 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100">
+                  Sign in
+                </Link>
+                <Link to="/login" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-ink-950 hover:bg-ink-900 text-white text-xs font-semibold shadow-sm transition-all active:scale-[0.98]">
+                  <span>Get started</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile hamburger button */}
@@ -124,17 +135,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavClick }) => {
             ))}
           </div>
           <div className="pt-2 border-t border-slate-100">
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onNavClick('match-demo');
-              }}
+            <Link
+              to={session ? '/app' : '/login'}
+              onClick={() => setMobileMenuOpen(false)}
               className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-sap-600 text-white text-sm font-semibold shadow-sm"
             >
-              <span>Explore Harpreet’s Match</span>
+              <span>{session ? 'Open dashboard' : 'Sign in or get started'}</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
         </div>
       )}

@@ -1,0 +1,228 @@
+{
+  "extractor_version": "baseline-0.1",
+  "dataset_version": "ncr-roles-v1",
+  "resumes": 3,
+  "gold_rows": 37,
+  "counts": {
+    "true_positive": 29,
+    "false_positive": 6,
+    "false_negative": 0
+  },
+  "precision": {
+    "num": 29,
+    "den": 35,
+    "value": 0.829
+  },
+  "recall": {
+    "num": 29,
+    "den": 29,
+    "value": 1
+  },
+  "f1": 0.907,
+  "future_goal_leakage": {
+    "num": 4,
+    "den": 4,
+    "value": 1
+  },
+  "negation_leakage": {
+    "num": 2,
+    "den": 2,
+    "value": 1
+  },
+  "unsupported_skill_rate": {
+    "num": 0,
+    "den": 37,
+    "value": 0
+  },
+  "evidence_coverage": {
+    "num": 37,
+    "den": 37,
+    "value": 1
+  },
+  "canonicalization_accuracy": {
+    "num": 36,
+    "den": 36,
+    "value": 1
+  },
+  "candidate_leakage": {
+    "skills_with_foreign_evidence": 0,
+    "examples": []
+  },
+  "canonicalization_errors": [],
+  "ambiguous_gold": {
+    "predicted_current": 2,
+    "total": 2
+  },
+  "by_group": {
+    "heldout_bank_ops_ncr": {
+      "precision": {
+        "num": 15,
+        "den": 18,
+        "value": 0.833
+      },
+      "recall": {
+        "num": 15,
+        "den": 15,
+        "value": 1
+      },
+      "f1": 0.909
+    },
+    "heldout_support_ncr": {
+      "precision": {
+        "num": 7,
+        "den": 9,
+        "value": 0.778
+      },
+      "recall": {
+        "num": 7,
+        "den": 7,
+        "value": 1
+      },
+      "f1": 0.875
+    },
+    "heldout_mis_returner_ncr": {
+      "precision": {
+        "num": 7,
+        "den": 8,
+        "value": 0.875
+      },
+      "recall": {
+        "num": 7,
+        "den": 7,
+        "value": 1
+      },
+      "f1": 0.933
+    }
+  },
+  "per_resume": [
+    {
+      "resume_id": "resume_16",
+      "group": "heldout_bank_ops_ncr",
+      "extracted": 18,
+      "tp": 15,
+      "fp": 3,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_17",
+      "group": "heldout_support_ncr",
+      "extracted": 11,
+      "tp": 7,
+      "fp": 2,
+      "fn": 0
+    },
+    {
+      "resume_id": "resume_18",
+      "group": "heldout_mis_returner_ncr",
+      "extracted": 8,
+      "tp": 7,
+      "fp": 1,
+      "fn": 0
+    }
+  ],
+  "error_categories": {
+    "FP:negation_leakage": 2,
+    "FP:future_goal_leakage": 4
+  },
+  "false_negatives": [],
+  "false_positives": [
+    {
+      "resume_id": "resume_16",
+      "skill_id": "api-testing",
+      "category": "negation_leakage",
+      "gold_label": "negated_or_no_experience",
+      "extracted_as": "explicit_current",
+      "sentence": "- Have not worked on any API testing tools so far."
+    },
+    {
+      "resume_id": "resume_16",
+      "skill_id": "bi-dashboarding",
+      "category": "future_goal_leakage",
+      "gold_label": "future_goal",
+      "extracted_as": "explicit_current",
+      "sentence": "- Keen to pick up Power BI and have started a short YouTube course on dashboards; yet to build a real report."
+    },
+    {
+      "resume_id": "resume_16",
+      "skill_id": "python-programming",
+      "category": "future_goal_leakage",
+      "gold_label": "future_goal",
+      "extracted_as": "explicit_current",
+      "sentence": "- Planning to learn Python for automating reconciliation reports."
+    },
+    {
+      "resume_id": "resume_17",
+      "skill_id": "cloud-platforms",
+      "category": "future_goal_leakage",
+      "gold_label": "future_goal",
+      "extracted_as": "explicit_current",
+      "sentence": "- Intend to take the Microsoft Azure fundamentals exam next year."
+    },
+    {
+      "resume_id": "resume_17",
+      "skill_id": "shell-scripting",
+      "category": "negation_leakage",
+      "gold_label": "negated_or_no_experience",
+      "extracted_as": "explicit_current",
+      "sentence": "- No experience yet with Linux administration or shell scripting."
+    },
+    {
+      "resume_id": "resume_18",
+      "skill_id": "python-programming",
+      "category": "future_goal_leakage",
+      "gold_label": "future_goal",
+      "extracted_as": "explicit_current",
+      "sentence": "Currently learning Tableau and exploring Python for data analysis."
+    }
+  ],
+  "non_current_leaks": [
+    {
+      "resume_id": "resume_16",
+      "skill_id": "api-testing",
+      "category": "negation_leakage",
+      "gold_label": "negated_or_no_experience",
+      "extracted_as": "explicit_current",
+      "sentence": "- Have not worked on any API testing tools so far."
+    },
+    {
+      "resume_id": "resume_16",
+      "skill_id": "bi-dashboarding",
+      "category": "future_goal_leakage",
+      "gold_label": "future_goal",
+      "extracted_as": "explicit_current",
+      "sentence": "- Keen to pick up Power BI and have started a short YouTube course on dashboards; yet to build a real report."
+    },
+    {
+      "resume_id": "resume_16",
+      "skill_id": "python-programming",
+      "category": "future_goal_leakage",
+      "gold_label": "future_goal",
+      "extracted_as": "explicit_current",
+      "sentence": "- Planning to learn Python for automating reconciliation reports."
+    },
+    {
+      "resume_id": "resume_17",
+      "skill_id": "cloud-platforms",
+      "category": "future_goal_leakage",
+      "gold_label": "future_goal",
+      "extracted_as": "explicit_current",
+      "sentence": "- Intend to take the Microsoft Azure fundamentals exam next year."
+    },
+    {
+      "resume_id": "resume_17",
+      "skill_id": "shell-scripting",
+      "category": "negation_leakage",
+      "gold_label": "negated_or_no_experience",
+      "extracted_as": "explicit_current",
+      "sentence": "- No experience yet with Linux administration or shell scripting."
+    },
+    {
+      "resume_id": "resume_18",
+      "skill_id": "python-programming",
+      "category": "future_goal_leakage",
+      "gold_label": "future_goal",
+      "extracted_as": "explicit_current",
+      "sentence": "Currently learning Tableau and exploring Python for data analysis."
+    }
+  ]
+}

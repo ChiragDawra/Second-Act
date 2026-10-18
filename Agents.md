@@ -23,11 +23,13 @@ tests/          e2e + fixtures (synthetic only)
 ```
 
 ## Commands (keep this block accurate; update when scripts change)
-- web: `pnpm --filter web dev|test|build`
-- api: `pnpm --filter api dev|test|lint`
-- ml: `cd apps/ml && uvicorn app.main:app --reload` / `pytest -q`
-- db: `pnpm db:reset && pnpm db:seed`
-- all checks: `pnpm check` (lint + typecheck + tests)
+Current build: Express API in `apps/api`, Expo app in `apps/mobile` (npm, not pnpm). Run from the repo root.
+- install: `npm run install:all`
+- api: `npm run api:dev` / `npm run api:test`
+- mobile: `npm run mobile:web` or `npm run mobile:start`
+- db: `npm run db:migrate && npm run demo:seed`; reset `npm run demo:reset`; verify `npm run demo:check` / `npm run demo:smoke`
+- Delhi-NCR extractor: `npm run ncr:prepare` (split corpus, add PDFs, expect 15) / `npm run ncr:eval -- --mode baseline|context [--heldout] [--private]` / `npm run ncr:compare [-- --private]`
+- all checks: `npm run check` (API typecheck + tests, mobile typecheck + lint)
 
 ## Hard invariants (never violate; tests must cover each)
 1. Fit score is DETERMINISTIC code, never LLM. `fit = 100*Σ(w·min(p/q,1)·e)/Σw`. Weights/evidence factors in versioned config.

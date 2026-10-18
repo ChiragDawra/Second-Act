@@ -16,3 +16,15 @@ demo-credentials.local.*
 .expo/
 web-build/
 apps/mobile/dist/
+
+# Real resumes and extraction outputs derived from them (PII) - never commit
+resume_test_samples/*.pdf
+resume_test_samples/*.docx
+resume_skill_results.json
+data/delhi_ncr/**/private/
+.eval-private/
+
+# Eval working folder (real PDFs inside) - never commit
+resume_test_data/
+resume_test_samples/
+docs/eval/*all18*

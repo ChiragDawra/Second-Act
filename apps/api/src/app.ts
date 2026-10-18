@@ -2,11 +2,13 @@ import cors from 'cors';
 import express from 'express';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
-import { accessLog, authenticate, requestId, type Deps } from './http/context.ts';
+import { accessLog, authenticate, requestId, requireActiveAccount, type Deps } from './http/context.ts';
 import { ApiError, errorHandler } from './http/errors.ts';
+import { accountRoutes } from './routes/account.ts';
 import { adminRoutes } from './routes/admin.ts';
 import { commonRoutes } from './routes/common.ts';
 import { mentorRoutes } from './routes/mentor.ts';
+import { ncrRoutes } from './routes/ncr.ts';
 import { recruiterRoutes } from './routes/recruiter.ts';
 import { workerRoutes } from './routes/worker.ts';
 
@@ -41,8 +43,12 @@ export function createApp(options: AppOptions) {
 
   const api = express.Router();
   api.use(authenticate(options));
+  // /me and onboarding work for every signed-in identity; everything after needs an active account.
+  api.use(accountRoutes(options));
+  api.use(requireActiveAccount());
   api.use(commonRoutes(options));
   api.use(workerRoutes(options));
+  api.use(ncrRoutes(options));
   api.use(mentorRoutes(options));
   api.use(recruiterRoutes(options));
   api.use(adminRoutes(options));

@@ -1,0 +1,532 @@
+=== RESUME START: resume_01_manual_qa_banking ===
+Amina Al-Mansoor
+Email: amina.almansoor.qa@fictionalmail.com | Phone: +1 (555) 014-9821 | Location: Charlotte, NC
+LinkedIn: linkedin.com/in/amina-almansoor-test-fictional
+
+PROFESSIONAL SUMMARY
+Detail-oriented Software Quality Assurance Tester with over 6 years of focused experience verifying core banking systems, digital payment gateways, and regulatory reporting engines. Expert in manual test execution, defect life cycle management, and cross-functional validation across web and client-server banking architectures. Recognized for rigorous exploratory testing and ensuring compliance with financial transaction standards.
+
+CORE COMPETENCIES & DOMAIN KNOWLEDGE
+- Core Banking & Payments: Wire Transfers (Fedwire, SWIFT MT/MX), ACH Processing, Card Settlement
+- Quality Assurance: Test Case Design, Functional Testing, Regression Testing, Exploratory Testing, Smoke Testing, User Acceptance Testing (UAT) Coordination
+- Defect Tracking & Test Management: Jira, HP ALM / Quality Center, TestRail
+- Technical Foundations: SQL for Data Verification (Intermediate), Postman API Testing (Basic), XML/JSON Payload Inspection
+- Regulatory Frameworks: AML/KYC Workflow Verification, Sarbanes-Oxley (SOX) Section 404 Audit Evidence Gathering
+
+PROFESSIONAL EXPERIENCE
+
+Senior QA Specialist | Horizon Trust Bank | Charlotte, NC
+March 2021 – Present
+- Formulated and executed over 1,200 manual test scenarios covering end-to-end commercial lending workflows, overdraft protection rules, and multi-currency exchange calculations.
+- Executed database verification using complex SQL queries (joins, subqueries, grouping) in Oracle DB to assert ledger balancing and verify transaction logs against core banking tables.
+- Collaborated alongside compliance officers to review Anti-Money Laundering (AML) suspicious activity alert triggers, verifying sanctions screening rule sets against synthetic test databases.
+- Documented, triaged, and tracked software bugs to resolution within Jira, reducing post-release customer-impacting defects by 28% in 2023.
+- Coordinated quarterly User Acceptance Testing (UAT) cycles with branch managers, synthesizing end-user feedback into concrete technical bug reports.
+
+Quality Assurance Tester | BlueStone Financial Technologies | Raleigh, NC
+August 2018 – February 2021
+- Performed rigorous functional testing, black-box testing, and cross-browser compatibility assessments on consumer digital banking web applications and customer web portals.
+- Inspected REST API endpoints using Postman to validate payment payload structures (HTTP response status codes 200, 400, 401, 500) and verify that backend ledger entries aligned with UI confirmations.
+- Authored detailed Requirement Traceability Matrices (RTM) in HP ALM mapping business rules from functional specification documents directly to manual test cases.
+- Generated comprehensive weekly test execution reports and defect metric dashboards for senior IT leadership using Microsoft Excel pivot tables.
+- Validated ACH batch transaction files against NACHA file structure standards, checking header records, record padding, and debit/credit hash counts.
+
+EDUCATION
+Bachelor of Science in Information Systems | University of North Carolina at Charlotte | 2018
+
+CERTIFICATIONS & CREDENTIALS
+- ISTQB Certified Tester - Foundation Level (CTFL), 2019
+- Certified Scrum Master (CSM), Scrum Alliance, 2022
+
+UPCOMING LEARNING GOALS & NOTABLE CONTEXT
+- Actively enrolled in a self-paced Python for Automation evening course; currently practicing syntax with an explicit learning goal to eventually transition into Selenium test script automation (no commercial automation experience to date).
+- Avid marathon runner and weekend organizer for local charity 5K events.
+=== RESUME END: resume_01_manual_qa_banking ===
+
+=== RESUME START: resume_02_manual_qa_banking ===
+DANIEL J. KOVALENKO
+Chicago, IL | (555) 018-4432 | d.kovalenko.testing@fictionalmail.com
+
+RELEVANT SKILLS SUMMARY
+* Testing Disciplines: Black Box Testing, System Integration Testing (SIT), End-to-End Validation, Sanity Checks, Negative Testing, Boundary Value Analysis
+* Financial Domain Expertise: Retail Banking, Mortgage Origination, Credit Card Dispute Workflows, Loan Amortization Schedules
+* Tools & Environments: TestRail, Bugzilla, Confluence, Microsoft Excel (Advanced VLOOKUP/PivotTables), DBeaver, Putty
+* Compliance & Security Protocols: Payment Card Industry Data Security Standard (PCI-DSS) Data Masking Audits, Consumer Financial Protection Bureau (CFPB) Disclosure Verification
+
+WORK HISTORY
+
+LEAD TEST ANALYST (CONTRACT)
+First Heritage Savings & Loan — Chicago, IL
+November 2021 – Present
+- Direct all manual verification activities for a modern loan origination replacement program across 14 state branches.
+- Designed comprehensive test scripts for checking mortgage amortization schedules, interest recalculation edge cases, and escrow surplus/shortage logic.
+- Carried out data validation routines by querying Microsoft SQL Server instances using DBeaver to confirm that credit bureau pull inputs were encrypted per PCI-DSS requirements.
+- Partnered directly with business analysts to dissect complex business requirement documents (BRDs) into granular system integration test matrices.
+- Organized defect triage meetings three times weekly with systems integrators and development leads to expedite blocker ticket resolution.
+
+MANUAL QA ENGINEER
+Vanguard Retail Payment Solutions — Naperville, IL
+June 2017 – October 2021
+- Supervised quality auditing for point-of-sale (POS) terminal transaction routing and merchant clearance reconciliation systems.
+- Executed negative testing scenarios on payment processing switches, injecting simulated network timeouts and incomplete handshake packets to ensure transaction rollbacks occurred without ledger corruption.
+- Maintained detailed historical test documentation and release sign-off checklists in TestRail and Bugzilla.
+- Performed basic Linux command-line operations (tailing log files, grep searching error codes) via Putty during test execution to isolate gateway exceptions.
+- Participated in weekly stand-ups within an Agile/Scrum team, estimating testing effort story points and defining acceptance criteria.
+
+EARLIER EMPLOYMENT
+Customer Care Representative | Midwest Regional Bank | 2015 – 2017
+- Handled inbound consumer checking and savings account inquiries, processed check stop payments, and escalated unauthorized card debit fraud claims.
+
+EDUCATION & CREDENTIALS
+- B.A. in Economics, University of Illinois at Chicago, 2015
+- ISTQB Agile Tester Extension Certification, 2020
+
+TECHNICAL DEVELOPMENT IN PROGRESS
+- Pursuing an introduction to Cypress and JavaScript via Codecademy with the future aspiration of building UI automation frameworks. No production test automation developed yet.
+=== RESUME END: resume_02_manual_qa_banking ===
+
+=== RESUME START: resume_03_banking_ops_to_ba ===
+MARIA SANTOS-GARCIA
+Boston, MA | (555) 012-7744 | msantosgarcia.transition@fictionalmail.com | linkedin.com/in/maria-santos-garcia-fake
+
+CAREER STATEMENT
+Dynamic banking operations supervisor with 8+ years of institutional treasury, wealth management settlement, and payment processing experience, actively pivoting into Business Analysis. Adept at breaking down complex operational workflows, modeling As-Is vs. To-Be processes, eliciting stakeholder requirements, and driving gap analysis. Skilled in translating ambiguous regulatory updates into actionable system requirements for enterprise engineering squads.
+
+FUNCTIONAL & TECHNICAL CAPABILITIES
+- Business Analysis Disciplines: Requirements Elicitation, Gap Analysis, As-Is/To-Be Business Process Modeling, Stakeholder Management, User Stories & Acceptance Criteria Definition
+- Modeling & Diagramming: Business Process Model and Notation (BPMN 2.0), Flowcharts, Context Diagrams, Unified Modeling Language (UML) Use Cases
+- Domain Knowledge: Institutional Custody, Asset Servicing, SWIFT Messages (MT103, MT202, ISO 20022 migration), Foreign Exchange (FX) Spot/Forward Settlements
+- Software & Platforms: Microsoft Visio, Lucidchart, Jira, Confluence, Microsoft Excel (Advanced), SmartSheet
+- Data Querying: Structured Query Language (SQL - Basic: SELECT, WHERE, INNER JOIN queries)
+
+PROFESSIONAL EXPERIENCE
+
+Senior Treasury & Settlements Operations Lead
+Beacon Hill Capital Management, Boston, MA | January 2020 – Present
+- Spearheaded the end-to-end operational transition from legacy SWIFT MT formats to ISO 20022 XML messaging standards; partnered directly with enterprise technology architects to define data mapping specifications.
+- Facilitated weekly requirement discovery workshops with trading desk leads, risk managers, and clearing agents to uncover friction in high-value wire transfers.
+- Documented 45+ detailed user stories in Jira with precise acceptance criteria and functional rules for the incoming payments execution pipeline.
+- Designed current-state (As-Is) and future-state (To-Be) process flowcharts in Lucidchart, pinpointing three manual handoff vulnerabilities and eliminating 4.5 operational latency hours per day.
+- Executed User Acceptance Testing (UAT), authoring test scenarios, validating settlement output feeds, and signing off on production deploy readiness.
+
+Banking Operations Specialist
+Commonwealth Commercial Bank, Boston, MA | June 2016 – December 2019
+- Processed high-volume domestic wire transfers, international remittances, and foreign currency spot transactions while adhering to federal liquidity guidelines.
+- Authored standard operating procedures (SOPs) and comprehensive operational training playbooks for 25 junior operations associates.
+- Identified recurring data validation errors in customer wire input portals; drafted an 8-page business case and functional gap analysis report proposing front-end validation rules that reduced rejected transactions by 19%.
+- Utilized intermediate Microsoft Excel functions (XLOOKUP, Nested IF, Pivot Tables) to generate daily nostro-vostro account reconciliation reports.
+
+ACADEMIC BACKGROUND
+Bachelor of Business Administration (BBA), Finance
+University of Massachusetts Amherst | Class of 2016
+
+PROFESSIONAL CREDENTIALS
+- Entry Certificate in Business Analysis (ECBA) – International Institute of Business Analysis (IIBA), 2023
+- Certified Anti-Money Laundering Specialist (CAMS), ACAMS, 2019
+
+ASPIRATIONAL GOALS / SELF-STUDY
+- Completed online coursework: "Python for Business Data Analysis" on Coursera (audit mode; theoretical understanding, not applied in production).
+- Long-term goal: Learn Tableau to create self-service operational risk metrics for compliance stakeholders.
+=== RESUME END: resume_03_banking_ops_to_ba ===
+
+=== RESUME START: resume_04_banking_ops_to_ba ===
+TARIQ E. HUSSEIN
+New York, NY | +1 555 019 3321 | tariq.hussein.finops@fictionalmail.com
+
+EXECUTIVE PROFILE
+Accomplished Financial Operations professional transitioning into IT Business Systems Analysis. Proven track record of improving operational throughput, leading cross-functional process re-engineering projects, and defining functional specifications for middle- and back-office banking software.
+
+AREAS OF EXPERTISE
+* Requirements Analysis & Documentation
+* Business Process Re-engineering (BPR)
+* Functional Specification Documents (FSD)
+* Cost-Benefit Analysis & Business Case Formulation
+* Trade Lifecycle & Clearance (Fixed Income, Equities)
+* Regulatory Compliance: Dodd-Frank Trade Reporting, MiFID II Transaction Records
+* Software: Jira, Confluence, MS Visio, Trello, Miro, Advanced Excel, Power BI (Basic/Beginner)
+
+CAREER EXPERIENCE
+
+OPERATIONAL RISK & PROCESS ANALYST
+Midtown Global Securities — New York, NY
+08/2021 – Present
+- Lead requirement-gathering interviews and joint application design (JAD) sessions with equity traders, risk managers, and compliance teams to upgrade the institutional trade-matching platform.
+- Write functional requirement documents (FRDs), trace matrices, and visual BPMN process maps illustrating exception handling across trade allocation, clearing, and broker-dealer settlement.
+- Quantified a $420,000 annual operational savings opportunity by performing root-cause analysis on trade execution breaks, delivering the proposal directly to managing directors.
+- Partner with product managers to decompose business goals into iterative Jira epics, user stories, and acceptance test conditions for quarterly Agile sprints.
+- Created interactive Power BI dashboards (beginner level) connecting to exported operational spreadsheets to monitor trade failure volumes.
+
+TRADE SETTLEMENTS & CASH COLLATERAL SPECIALIST
+Gotham National Bank — New York, NY
+05/2017 – 07/2021
+- Reconciled daily multi-asset collateral margins and cash balances against clearinghouse records (DTCC, Euroclear).
+- Acted as the primary operations liaison to the core software development team during the integration of an automated margin call confirmation portal.
+- Compiled defect severity logs and coordinated business-side acceptance sign-offs during system version upgrades.
+- Conducted training webinars and authored detailed release notes for internal trade desk operators.
+
+VOLUNTEER & OTHER ENGAGEMENTS
+- Treasurer for Midtown Community Housing Committee (handles annual budget of $45,000 using QuickBooks).
+- Currently enrolled in Harvard Extension School's non-credit evening course "Introduction to Relational Databases and SQL" to strengthen database analysis capabilities.
+
+EDUCATION
+* B.S. in Finance, Fordham University, Bronx, NY (2017)
+
+PROFESSIONAL CERTIFICATIONS
+* Agile Analysis Certification (IIBA-AAC), 2022
+* Project Management Professional (PMP), Project Management Institute, 2021
+=== RESUME END: resume_04_banking_ops_to_ba ===
+
+=== RESUME START: resume_05_support_to_it ===
+JORDAN LEE
+Austin, TX | (555) 016-5590 | jordan.lee.techsupport@fictionalmail.com
+
+OBJECTIVE
+Empathetic, technical Customer Support Team Lead with 5 years of experience resolving complex software, web application, and billing inquiries. Transitioning into Internal IT Support / Help Desk Technician role. Leveraging deep troubleshooting methodology, Active Directory administration fundamentals, hardware provisioning skills, and exceptional user empathy to support internal corporate end-users.
+
+CORE IT & TECHNICAL SKILLS
+- Desktop & Operating Systems: Windows 10/11 troubleshooting, macOS support, iOS/Android mobile device management (MDM)
+- IT Administration: Microsoft 365 Admin Center, Active Directory (Intermediate: user creation, group policy assignment, password resets), Microsoft Intune (Basic enrollment)
+- Ticketing & CRM: Zendesk, ServiceNow (Intermediate), Freshdesk, Jira Service Management
+- Networking Basics: TCP/IP fundamentals, DNS/DHCP concepts, Wi-Fi connectivity diagnostics, VPN client setup and troubleshooting
+- Hardware: PC assembly, SSD/RAM replacement, peripheral setup (docking stations, multi-monitor displays, VoIP headsets)
+
+WORK EXPERIENCE
+
+Technical Customer Support Lead | CloudFleet SaaS Solutions | Austin, TX
+October 2021 – Present
+- Supervise an 8-person Tier 2 customer service team handling omnichannel technical escalations via Zendesk, chat, and phone, maintaining a 97.4% customer satisfaction (CSAT) rating.
+- Triage and isolate software issues across customer web browsers, clearing client-side cache/cookies, inspecting network HAR files, and identifying REST API authentication errors.
+- Manage user licenses, email aliases, and role-based permissions for CloudFleet employees within Microsoft 365 Admin Center and Google Workspace.
+- Configured local network peripherals, provisioned Dell laptops, and assisted remote staff with corporate Cisco AnyConnect VPN connectivity issues.
+- Authored 35+ internal knowledge base articles in Confluence documenting standard troubleshooting steps, which shortened average ticket resolution time by 22%.
+
+Tier 1 Customer Support Specialist | Apex Telecommunications | San Antonio, TX
+June 2019 – September 2021
+- Addressed 40+ inbound calls daily regarding residential broadband connectivity, router configurations, IP address conflicts, and voice-over-IP (VoIP) setups.
+- Guided non-technical users step-by-step through remote hardware resets, power-cycling modems, and configuring secure WPA3 home Wi-Fi credentials.
+- Utilized internal ticketing system to log call notes, categorize defect issues, and escalate field engineering truck dispatches.
+- Received "Support Agent of the Quarter" award twice for superior first-contact resolution (FCR) rate.
+
+EDUCATION
+Associate of Applied Science in Computer Information Systems
+Austin Community College, Austin, TX | 2019
+
+CERTIFICATIONS
+- CompTIA A+ (Core 1 & Core 2) Certified, 2023
+- Microsoft Certified: Identity and Access Administrator Associate (SC-300), 2024
+- ITIL Foundation (v4), 2022
+
+PERSONAL PROJECTS & GOALS
+- Maintained a private home lab running Proxmox VE with a virtualized pfSense router to practice subnetting and firewall rule configuration.
+- Future Learning Goal: Intends to learn Bash and PowerShell scripting to automate repetitive user onboarding workflows.
+=== RESUME END: resume_05_support_to_it ===
+
+=== RESUME START: resume_06_support_to_it ===
+PRIYA PATEL
+Philadelphia, PA | 555-013-8821 | priya.patel.support@fictionalmail.com
+
+SUMMARY
+Customer Service Specialist pivoting to an Enterprise IT Helpdesk role. Possesses 4+ years of proven front-line customer advocacy, incident escalation management, and methodical root-cause analysis. Holds current CompTIA Network+ certification and hands-on experience managing identity objects in Azure Active Directory (Microsoft Entra ID).
+
+KEY TECHNICAL & OPERATIONAL SKILLS
+• Help Desk Platforms: ServiceNow, Jira Service Desk, Salesforce Service Cloud
+• Systems Administration: Microsoft Entra ID (Azure AD - user provisioning, MFA resets), Windows 10/11 Pro, macOS
+• Hardware Support: Laptop imaging, RAM upgrades, thermal paste re-application, network printer installation
+• Networking Fundamentals: Ping, Traceroute, nslookup, IP subnetting, Ethernet cabling (Cat6 termination), SSH connection basics
+• Soft Skills: High-stress conflict de-escalation, active listening, clear technical translation for non-technical executives
+
+EXPERIENCE
+
+Customer Service & Technical Escalations Specialist
+Keystone Health Plan Digital Services — Philadelphia, PA
+01/2022 – Present
+- Resolve technical issues for 60+ daily callers experiencing difficulties with consumer health portal accounts, authentication failures, and mobile app synchronization bugs.
+- Perform remote desktop assistance using TeamViewer to guide elderly patients through browser cookie resets, two-factor authentication (2FA) registration, and camera/microphone permissions.
+- Work within ServiceNow to categorize incidents, document detailed reproduction steps, and escalate recurring system bugs to the DevOps engineering pod.
+- Created and maintain a searchable FAQ database in Zendesk for tier-1 staff, decreasing average hold times across the department.
+
+Retail Customer Experience Specialist & Tech Support Assistant
+Penn Electronics Superstore — King of Prussia, PA
+04/2020 – 12/2021
+- Diagnosed consumer computing hardware at the service desk; evaluated failed motherboards, diagnosed corrupted hard drives, and replaced laptop cooling fans.
+- Configured local backups, removed spyware/malware utilizing bootable USB utility environments, and re-imaged operating systems for walk-in clients.
+- Communicated warranty terms and repair timelines clearly to distraught customers, consistently achieving top Net Promoter Scores.
+
+CERTIFICATIONS
+• CompTIA Network+, 2023
+• Google IT Support Professional Certificate, 2022
+(Note: Google Certificate provided foundational survey of computer networking, operating systems, and security concepts.)
+
+ACADEMIC BACKGROUND
+Diploma, Upper Darby High School, Upper Darby, PA | 2019
+
+PERSONAL INTERESTS & OBJECTIVES
+• Active member of local Philadelphia Urban Astronomy club.
+• Learning Goal: Enrolled in an independent self-study course for Python script automation; has completed basic syntax modules (loops, variables) but has not applied Python in any enterprise or production support environment.
+=== RESUME END: resume_06_support_to_it ===
+
+=== RESUME START: resume_07_developer_go_c_linux ===
+LUCA MORETTI
+Seattle, WA | (555) 011-9923 | luca.moretti.dev@fictionalmail.com | github.com/luca-moretti-systems-fictional
+
+SUMMARY
+Systems Software Developer with 7 years of low-level engineering experience specializing in Go (Golang), C, Linux systems programming, and high-performance network sockets. Deep practical expertise in multi-threading, asynchronous I/O (epoll, io_uring), kernel tuning, and distributed network services. Passionate about microsecond-level latency optimization and resilient network systems.
+
+TECHNICAL EXPERTISE
+- Languages: Go (Golang - Advanced), C (C99/C11 - Advanced), Python (Intermediate for scripting/tooling), Bash/Shell
+- Systems & OS: Linux Kernel Tracing, POSIX Threads (pthreads), Memory Management (jemalloc, valgrind), epoll, systemd, cgroups, namespaces
+- Networking Protocols & Tools: TCP/IP Stack internals, UDP multicast, HTTP/2, gRPC, Protocol Buffers, Wireshark, tcpdump, eBPF (Basic)
+- Infrastructure & Tooling: Docker, Git, Make, CMake, Linux perf, GDB, Ansible
+
+PROFESSIONAL EXPERIENCE
+
+Senior Infrastructure Systems Engineer
+Apex Cloud Systems — Seattle, WA | May 2021 – Present
+- Architected and deployed an edge reverse-proxy service in Go (Golang) handling 250,000+ persistent HTTP/2 and gRPC connections per server node with sub-10ms P99 latency.
+- Implemented zero-copy buffer pooling and tuned Linux TCP receive/send window parameters (`tcp_rmem`, `tcp_wmem`, `SO_REUSEPORT`), slashing system call overhead by 34%.
+- Developed a high-throughput network packet capture and telemetry ingestion daemon in C utilizing Linux `AF_PACKET` raw sockets and `epoll` event loops.
+- Profiling memory consumption and CPU lock contention using Go runtime pprof and Linux `perf`, eliminating goroutine leaks and reducing memory footprint by 40%.
+- Integrated Protocol Buffers schemas across RPC services to serialize real-time distributed telemetry streams across 6 datacenter regions.
+
+Systems Software Engineer
+Cascade Networks Inc. — Portland, OR | June 2018 – April 2021
+- Programmed embedded network appliance firmware modules in C, implementing stateful IPv4/IPv6 packet filtering and routing table lookups.
+- Designed concurrency primitives and IPC mechanisms using POSIX mutexes, condition variables, and shared memory segments.
+- Debugged kernel panics, pointer corruption, and memory leaks using GDB, Valgrind, and AddressSanitizer (ASan).
+- Automated regression test suites for network interface controllers (NICs) using Bash and Python scripts running on bare-metal Ubuntu and CentOS clusters.
+- Authored technical design documents for network routing daemons adhering to IETF RFC standards for BGP and OSPF message structures.
+
+EDUCATION
+Bachelor of Science in Computer Science & Engineering
+University of Washington, Seattle, WA | 2018
+
+INDEPENDENT PROJECTS
+- Distributed Key-Value Store (Personal Open Source Project): Authored a Raft consensus protocol implementation in Go featuring automated leader election, append-only disk logging, and snapshotting.
+
+NOTABLE LEARNING ASPIRATIONS & EXTRANEOUS CONTEXT
+- Aspirational Study: Currently reading "Programming WebAssembly with Rust" with the intention to study Rust in the future for safety-critical systems. No commercial Rust experience.
+- Certified Advanced Scuba Diver (PADI).
+=== RESUME END: resume_07_developer_go_c_linux ===
+
+=== RESUME START: resume_08_developer_go_c_linux ===
+Elena Rostova
+San Jose, CA • (555) 017-6651 • elena.rostova.code@fictionalmail.com • blog.rostova-systems-fictional.io
+
+PROFILE
+Backend & Systems Programmer with 5 years of experience developing low-latency network microservices, distributed daemons, and systems-level utilities in Go and C on Linux platforms. Strong background in concurrency, socket programming, and container internals.
+
+CORE TECHNICAL SKILLS
+* Programming Languages: Go (Advanced: concurrency patterns, goroutines, channels, sync package), C (Intermediate: pointers, structs, socket APIs), Python (Basic utility scripts), Bash
+* Operating Systems & Platforms: Linux (Debian, Alpine, RHEL), System Calls (poll, select, epoll), Signals, Procfs inspection
+* Networking & Protocols: TCP, UDP, TLS 1.3 Handshakes, DNS Resolver internals, gRPC, REST APIs
+* Utilities & Version Control: Git, GCC, Clang, Docker, Make, strace, lsof, netcat, Wireshark
+
+PROFESSIONAL EXPERIENCE
+
+Backend Network Engineer | QuantVanguard Trading Platforms | San Jose, CA
+November 2021 – Present
+- Build and maintain multi-threaded real-time market data feed handlers in C and Go, consuming UDP multicast packets from financial exchanges.
+- Tuned Linux kernel network interfaces using `ethtool` to eliminate dropped ring buffer packets during peak trading volatility periods.
+- Diagnosed thread race conditions and deadlocks using Go race detector (`-race`) and thread sanitizer, improving concurrency stability.
+- Created health check daemon in Go querying Linux `procfs` and `sysfs` files to surface real-time CPU throttling and thermal metrics via a Prometheus endpoint.
+- Containerized Linux networking microservices into minimal Alpine-based Docker scratch images, configuring custom bridge networks and iptables rules.
+
+Linux Systems Programmer | Vector Security Appliances | Sunnyvale, CA
+July 2019 – October 2021
+- Maintained a modular firewall inspection engine written in C; wrote custom parsers for DNS, HTTP, and TLS ClientHello packet headers.
+- Troubleshot operating system performance anomalies using `strace`, `lsof`, and `gdb` to trace system calls and inspect blocking disk I/O calls.
+- Automated Continuous Integration (CI) build pipelines utilizing Git and Make, compiling C codebases with strict GCC warning flags (`-Wall -Wextra -Werror`).
+- Implemented asynchronous client-server communication modules in Go utilizing channels and worker pool patterns.
+
+CERTIFICATIONS
+- Linux Foundation Certified System Administrator (LFCS), 2022
+
+EDUCATION
+B.S. in Electrical Engineering & Computer Science
+San Jose State University, CA | 2019
+
+FORWARD-LOOKING INTERESTS
+- Exploring Kubernetes Operator patterns in Go via online blog tutorials (hobby exploration only; no enterprise Kubernetes cluster management experience).
+- Classical piano player and choir accompanist.
+=== RESUME END: resume_08_developer_go_c_linux ===
+
+=== RESUME START: resume_09_data_analyst_excel_sql_pb ===
+KENNETH PLATT
+Denver, CO | (555) 010-4321 | kenneth.platt.analytics@fictionalmail.com | linkedin.com/in/kplatt-analytics-fictional
+
+CAREER SUMMARY
+Insight-driven Senior Data Analyst with 6+ years of commercial experience delivering end-to-end business intelligence solutions, operational reporting dashboards, and relational data models. Expert in SQL query development, advanced Microsoft Excel modeling, and interactive Power BI report generation. Proven history of translating complex data into strategic actions that boost revenue and optimize inventory.
+
+TECHNICAL SKILL INVENTORY
+- Business Intelligence Tools: Microsoft Power BI (Advanced: DAX calculations, Power Query ETL, Data Modeling, Row-Level Security, Incremental Refresh), Tableau (Basic)
+- Database Management & SQL: PostgreSQL, Microsoft SQL Server, Snowflake; Advanced SQL (Common Table Expressions [CTEs], Window Functions [RANK, DENSE_RANK, LEAD, LAG], Stored Procedures, Views)
+- Spreadsheets: Microsoft Excel (Advanced: Complex nested formulas, Power Pivot, VBA/Macros for report formatting, Solver, What-If Analysis)
+- Analytical Techniques: Exploratory Data Analysis (EDA), Cohort Retention Analysis, Customer Churn Modeling, A/B Testing Significance Evaluation
+- Collaboration: Jira, Git, Confluence, Microsoft SharePoint
+
+EXPERIENCE
+
+Lead Data & Reporting Analyst
+Apex Retail Supply Chain | Denver, CO
+January 2021 – Present
+- Designed and operationalized a suite of 14 production Power BI dashboards serving 200+ executive and supply-chain stakeholders across North America.
+- Engineered complex DAX measures (using CALCULATE, FILTER, DATESYTD, USERELATIONSHIP) to calculate real-time warehouse inventory velocity, lead-time variances, and backorder costs.
+- Wrote and optimized complex SQL queries in PostgreSQL and Snowflake, building materialized views and CTE-based transformations that reduced daily report query times from 4 minutes to 18 seconds.
+- Integrated automated data pipelines in Power BI using Power Query (M Language) to ingest and merge disparate flat CSV exports and relational tables.
+- Conducted cohort retention and customer lifetime value (LTV) analyses, presenting actionable findings directly to the VP of Merchandising.
+
+Data Analyst
+Summit Healthcare Solutions | Boulder, CO
+August 2018 – December 2020
+- Built automated patient scheduling and facility utilization models in Microsoft Excel utilizing Power Pivot and custom VBA macros, eliminating 6 hours of weekly manual reporting.
+- Executed ad-hoc SQL extractions on MS SQL Server to fulfill compliance and clinical audit requests, validating data integrity against HIPAA guidelines.
+- Created interactive Power BI reports to track patient readmission rates and clinic staffing ratios, introducing customized drill-through filters.
+- Documented data dictionary standards and data lineage diagrams in Confluence for cross-departmental reporting analysts.
+
+EDUCATION
+Bachelor of Science in Applied Statistics & Analytics
+Colorado State University, Fort Collins, CO | 2018
+
+PROFESSIONAL CERTIFICATIONS
+- Microsoft Certified: Power BI Data Analyst Associate (Exam PL-300), 2022
+
+UPCOMING LEARNING GOALS
+- Completed theoretical Coursera certificate in "Machine Learning with Python" (Scikit-Learn); currently practicing basic linear regression on Kaggle datasets as a learning goal. No commercial machine learning engineering experience in production.
+=== RESUME END: resume_09_data_analyst_excel_sql_pb ===
+
+=== RESUME START: resume_10_data_analyst_excel_sql_pb ===
+NICOLE M. BOWMAN
+Atlanta, GA • (555) 015-7890 • n.bowman.data@fictionalmail.com
+
+PROFESSIONAL SUMMARY
+Data Analyst with 4 years of hands-on experience in business operations and revenue analytics. Skilled in converting raw operational data into actionable visual insights using SQL, Excel, and Power BI. Experienced in data cleansing, star-schema data modeling, and developing KPI scorecards for executive stakeholders.
+
+CORE SKILLS & TECHNOLOGIES
+* Analytics Tools: Power BI (Data Modeling, DAX measures, Power Query, Scheduled Refresh), Google Looker Studio (Basic)
+* Database Technologies: MySQL, SQL Server (T-SQL: Aggregate queries, Joins, CASE statements, Window Functions)
+* Spreadsheet Mastery: Microsoft Excel (VLOOKUP/XLOOKUP, INDEX/MATCH, Dynamic Arrays, Pivot Charts, Conditional Formatting)
+* Methodologies: Data Cleansing, Star Schema Design, KPI Dashboarding, Data Quality Auditing
+
+EMPLOYMENT HISTORY
+
+Data Analyst | Piedmont Logistics Partners | Atlanta, GA
+September 2022 – Present
+- Developed enterprise-wide Power BI reports tracking fleet fuel efficiency, on-time delivery rates, and carrier profitability across 12 distribution centers.
+- Authored custom DAX calculations to evaluate year-over-year (YoY) shipping margin trends and dynamic driver retention metrics.
+- Utilized Power Query to cleanse, pivot, and merge monthly freight invoice data from multiple legacy ERP platforms.
+- Constructed star-schema dimensional data models (fact and dimension tables with defined one-to-many relationships) ensuring optimal Power BI report performance.
+- Extracted and transformed warehouse picking performance records from MySQL databases using multi-table JOINs and GROUP BY aggregations.
+
+Junior Business Data Analyst | Peachtree Financial Services | Atlanta, GA
+June 2020 – August 2022
+- Maintained core financial reporting templates in Microsoft Excel, writing advanced formulas (SUMIFS, INDEX/MATCH, nested IFs) for corporate budget reviews.
+- Handled weekly ad-hoc SQL Server queries to identify billing reconciliation discrepancies and duplicate transaction records.
+- Partnered with department heads to define key performance indicators (KPIs) and transitioned static spreadsheet reports into refreshed Power BI visualizations.
+- Validated external customer transaction feeds, documenting discrepancy tickets for IT resolution.
+
+EDUCATION
+B.B.A. in Computer Information Systems (CIS)
+Georgia State University | 2020
+
+CERTIFICATIONS
+* Microsoft Certified: Data Analyst Associate (DA-100), 2021
+
+OUTSIDE ACTIVITIES & FUTURE SKILL TARGETS
+* Volunteer data organizer for local Atlanta animal rescue shelter.
+* Aspirational Goal: Intends to study R programming for statistical computing in a future academic program. Has not used R in workplace projects.
+=== RESUME END: resume_10_data_analyst_excel_sql_pb ===
+
+=== RESUME START: resume_11_career_break_returner ===
+SARAH JENKINS-THORNE
+Minneapolis, MN | (555) 014-2231 | s.jenkins.thorne@fictionalmail.com | linkedin.com/in/sarah-jenkins-thorne-fictional
+
+PROFESSIONAL PROFILE
+Accomplished Project Manager and Business Process Specialist returning to the workforce following a dedicated 4-year caregiving career break. Offers over 9 years of prior progressive experience managing software implementation projects, standardizing enterprise operations, and facilitating cross-departmental collaboration. Known for structured leadership, stakeholder negotiation, and disciplined schedule tracking.
+
+RE-SKILLING & MODERNIZATION (2023 – 2024)
+- Completed modern project management and collaboration refreshers covering Agile/Scrum lifecycles, Jira administration, and Asana workflow configuration.
+- Completed hands-on training modules in Microsoft Excel (Advanced: modern dynamic formulas, XLOOKUP, advanced PivotTables) through LinkedIn Learning.
+- Attended weekly local chapter meetups of the Project Management Institute (PMI) to stay current on hybrid project governance trends.
+
+CORE COMPETENCIES & TRANSFERABLE SKILLS
+- Project Governance: Agile (Scrum, Kanban), Waterfall Methodology, Project Chartering, Work Breakdown Structures (WBS), Milestone Tracking, Risk Registers
+- Stakeholder Engagement: Executive Status Briefings, Cross-Functional Team Leadership, Vendor Management, Change Management
+- Productivity & PM Tools: Jira, Confluence, Microsoft Project, Asana, Trello, Microsoft Excel, Microsoft PowerPoint
+- Process Improvement: Workflow Mapping, Root Cause Analysis, Resource Leveling
+
+CAREER GAP / FAMILY SABBATICAL
+Full-Time Family Caregiver | Minneapolis, MN | January 2020 – December 2023
+- Paused corporate employment to provide primary medical advocacy and full-time care for an aging family member.
+- Transferable skills applied: Managed complex care schedules, coordinated multidisciplinary medical teams, maintained rigorous healthcare budgets, and resolved insurance reimbursement appeals.
+
+PRIOR PROFESSIONAL EXPERIENCE
+
+Senior Project Manager | Northern Star Financial Technologies | Minneapolis, MN
+August 2015 – December 2019
+- Directed 7 multi-million dollar banking software implementation projects from project initiation to go-live, managing cross-functional teams of 15+ software engineers, QA testers, and business analysts.
+- Monitored project schedules, critical paths, and project budgets ($1.5M - $4M) using Microsoft Project and Jira, consistently delivering 90% of releases on time and within scope.
+- Managed project scope change requests, mitigating scope creep through disciplined stakeholder reviews and impact assessments.
+- Led daily stand-ups, bi-weekly sprint planning, and retrospective meetings for two co-located Scrum teams.
+
+Operations Project Coordinator | Midwest Health Systems | St. Paul, MN
+May 2011 – July 2015
+- Coordinated electronic medical records (EMR) system migration schedules across 6 regional clinics.
+- Documented standard operating procedures and trained 120+ clinical staff members on updated data entry software.
+- Tracked hardware procurement orders, monitored vendor delivery deadlines, and managed budget variance logs in Microsoft Excel.
+
+EDUCATION
+Bachelor of Arts in Organizational Communication | University of Minnesota, Twin Cities | 2011
+
+PROFESSIONAL CREDENTIALS
+- Project Management Professional (PMP) – Project Management Institute (Credential active and continuously renewed since 2016)
+- Professional Scrum Master I (PSM I), Scrum.org, 2018
+
+FUTURE EXPLORATION GOAL
+- Career Goal: Has identified Python scripting as an interest area to explore for project metrics automation; currently has no practical Python coding experience.
+=== RESUME END: resume_11_career_break_returner ===
+
+=== RESUME START: resume_12_career_break_returner ===
+Marcus A. Vance
+Detroit, MI • (555) 019-8765 • marcus.vance.operations@fictionalmail.com
+
+EXECUTIVE SUMMARY
+Results-driven Operations & Account Manager returning to professional employment following a 3.5-year sabbatical dedicated to family commitments and formal upskilling. Brings over 8 years of prior track record in supply chain logistics, B2B client relationship management, vendor contract negotiation, and cross-functional team supervision. Combines deep real-world leadership maturity with updated digital platform competencies.
+
+KEY ASSETS & EXPERTISE
+* Operations Leadership: Supply Chain Coordination, Inventory Management, Vendor Relations, Contract Negotiation, SLA Management
+* Client Relationship Management: B2B Account Retention, Customer Onboarding, Conflict Escalation Resolution
+* Digital Platforms: Salesforce CRM, HubSpot, Asana, Monday.com, Google Workspace, Microsoft Office Suite (Word, Excel, PowerPoint)
+* People Leadership: Team Mentorship, Cross-Functional Alignment, Staff Training & Performance Appraisals
+
+CAREER RE-ENTRY PREPARATION & UPSKILLING (2023 - 2024)
+* Enrolled in Michigan Works! Career Transition Accelerator for returning professionals.
+* Refreshed CRM and project management proficiencies via hands-on sandboxes in HubSpot and Monday.com.
+* Completed coursework: "Supply Chain Operations in the Digital Era" via Coursera (theoretical refresher).
+
+PROFESSIONAL PAUSE
+Parental Leave & Family Estate Administrator | Detroit, MI | June 2020 – December 2023
+* Took dedicated leave to support early childhood childcare and oversee the legal and financial probate administration of a family estate.
+* Oversaw asset liquidations, balanced fiduciary accounts, and negotiated real estate maintenance contracts.
+
+PRIOR CAREER HISTORY
+
+Senior Operations & Account Manager | Great Lakes Logistics Corp | Detroit, MI
+March 2016 – May 2020
+* Managed end-to-end commercial operations and SLA adherence for 18 tier-1 automotive manufacturing supplier accounts generating $12M in annual logistics revenue.
+* Negotiated freight carrier vendor contracts, decreasing regional third-party transportation costs by 8.5% over two years.
+* Utilized Salesforce CRM to log enterprise client interactions, track contract renewal cycles, and monitor operational service escalations.
+* Supervised a team of 6 logistics coordinators, conducting bi-annual performance evaluations and driving employee retention to 95%.
+* Partnered with IT analysts to standardize shipment exception tracking templates in Microsoft Excel, utilizing pivot tables and lookup formulas.
+
+Client Services Specialist | Wolverine Express Freight | Ann Arbor, MI
+January 2012 – February 2016
+* Handled daily dispatch coordination, load scheduling, and order status communications for over 40 retail shipping clients.
+* Resolved customer billing disputes and freight damage claims with empathy, speed, and strict compliance with freight tariff guidelines.
+
+EDUCATION & FORMAL CREDENTIALS
+* Bachelor of Science in Business Administration, Eastern Michigan University, Ypsilanti, MI (2011)
+* Certified Associate in Project Management (CAPM), Project Management Institute (Earned 2015, lapsed/inactive)
+
+CAREER ASPIRATION
+* Learning Goal: Exploring entry-level data analytics; intends to begin studying SQL fundamentals in the coming year (zero current database querying experience).
+=== RESUME END: resume_12_career_break_returner ===

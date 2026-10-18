@@ -76,7 +76,8 @@ describe('worker (Harpreet)', () => {
     expect(await count('worker', 'select * from public.profiles')).toBe(1);
     expect(await count('worker', 'select * from public.worker_skills where profile_id = $1', [HARPREET])).toBeGreaterThan(10);
     expect(await count('worker', 'select * from public.recommendation_runs')).toBe(1);
-    expect(await count('worker', 'select * from public.roles')).toBe(11);
+    expect(await count('worker', "select * from public.roles where catalogue = 'demo'")).toBe(11);
+    expect(await count('worker', "select * from public.roles where catalogue = 'ncr'")).toBe(17);
     expect(await count('worker', 'select * from public.app_users')).toBe(1);
   });
 
