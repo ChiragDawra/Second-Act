@@ -29,20 +29,20 @@ function PreferencesForm({ profile, cities }: { profile: Profile; cities: string
         <SectionTitle title="About you" />
         <Field label="Headline" value={headline} onChange={(e) => setHeadline(e.target.value)} maxLength={120} />
         {profile.sector ? (
-          <p className="text-sm text-ink-600">
-            Sector: <Badge tone="sap">{SECTOR_LABEL[profile.sector]}</Badge>
+          <p className="text-sm text-fg-muted">
+            Sector: <Badge tone="accent">{SECTOR_LABEL[profile.sector]}</Badge>
           </p>
         ) : null}
       </Card>
       <Card className="space-y-5">
         <SectionTitle title="Hard constraints" subtitle="Applied before ranking. A role that breaks one is filtered out, with the reason shown." />
         <div>
-          <p className="text-xs font-semibold text-ink-700 mb-2">Cities</p>
+          <p className="text-xs font-semibold text-fg-muted mb-2">Cities</p>
           <Chips multiple options={cities.map((c) => ({ value: c, label: c }))} value={locations} onChange={setLocations} />
-          <p className="text-[11px] text-ink-500 mt-1.5">Leave empty to consider all of Delhi-NCR.</p>
+          <p className="text-[11px] text-fg-subtle mt-1.5">Leave empty to consider all of Delhi-NCR.</p>
         </div>
         <div>
-          <p className="text-xs font-semibold text-ink-700 mb-2">Work modes</p>
+          <p className="text-xs font-semibold text-fg-muted mb-2">Work modes</p>
           <Chips multiple options={MODES} value={modes} onChange={setModes} />
         </div>
         <div className="grid sm:grid-cols-2 gap-4">

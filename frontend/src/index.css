@@ -2,51 +2,112 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Second Act — "stage" theme. Warm near-black, one marigold spotlight.
+ * Values are "r g b" triplets so Tailwind opacity modifiers work (see tailwind.config.js).
+ */
 :root {
-  color-scheme: light;
+  color-scheme: dark;
+  --canvas: 13 12 10;
+  --surface: 22 20 17;
+  --surface-2: 31 28 24;
+  --surface-3: 42 38 33;
+  --line: 46 42 36;
+  --line-strong: 66 60 52;
+  --fg: 243 238 228;
+  --fg-muted: 186 177 162;
+  --fg-subtle: 130 122 110;
+  --accent: 244 178 62;
+  --accent-strong: 255 201 110;
+  --accent-ink: 28 19 6;
+  --sage: 128 198 162;
+  --coral: 241 140 96;
+  --ember: 238 104 104;
+  --iris: 178 155 240;
+  --azure: 128 180 232;
 }
 
-/* Custom scrollbar */
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-canvas text-fg font-sans antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+  ::selection {
+    background: rgb(var(--accent) / 0.3);
+    color: rgb(var(--fg));
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent) / 0.8);
+    outline-offset: 2px;
+  }
+  input[type='checkbox'] {
+    accent-color: rgb(var(--accent));
+  }
+}
+
+@layer components {
+  /* Editorial headline: serif, tight, with an italic accent word (<em>). */
+  .headline {
+    @apply font-display font-normal tracking-[-0.015em] leading-[0.98] text-fg;
+  }
+  .headline em {
+    @apply italic text-accent;
+  }
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.16em] text-fg-subtle;
+  }
+  .hairline {
+    @apply border border-line;
+  }
+  /* Faint film grain so large dark areas do not look flat. */
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  /* The stage light: a warm cone from the top of a section. */
+  .spotlight {
+    background: radial-gradient(60% 55% at 50% 0%, rgb(var(--accent) / 0.13), transparent 70%);
+  }
+  .skeleton {
+    @apply rounded-lg;
+    background: linear-gradient(90deg, rgb(var(--surface-2)) 25%, rgb(var(--surface-3)) 50%, rgb(var(--surface-2)) 75%);
+    background-size: 200% 100%;
+    animation: sweep 1.6s linear infinite;
+  }
+}
+
+/* Scrollbars */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAFBFD;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: rgb(var(--surface-3));
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: rgb(var(--line-strong));
 }
 
-/* Glassmorphism & Hairline borders */
-.hairline-border {
-  border: 1px solid rgba(15, 23, 42, 0.08);
-}
-
-.hairline-border-subtle {
-  border: 1px solid rgba(15, 23, 42, 0.05);
-}
-
-.glass-nav {
-  background: rgba(250, 251, 253, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(15, 23, 42, 0.06);
-}
-
-/* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

@@ -52,14 +52,14 @@ export default function Sharing() {
             ))}
           </Select>
           <div>
-            <p className="text-xs font-semibold text-ink-700 mb-3">What they may see</p>
+            <p className="text-xs font-semibold text-fg-muted mb-3">What they may see</p>
             <div className="grid sm:grid-cols-2 gap-3">
               {(fields.data ?? []).map((f) => (
                 <Checkbox key={f.id} checked={chosen.includes(f.id)} onChange={(on) => setChosen((p) => (on ? [...p, f.id] : p.filter((x) => x !== f.id)))} label={f.label} />
               ))}
             </div>
           </div>
-          <div className="rounded-xl bg-sap-50 border border-sap-200 p-4">
+          <div className="rounded-xl bg-accent/10 border border-accent/40 p-4">
             <Checkbox
               checked={approved}
               onChange={setApproved}
@@ -102,8 +102,8 @@ export default function Sharing() {
               {active.map((s) => (
                 <Card key={s.id} className="p-4">
                   <div className="flex items-center gap-2">
-                    <Building2 className="w-4 h-4 text-ink-400" />
-                    <p className="font-semibold text-sm text-ink-950 flex-1">{s.org.name}</p>
+                    <Building2 className="w-4 h-4 text-fg-subtle" />
+                    <p className="font-semibold text-sm text-fg flex-1">{s.org.name}</p>
                     {s.org.is_synthetic ? <Provenance kind="synthetic" /> : null}
                   </div>
                   <div className="flex flex-wrap gap-1 mt-2">
@@ -112,7 +112,7 @@ export default function Sharing() {
                     ))}
                   </div>
                   <div className="flex items-center justify-between mt-3">
-                    <span className="text-[11px] text-ink-400">Since {formatDate(s.granted_at)}</span>
+                    <span className="text-[11px] text-fg-subtle">Since {formatDate(s.granted_at)}</span>
                     <Button size="sm" kind="secondary" loading={revoke.isPending} onClick={() => revoke.mutate(s.id)}>
                       Revoke
                     </Button>

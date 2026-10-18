@@ -31,7 +31,12 @@ async function call<T>(path: string, init: { method: Method; contentType?: strin
       signal: controller.signal,
     });
   } catch {
-    throw new ApiError(0, 'network', `Cannot reach the Second Act API at ${config.apiUrl}. Is it running?`);
+    // The browser reports a CORS rejection exactly like a server that is down.
+    throw new ApiError(
+      0,
+      'network',
+      `Cannot reach the Second Act API at ${config.apiUrl}. Is it running, and is ${window.location.origin} listed in its CORS_ORIGINS?`,
+    );
   } finally {
     clearTimeout(timer);
   }

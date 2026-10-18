@@ -9,7 +9,7 @@ import type { MentorMatch } from '../../lib/types';
 import { Badge, Button, Card, Checkbox, Empty, ErrorState, Notice, PageHeader, Provenance, SectionTitle, Select, Spinner, TextArea } from '../../ui/kit';
 
 const DEFAULT_FIELDS = ['display_name', 'career_goal', 'gap_areas', 'skills_summary'];
-const STATUS_TONE = { requested: 'amber', accepted: 'green', declined: 'grey', revoked: 'grey', completed: 'sap' } as const;
+const STATUS_TONE = { requested: 'coral', accepted: 'sage', declined: 'grey', revoked: 'grey', completed: 'accent' } as const;
 
 function RequestPanel({ match, roleId, roleTitle, onClose }: { match: MentorMatch; roleId: string; roleTitle: string; onClose: () => void }) {
   const me = useMe();
@@ -21,15 +21,15 @@ function RequestPanel({ match, roleId, roleTitle, onClose }: { match: MentorMatc
   const labels = (fields.data ?? []).filter((f) => chosen.includes(f.id)).map((f) => f.label);
 
   return (
-    <Card tone="sap" className="mt-4 space-y-4">
-      <p className="text-sm font-semibold text-ink-950">Choose exactly what {match.mentor.display_name} may see</p>
+    <Card tone="accent" className="mt-4 space-y-4">
+      <p className="text-sm font-semibold text-fg">Choose exactly what {match.mentor.display_name} may see</p>
       <div className="grid sm:grid-cols-2 gap-3">
         {(fields.data ?? []).map((f) => (
           <Checkbox key={f.id} checked={chosen.includes(f.id)} onChange={(on) => setChosen((p) => (on ? [...p, f.id] : p.filter((x) => x !== f.id)))} label={f.label} />
         ))}
       </div>
       <TextArea label="Message (optional)" value={message} onChange={(e) => setMessage(e.target.value)} maxLength={500} placeholder="What would you like help with?" />
-      <div className="rounded-xl bg-white border border-sap-200 p-4">
+      <div className="rounded-xl bg-surface border border-accent/40 p-4">
         <Checkbox
           checked={approved}
           onChange={setApproved}
@@ -97,26 +97,26 @@ export default function Mentors() {
             </Empty>
           ) : (
             <>
-              <p className="text-xs text-ink-500 flex items-center gap-1.5">
+              <p className="text-xs text-fg-subtle flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5" /> {matches.data.privacy_note}
               </p>
               {matches.data.matches.map((m) => (
                 <Card key={m.mentor.id}>
                   <div className="flex items-start gap-4">
-                    <div className="w-11 h-11 rounded-full bg-sap-100 text-sap-700 font-bold flex items-center justify-center shrink-0">
+                    <div className="w-11 h-11 rounded-full bg-accent/10 text-accent font-bold flex items-center justify-center shrink-0">
                       {m.mentor.display_name.split(' ').map((p) => p[0]).join('').slice(0, 2)}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-2">
-                        <p className="font-bold text-ink-950">{m.mentor.display_name}</p>
-                        {m.mentor.is_synthetic ? <Provenance kind="synthetic" /> : <Badge tone="green">Approved mentor</Badge>}
-                        {m.score !== null ? <Badge tone="sap">Match {Math.round(m.score)}</Badge> : null}
+                        <p className="font-bold text-fg">{m.mentor.display_name}</p>
+                        {m.mentor.is_synthetic ? <Provenance kind="synthetic" /> : <Badge tone="sage">Approved mentor</Badge>}
+                        {m.score !== null ? <Badge tone="accent">Match {Math.round(m.score)}</Badge> : null}
                       </div>
-                      <p className="text-sm text-ink-600">{m.mentor.headline}</p>
-                      <p className="text-xs text-ink-500 mt-2 line-clamp-2">{m.mentor.bio}</p>
+                      <p className="text-sm text-fg-muted">{m.mentor.headline}</p>
+                      <p className="text-xs text-fg-subtle mt-2 line-clamp-2">{m.mentor.bio}</p>
                       <div className="flex flex-wrap gap-1.5 mt-3">
                         {m.covered_gaps.map((g) => (
-                          <Badge key={g.id} tone="green">
+                          <Badge key={g.id} tone="sage">
                             {g.name}
                           </Badge>
                         ))}
@@ -124,14 +124,14 @@ export default function Mentors() {
                           <Badge key={g.id}>{g.name}</Badge>
                         ))}
                       </div>
-                      <p className="text-[11px] text-ink-400 mt-2">
+                      <p className="text-[11px] text-fg-subtle mt-2">
                         {m.mentor.languages.join(', ')} · {m.mentor.availability_hours_per_week} h/week · {m.mentor.capacity_remaining} places left
                       </p>
-                      {!m.eligible && m.exclusion_reason ? <p className="text-xs text-gapAmber-700 mt-2">{m.exclusion_reason}</p> : null}
+                      {!m.eligible && m.exclusion_reason ? <p className="text-xs text-coral mt-2">{m.exclusion_reason}</p> : null}
                     </div>
                     <div className="shrink-0">
                       {m.open_request ? (
-                        <Badge tone="amber">{m.open_request.status}</Badge>
+                        <Badge tone="coral">{m.open_request.status}</Badge>
                       ) : (
                         <Button size="sm" disabled={!m.eligible} onClick={() => setOpen(open === m.mentor.id ? null : m.mentor.id)}>
                           Request
@@ -152,22 +152,22 @@ export default function Mentors() {
             <Spinner />
           ) : (mine.data ?? []).length === 0 ? (
             <Card tone="muted">
-              <p className="text-sm text-ink-500">No requests yet.</p>
+              <p className="text-sm text-fg-subtle">No requests yet.</p>
             </Card>
           ) : (
             <div className="space-y-3">
               {mine.data!.map((r) => (
                 <Card key={r.id} className="p-4">
                   <div className="flex items-center justify-between gap-2">
-                    <p className="font-semibold text-sm text-ink-950">{r.mentor.display_name}</p>
+                    <p className="font-semibold text-sm text-fg">{r.mentor.display_name}</p>
                     <Badge tone={STATUS_TONE[r.status]}>{r.status}</Badge>
                   </div>
-                  <p className="text-xs text-ink-500">
+                  <p className="text-xs text-fg-subtle">
                     {r.target_role.title} · {formatDate(r.created_at)}
                   </p>
                   {r.feedback.map((f) => (
-                    <div key={f.id} className="mt-3 rounded-lg bg-sap-50 px-3 py-2 text-sm text-ink-800 flex gap-2">
-                      <MessageSquare className="w-3.5 h-3.5 text-sap-600 mt-0.5 shrink-0" />
+                    <div key={f.id} className="mt-3 rounded-lg bg-accent/10 px-3 py-2 text-sm text-fg flex gap-2">
+                      <MessageSquare className="w-3.5 h-3.5 text-accent mt-0.5 shrink-0" />
                       <span>{f.body}</span>
                     </div>
                   ))}

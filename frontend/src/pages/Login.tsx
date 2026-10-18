@@ -2,9 +2,11 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ChevronDown, KeyRound, ShieldCheck, Sparkles, Target } from 'lucide-react';
 import { useState } from 'react';
 import { Link, Navigate, useSearchParams } from 'react-router-dom';
-import { useAuth } from '../auth/AuthProvider';
+import { safeNext, useAuth } from '../auth/AuthProvider';
 import { missingConfig } from '../lib/config';
-import { Button, Field, Notice } from '../ui/kit';
+import { PERSONAS } from '../components/landing/personas';
+import { ResumeReader } from '../components/landing/ResumeReader';
+import { Button, Field, Notice, Wordmark } from '../ui/kit';
 
 function GoogleMark() {
   return (
@@ -27,7 +29,7 @@ const DEMO = [
 export default function Login() {
   const { session, signInWithGoogle, signInDemo } = useAuth();
   const [params] = useSearchParams();
-  const next = params.get('next') ?? '/app';
+  const next = safeNext(params.get('next'));
   const [busy, setBusy] = useState<'google' | 'demo' | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [demoOpen, setDemoOpen] = useState(false);
@@ -60,45 +62,47 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-[1.05fr_1fr] bg-surface-subtle">
-      <section className="relative hidden lg:flex flex-col justify-between overflow-hidden bg-ink-950 text-white p-12">
-        <div className="absolute -top-32 -left-24 w-[520px] h-[520px] rounded-full bg-sap-500/25 blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-[380px] h-[380px] rounded-full bg-gapAmber-500/10 blur-3xl" />
-        <Link to="/" className="relative flex items-center gap-2.5 w-fit">
-          <div className="w-9 h-9 rounded-lg bg-sap-500 flex items-center justify-center font-bold shadow-glow-sap">II</div>
-          <span className="font-extrabold text-lg tracking-tight">Second Act</span>
+    <div className="min-h-screen grid lg:grid-cols-[1.05fr_1fr] bg-canvas">
+      <section className="relative hidden lg:flex flex-col justify-between overflow-hidden border-r border-line bg-surface/50 p-12 grain">
+        <div className="absolute inset-0 spotlight" />
+        <Link to="/" className="relative w-fit" aria-label="Second Act home">
+          <Wordmark size={28} />
         </Link>
         <div className="relative max-w-md">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-sap-300 mb-4">The nearest role, not the hardest restart</p>
-          <h1 className="text-4xl font-extrabold leading-tight tracking-tight">Your experience already counts. We show you where.</h1>
-          <div className="mt-10 space-y-5">
-            {[
-              { icon: Sparkles, title: 'Skills from your resume', body: 'Every skill keeps the sentence it came from. Goals stay goals.' },
-              { icon: Target, title: 'Roles you can reach', body: 'Explainable fit, real gaps, and what blocks a role.' },
-              { icon: ShieldCheck, title: 'You decide who sees what', body: 'Mentors and recruiters see only what you approve.' },
-            ].map((x) => (
-              <div key={x.title} className="flex gap-3">
-                <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
-                  <x.icon className="w-4 h-4 text-sap-300" />
-                </div>
-                <div>
-                  <p className="font-semibold">{x.title}</p>
-                  <p className="text-sm text-ink-300">{x.body}</p>
-                </div>
-              </div>
-            ))}
+          <p className="eyebrow text-accent">The nearest role, not the hardest restart</p>
+          <h1 className="headline text-6xl mt-5">
+            Your experience <em>already counts.</em>
+          </h1>
+          <p className="text-fg-muted mt-5 leading-relaxed">We show you where — with the sentence from your own resume behind every skill.</p>
+          <div className="mt-10 rotate-[-1.5deg]">
+            <ResumeReader persona={PERSONAS[2]} legend animate={false} />
           </div>
         </div>
-        <p className="relative text-xs text-ink-500">SAP Hackfest 2026 · Inclusive Workforce · Delhi-NCR pilot</p>
+        <div className="relative flex flex-wrap gap-x-6 gap-y-2 text-xs text-fg-subtle">
+          {[
+            { icon: Sparkles, text: 'Goals stay goals' },
+            { icon: Target, text: 'Fit, never odds' },
+            { icon: ShieldCheck, text: 'You approve every share' },
+          ].map((x) => (
+            <span key={x.text} className="inline-flex items-center gap-1.5">
+              <x.icon className="w-3.5 h-3.5 text-accent" /> {x.text}
+            </span>
+          ))}
+        </div>
       </section>
 
       <section className="flex items-center justify-center p-6 sm:p-10">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-sm">
-          <Link to="/" className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink-500 hover:text-ink-900 mb-8">
+          <Link to="/" className="inline-flex items-center gap-1.5 text-xs font-semibold text-fg-subtle hover:text-fg mb-8">
             <ArrowLeft className="w-3.5 h-3.5" /> Back to the site
           </Link>
-          <h2 className="text-2xl font-extrabold tracking-tight text-ink-950">Sign in or create an account</h2>
-          <p className="text-sm text-ink-500 mt-2">New here? Continue with Google and tell us whether you are looking for work, mentoring, or hiring.</p>
+          <div className="lg:hidden mb-8">
+            <Wordmark size={28} />
+          </div>
+          <h2 className="headline text-5xl">
+            Take <em>the stage.</em>
+          </h2>
+          <p className="text-sm text-fg-muted mt-4 leading-relaxed">Sign in, or create an account with Google. Then tell us whether you are looking for work, mentoring, or hiring.</p>
 
           {missingConfig.length > 0 ? (
             <div className="mt-6">
@@ -108,7 +112,7 @@ export default function Login() {
             </div>
           ) : null}
 
-          <Button kind="secondary" size="lg" className="w-full mt-8 py-3.5" onClick={google} loading={busy === 'google'} icon={<GoogleMark />} disabled={missingConfig.length > 0}>
+          <Button kind="contrast" size="lg" className="w-full mt-8" onClick={google} loading={busy === 'google'} icon={<GoogleMark />} disabled={missingConfig.length > 0}>
             Continue with Google
           </Button>
 
@@ -118,13 +122,13 @@ export default function Login() {
             </div>
           ) : null}
 
-          <p className="text-[11px] text-ink-400 mt-4 leading-relaxed">
+          <p className="text-[11px] text-fg-subtle mt-4 leading-relaxed">
             We use your Google name and email to create your account. We never post to Google or read your contacts. Mentor and recruiter
             accounts are checked by an administrator before they see anyone&rsquo;s information.
           </p>
 
-          <div className="mt-10 border-t border-ink-200 pt-4">
-            <button type="button" onClick={() => setDemoOpen((v) => !v)} className="w-full flex items-center justify-between text-xs font-semibold text-ink-500 hover:text-ink-800">
+          <div className="mt-10 border-t border-line pt-4">
+            <button type="button" onClick={() => setDemoOpen((v) => !v)} className="w-full flex items-center justify-between text-xs font-semibold text-fg-subtle hover:text-fg">
               <span className="inline-flex items-center gap-1.5">
                 <KeyRound className="w-3.5 h-3.5" /> Demo accounts (facilitators)
               </span>
@@ -138,7 +142,7 @@ export default function Login() {
                       key={d.email}
                       type="button"
                       onClick={() => setEmail(d.email)}
-                      className="px-2.5 py-1 rounded-full border border-ink-200 bg-white text-[11px] font-semibold text-ink-700 hover:border-sap-300"
+                      className="px-2.5 py-1 rounded-full border border-line bg-surface text-[11px] font-semibold text-fg-muted hover:border-accent/40"
                     >
                       {d.label}
                     </button>
@@ -156,7 +160,7 @@ export default function Login() {
                     if (e.key === 'Enter') void demo();
                   }}
                 />
-                <Button kind="dark" className="w-full" onClick={demo} loading={busy === 'demo'} disabled={!email || !password}>
+                <Button kind="contrast" className="w-full" onClick={demo} loading={busy === 'demo'} disabled={!email || !password}>
                   Sign in to demo account
                 </Button>
               </div>

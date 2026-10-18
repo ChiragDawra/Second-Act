@@ -1,77 +1,49 @@
 /** @type {import('tailwindcss').Config} */
+
+// Every colour is a CSS variable (src/index.css) holding an "r g b" triplet, so opacity
+// modifiers work: bg-accent/10, border-line/60.
+const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        ink: {
-          50: '#F8FAFC',
-          100: '#F1F5F9',
-          200: '#E2E8F0',
-          300: '#CBD5E1',
-          400: '#94A3B8',
-          500: '#64748B',
-          600: '#475569',
-          700: '#334155',
-          800: '#1E293B',
-          900: '#0F172A',
-          950: '#0A1128', // Deep ink navy
-        },
-        sap: {
-          50: '#EFF6FF',
-          100: '#DBEAFE',
-          200: '#BFDBFE',
-          300: '#93C5FD',
-          400: '#60A5FA',
-          500: '#0064D9', // Restrained SAP Electric Blue
-          600: '#0052B4',
-          700: '#003E8A',
-          800: '#1E40AF',
-          900: '#1E3A8A',
-        },
-        gapAmber: {
-          50: '#FFFBEB',
-          100: '#FEF3C7',
-          200: '#FDE68A',
-          300: '#FCD34D',
-          400: '#FBBF24',
-          500: '#F59E0B',
-          600: '#D97706', // Muted amber for skill gaps
-          700: '#B45309',
-        },
-        surface: {
-          subtle: '#FAFBFD',
-          warm: '#F8F9FA',
-          card: '#FFFFFF',
-          border: 'rgba(15, 23, 42, 0.08)',
-        }
+        canvas: token('canvas'),
+        surface: { DEFAULT: token('surface'), 2: token('surface-2'), 3: token('surface-3') },
+        line: { DEFAULT: token('line'), strong: token('line-strong') },
+        fg: { DEFAULT: token('fg'), muted: token('fg-muted'), subtle: token('fg-subtle') },
+        accent: { DEFAULT: token('accent'), strong: token('accent-strong'), ink: token('accent-ink') },
+        // Meaning, not decoration: sage = verified / ready, coral = gap / needs work,
+        // ember = error / blocked, iris = goal / future, azure = information.
+        sage: token('sage'),
+        coral: token('coral'),
+        ember: token('ember'),
+        iris: token('iris'),
+        azure: token('azure'),
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
-        editorial: ['"Plus Jakarta Sans"', 'sans-serif'],
+        sans: ['Geist', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+        display: ['"Instrument Serif"', 'Georgia', 'serif'],
+        mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
       },
       boxShadow: {
-        'subtle': '0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 1px 2px -1px rgba(15, 23, 42, 0.04)',
-        'elevated': '0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.04)',
-        'premium': '0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.04)',
-        'glow-sap': '0 0 30px -5px rgba(0, 100, 217, 0.25)',
-        'glow-amber': '0 0 25px -5px rgba(217, 119, 6, 0.22)',
+        card: 'inset 0 1px 0 0 rgb(255 240 214 / 0.035), 0 10px 30px -18px rgb(0 0 0 / 0.75)',
+        pop: 'inset 0 1px 0 0 rgb(255 240 214 / 0.05), 0 30px 70px -30px rgb(0 0 0 / 0.85)',
+        glow: '0 0 0 1px rgb(var(--accent) / 0.35), 0 18px 50px -20px rgb(var(--accent) / 0.45)',
       },
-      animation: {
-        'pulse-subtle': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float-slow': 'float 6s ease-in-out infinite',
+      borderRadius: {
+        '4xl': '2rem',
       },
       keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-6px)' },
-        }
-      }
+        rise: { '0%': { opacity: '0', transform: 'translateY(8px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+        sweep: { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
+      },
+      animation: {
+        rise: 'rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both',
+        sweep: 'sweep 2.4s linear infinite',
+      },
     },
   },
   plugins: [],
-}
+};

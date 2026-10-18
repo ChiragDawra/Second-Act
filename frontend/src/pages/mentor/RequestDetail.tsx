@@ -21,15 +21,15 @@ export default function RequestDetail() {
 
   return (
     <>
-      <Link to="/app/mentor" className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink-500 hover:text-ink-900 mb-6">
+      <Link to="/app/mentor" className="inline-flex items-center gap-1.5 text-xs font-semibold text-fg-subtle hover:text-fg mb-6">
         <ArrowLeft className="w-3.5 h-3.5" /> All requests
       </Link>
 
       {request.status === 'requested' ? (
-        <Card tone="sap" className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <Card tone="accent" className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div>
-            <p className="font-semibold text-ink-950">This person asked for your help</p>
-            {request.message ? <p className="text-sm text-ink-600 mt-1 italic">“{request.message}”</p> : null}
+            <p className="font-semibold text-fg">This person asked for your help</p>
+            {request.message ? <p className="text-sm text-fg-muted mt-1 italic">“{request.message}”</p> : null}
           </div>
           <div className="flex gap-2">
             <Button kind="secondary" icon={<X className="w-4 h-4" />} loading={respond.isPending} onClick={() => respond.mutate('decline')}>
@@ -42,7 +42,7 @@ export default function RequestDetail() {
         </Card>
       ) : (
         <div className="mb-6">
-          <Badge tone={request.status === 'accepted' ? 'green' : 'grey'}>{request.status}</Badge>
+          <Badge tone={request.status === 'accepted' ? 'sage' : 'grey'}>{request.status}</Badge>
         </div>
       )}
       {respond.isError ? (
@@ -80,17 +80,17 @@ export default function RequestDetail() {
           <SectionTitle title="Notes" />
           {notes.length === 0 ? (
             <Card tone="muted">
-              <p className="text-sm text-ink-500">No notes yet.</p>
+              <p className="text-sm text-fg-subtle">No notes yet.</p>
             </Card>
           ) : (
             notes.map((n) => (
               <Card key={n.id} className="p-4">
                 <div className="flex items-center gap-2 text-xs">
-                  {n.kind === 'feedback' ? <MessageSquare className="w-3.5 h-3.5 text-sap-600" /> : <Lock className="w-3.5 h-3.5 text-ink-400" />}
+                  {n.kind === 'feedback' ? <MessageSquare className="w-3.5 h-3.5 text-accent" /> : <Lock className="w-3.5 h-3.5 text-fg-subtle" />}
                   <span className="font-semibold">{n.kind === 'feedback' ? 'Feedback · visible to them' : 'Private progress note'}</span>
-                  <span className="ml-auto text-ink-400">{formatDateTime(n.created_at)}</span>
+                  <span className="ml-auto text-fg-subtle">{formatDateTime(n.created_at)}</span>
                 </div>
-                <p className="text-sm text-ink-800 mt-2">{n.body}</p>
+                <p className="text-sm text-fg mt-2">{n.body}</p>
               </Card>
             ))
           )}

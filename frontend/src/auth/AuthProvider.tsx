@@ -32,10 +32,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       currentUser.current = nextUser;
       setSession(next);
     };
-    supabase.auth.getSession().then(({ data }) => {
-      apply(data.session);
-      setInitializing(false);
-    });
+    supabase.auth
+      .getSession()
+      .then(({ data }) => apply(data.session))
+      // A failed session read (blocked storage, bad refresh) must not leave the app on a loader forever.
+      .catch(() => apply(null))
+      .finally(() => setInitializing(false));
     const { data } = supabase.auth.onAuthStateChange((_event, next) => apply(next));
     return () => data.subscription.unsubscribe();
   }, [queryClient]);
@@ -92,6 +94,11 @@ export function useMe(): Me {
   const { me } = useAuth();
   if (!me.data || me.data.status !== 'active') throw new Error('No active account');
   return me.data;
+}
+
+/** A `?next=` value is only followed when it is a same-site path (not `//host` or a full URL). */
+export function safeNext(next: string | null, fallback = '/app'): string {
+  return next && next.startsWith('/') && !next.startsWith('//') && !next.startsWith('/\\') ? next : fallback;
 }
 
 export const ROLE_HOME: Record<AppRole, string> = {

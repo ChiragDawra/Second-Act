@@ -10,13 +10,13 @@ function Outcome({ outcome, onDone }: { outcome: AssessmentOutcome; onDone: () =
   const r = outcome.result;
   return (
     <div className="space-y-6">
-      <Card tone={r.passed ? 'sap' : 'amber'} className="flex items-center gap-4">
-        {r.passed ? <CheckCircle2 className="w-8 h-8 text-emerald-600" /> : <XCircle className="w-8 h-8 text-gapAmber-600" />}
+      <Card tone={r.passed ? 'accent' : 'coral'} className="flex items-center gap-4">
+        {r.passed ? <CheckCircle2 className="w-8 h-8 text-sage" /> : <XCircle className="w-8 h-8 text-coral" />}
         <div className="flex-1">
-          <p className="text-lg font-extrabold text-ink-950">
+          <p className="text-lg font-semibold text-fg">
             {r.score}/{r.max_score} · {r.passed ? 'Passed' : 'Not yet'}
           </p>
-          <p className="text-sm text-ink-600">{r.title}</p>
+          <p className="text-sm text-fg-muted">{r.title}</p>
         </div>
         <Button kind="secondary" onClick={onDone}>
           Done
@@ -28,7 +28,7 @@ function Outcome({ outcome, onDone }: { outcome: AssessmentOutcome; onDone: () =
           <span className="font-semibold">{outcome.skills_changed.join(', ') || 'No skill changed'}</span>
           <StatusBadge status={outcome.skill_before.status} />
           <span className="font-mono text-xs">{outcome.skill_before.proficiency ?? '?'}</span>
-          <ArrowRight className="w-4 h-4 text-ink-400" />
+          <ArrowRight className="w-4 h-4 text-fg-subtle" />
           <StatusBadge status={outcome.skill_after.status} />
           <span className="font-mono text-xs">{outcome.skill_after.proficiency ?? '?'}</span>
         </div>
@@ -36,12 +36,12 @@ function Outcome({ outcome, onDone }: { outcome: AssessmentOutcome; onDone: () =
       {outcome.role_changes.length > 0 ? (
         <Card>
           <SectionTitle title="Roles that moved" />
-          <div className="divide-y divide-ink-100">
+          <div className="divide-y divide-line">
             {outcome.role_changes.map((c) => (
               <div key={c.role_id} className="flex items-center justify-between py-2.5 text-sm">
                 <span className="font-medium">{c.title}</span>
-                <span className="font-mono text-xs text-ink-600">
-                  {c.before?.role_fit_score ?? '—'} → <span className="font-bold text-sap-600">{c.after.role_fit_score ?? '—'}</span> · {c.before?.eligibility ?? 'new'} → {c.after.eligibility}
+                <span className="font-mono text-xs text-fg-muted">
+                  {c.before?.role_fit_score ?? '—'} → <span className="font-bold text-accent">{c.after.role_fit_score ?? '—'}</span> · {c.before?.eligibility ?? 'new'} → {c.after.eligibility}
                 </span>
               </div>
             ))}
@@ -102,9 +102,9 @@ export default function Prove() {
         <div className="space-y-4">
           {a.items.map((item, n) => (
             <Card key={item.id}>
-              <p className="text-[11px] font-mono text-ink-400">Question {n + 1}</p>
-              <p className="font-semibold text-ink-950 mt-1">{item.prompt}</p>
-              {item.code ? <pre className="mt-3 rounded-xl bg-ink-950 text-ink-100 text-xs p-4 overflow-x-auto">{item.code}</pre> : null}
+              <p className="text-[11px] font-mono text-fg-subtle">Question {n + 1}</p>
+              <p className="font-semibold text-fg mt-1">{item.prompt}</p>
+              {item.code ? <pre className="mt-3 rounded-xl bg-surface-3 text-fg-subtle text-xs p-4 overflow-x-auto">{item.code}</pre> : null}
               <div className="grid sm:grid-cols-2 gap-2 mt-4">
                 {item.options.map((o) => (
                   <button
@@ -113,10 +113,10 @@ export default function Prove() {
                     onClick={() => setAnswers((p) => ({ ...p, [item.id]: o.id }))}
                     className={cn(
                       'text-left rounded-xl border px-4 py-3 text-sm transition-colors',
-                      answers[item.id] === o.id ? 'border-sap-500 bg-sap-50 text-sap-900' : 'border-ink-200 hover:border-sap-300',
+                      answers[item.id] === o.id ? 'border-accent/40 bg-accent/10 text-accent' : 'border-line hover:border-accent/40',
                     )}
                   >
-                    <span className="font-mono text-xs mr-2 text-ink-400">{o.id.toUpperCase()}</span>
+                    <span className="font-mono text-xs mr-2 text-fg-subtle">{o.id.toUpperCase()}</span>
                     {o.label}
                   </button>
                 ))}
@@ -151,13 +151,13 @@ export default function Prove() {
           {mine.map((a) => (
             <Card key={a.id} className="flex flex-col">
               <div className="flex items-center gap-2">
-                <Badge tone="sap">{a.skill_name}</Badge>
+                <Badge tone="accent">{a.skill_name}</Badge>
                 {a.is_demo ? <Provenance kind="synthetic" /> : null}
               </div>
-              <p className="font-bold text-ink-950 mt-3">{a.title}</p>
-              <p className="text-sm text-ink-500 mt-1 flex-1">{a.description}</p>
+              <p className="font-bold text-fg mt-3">{a.title}</p>
+              <p className="text-sm text-fg-subtle mt-1 flex-1">{a.description}</p>
               <div className="flex items-center justify-between mt-4">
-                <span className="text-xs text-ink-500 flex items-center gap-1">
+                <span className="text-xs text-fg-subtle flex items-center gap-1">
                   <Clock className="w-3.5 h-3.5" /> ~{a.time_estimate_minutes} min · {a.item_count} questions
                 </span>
                 <Button size="sm" onClick={() => setActive(a.id)}>

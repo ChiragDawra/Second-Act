@@ -97,6 +97,7 @@ export interface GapItem {
   status: SkillStatus;
   importance_weight: number;
   is_mandatory: boolean;
+  hours_per_level?: number;
 }
 
 export interface MandatoryCheck {
@@ -159,6 +160,46 @@ export interface Recommendations {
   other_eligible: RoleEvaluation[];
   stretch: RoleEvaluation[];
   filtered: RoleEvaluation[];
+  /** Skills that move the most nearby roles per hour of study. Absent from older API builds. */
+  study_next?: StudyItem[];
+  /** Learning plan per reachable role id. Weeks are null here; use the profile's weekly hours. */
+  plans?: Record<string, LearningPlan>;
+  /** Delhi-NCR runs: the worker's current role and roles that would be a step back from it. */
+  current_role_id?: string | null;
+  notes?: Record<string, { is_current: boolean; step_back: boolean }>;
+}
+
+/** One step of a role's learning plan (apps/api/src/engine/plan.ts). */
+export interface PlanStep {
+  skill_id: string;
+  name: string;
+  kind: 'learn' | 'learn_or_confirm' | 'prove';
+  from_level: number | null;
+  to_level: number;
+  hours: number;
+  is_mandatory: boolean;
+  importance_weight: number;
+  fit_gain: number;
+  reason: string;
+}
+
+export interface LearningPlan {
+  steps: PlanStep[];
+  total_hours: number;
+  weeks: number | null;
+  fit_now: number | null;
+  fit_after_learning: number | null;
+}
+
+export interface StudyItem {
+  skill_id: string;
+  name: string;
+  hours: number;
+  to_level: number;
+  from_level: number | null;
+  fit_gain_total: number;
+  roles: { role_id: string; title: string; fit_gain: number }[];
+  reason: string;
 }
 
 export interface Resource {
@@ -176,6 +217,7 @@ export interface RoleGaps {
   computed_at: string;
   scoring_version: string;
   evaluation: RoleEvaluation;
+  learning_plan?: LearningPlan;
   learning_resources: Resource[];
   assessments: { id: string; skill_id: string; skill_name: string; title: string; level_on_pass: number; time_estimate_minutes: number }[];
   next_action: { kind: 'prove' | 'learn'; skill_id: string; name: string; reason: string } | null;
@@ -417,13 +459,32 @@ export interface NcrExtractedSkill {
   status: 'self_reported' | 'inferred' | 'unknown';
   mention_type: NcrMentionType;
   suggested_level: number | null;
+  /** Why that level was suggested ("Used at work for about 5 years"). */
+  level_basis?: string | null;
   evidence: string;
   section: string;
-  method: 'alias_rule' | 'context_alias_rule' | 'semantic_candidate';
+  method: 'alias_rule' | 'context_alias_rule' | 'pattern_rule' | 'semantic_candidate';
+  mention_count?: number;
+}
+
+export interface NcrDetectedRole {
+  role_id: string;
+  title: string;
+  matched_text: string;
+  source: 'job_title' | 'summary' | 'headline';
+  years: number | null;
+  most_recent: boolean;
 }
 
 export interface NcrExtraction {
-  extraction: { extractor_version: string; dataset_version: string; skills: NcrExtractedSkill[]; warnings: string[] };
+  extraction: {
+    extractor_version: string;
+    dataset_version: string;
+    skills: NcrExtractedSkill[];
+    detected_roles?: NcrDetectedRole[];
+    experience_years?: number | null;
+    warnings: string[];
+  };
   review_required: boolean;
   notice: string;
 }
@@ -462,6 +523,10 @@ export interface NcrRole {
   requirement_source: { reviewer_status: string; freshness_note: string; dataset_collected_at: string };
   demand_signal: { kind: 'simulated_sample'; sample_size: number; cities: string[]; note: string };
   vacancies: { status: 'none_connected'; note: string };
+  estimated_learning_weeks?: number | null;
+  learning_plan?: LearningPlan;
+  is_current_role?: boolean;
+  transition?: { from_role_id: string; from_title: string; transferable_skill_ids: string[]; gap_skill_ids: string[]; rationale: string; reviewer_status: string } | null;
 }
 
 export interface NcrRecommendation {
@@ -471,6 +536,8 @@ export interface NcrRecommendation {
   top_roles: NcrRole[];
   stretch_roles: NcrRole[];
   excluded_roles: NcrRole[];
+  current_roles?: NcrRole[];
+  study_next?: StudyItem[];
   message: string | null;
   limitations: string[];
 }

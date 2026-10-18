@@ -103,11 +103,11 @@ export default function Openings() {
                 <Card key={o.id} className="flex items-center gap-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
-                      <p className="font-semibold text-ink-950">{o.title}</p>
+                      <p className="font-semibold text-fg">{o.title}</p>
                       {o.is_simulated ? <Provenance kind="simulated" /> : <Provenance kind="employer" />}
-                      <Badge tone={o.status === 'closed' ? 'grey' : 'green'}>{o.status === 'simulated_open' ? 'simulated' : o.status}</Badge>
+                      <Badge tone={o.status === 'closed' ? 'grey' : 'sage'}>{o.status === 'simulated_open' ? 'simulated' : o.status}</Badge>
                     </div>
-                    <p className="text-xs text-ink-500 mt-1 flex items-center gap-1">
+                    <p className="text-xs text-fg-subtle mt-1 flex items-center gap-1">
                       <MapPin className="w-3 h-3" /> {o.location} · {o.work_mode} · maps to {o.role_title}
                       {o.posted_at ? ` · posted ${formatDate(o.posted_at)}` : ''}
                     </p>

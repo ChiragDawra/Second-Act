@@ -21,15 +21,15 @@ export default function System() {
       <PageHeader eyebrow="Administrator" title="System" subtitle={d.access_note} />
 
       {d.pending_accounts > 0 ? (
-        <Card tone="amber" className="flex items-center justify-between gap-4 mb-6">
+        <Card tone="coral" className="flex items-center justify-between gap-4 mb-6">
           <div className="flex items-center gap-3">
-            <ClipboardCheck className="w-5 h-5 text-gapAmber-600" />
-            <p className="font-semibold text-ink-950">
+            <ClipboardCheck className="w-5 h-5 text-coral" />
+            <p className="font-semibold text-fg">
               {d.pending_accounts} account{d.pending_accounts > 1 ? 's' : ''} waiting for approval
             </p>
           </div>
           <Link to="/app/admin/approvals">
-            <Button kind="dark" size="sm">
+            <Button kind="contrast" size="sm">
               Review
             </Button>
           </Link>
@@ -37,22 +37,22 @@ export default function System() {
       ) : null}
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <Stat label="API" value={d.api.status} hint={`up ${Math.round(d.api.uptime_seconds / 60)} min · ${d.api.node}`} accent="green" />
-        <Stat label="Database" value={d.database.status} hint={d.database.latency_ms !== null ? `${d.database.latency_ms} ms` : 'unreachable'} accent={d.database.status === 'ok' ? 'green' : 'amber'} />
-        <Stat label="Refused requests (24h)" value={d.denied_requests_24h} accent="amber" />
+        <Stat label="API" value={d.api.status} hint={`up ${Math.round(d.api.uptime_seconds / 60)} min · ${d.api.node}`} accent="sage" />
+        <Stat label="Database" value={d.database.status} hint={d.database.latency_ms !== null ? `${d.database.latency_ms} ms` : 'unreachable'} accent={d.database.status === 'ok' ? 'sage' : 'coral'} />
+        <Stat label="Refused requests (24h)" value={d.denied_requests_24h} accent="coral" />
         <Stat label="Accounts" value={Object.values(users ?? {}).reduce((a, b) => a + b, 0)} hint={Object.entries(users ?? {}).map(([k, v]) => `${v} ${k}`).join(' · ')} />
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6 mt-8">
         <Card>
           <SectionTitle title="What is live, synthetic, simulated or planned" />
-          <div className="divide-y divide-ink-100">
+          <div className="divide-y divide-line">
             {d.integrations.map((i) => (
               <div key={i.name} className="py-3 flex items-start gap-3">
                 <Provenance kind={i.status} />
                 <div>
-                  <p className="text-sm font-semibold text-ink-900">{i.name}</p>
-                  <p className="text-xs text-ink-500">{i.detail}</p>
+                  <p className="text-sm font-semibold text-fg">{i.name}</p>
+                  <p className="text-xs text-fg-subtle">{i.detail}</p>
                 </div>
               </div>
             ))}
@@ -62,11 +62,11 @@ export default function System() {
           <Card>
             <SectionTitle title="Engine" />
             <div className="flex flex-wrap gap-1.5">
-              <Badge tone="sap">{d.engine.scoring_version}</Badge>
+              <Badge tone="accent">{d.engine.scoring_version}</Badge>
               <Badge>{d.engine.mentor_match_version}</Badge>
               <Badge>{d.engine.extraction_version}</Badge>
             </div>
-            <p className="text-xs text-ink-500 mt-3">
+            <p className="text-xs text-fg-subtle mt-3">
               Evidence factors:{' '}
               {Object.entries(d.engine.evidence_factors)
                 .map(([k, v]) => `${k} ${v}`)
@@ -78,12 +78,12 @@ export default function System() {
             <div className="space-y-2">
               {d.dataset_versions.map((v) => (
                 <div key={v.id} className="flex items-start gap-2">
-                  <Database className="w-3.5 h-3.5 text-ink-400 mt-1" />
+                  <Database className="w-3.5 h-3.5 text-fg-subtle mt-1" />
                   <div>
-                    <p className="text-sm font-mono text-ink-800">
-                      {v.id} <span className="text-ink-400">· {v.kind}</span>
+                    <p className="text-sm font-mono text-fg">
+                      {v.id} <span className="text-fg-subtle">· {v.kind}</span>
                     </p>
-                    <p className="text-xs text-ink-500">{v.description}</p>
+                    <p className="text-xs text-fg-subtle">{v.description}</p>
                   </div>
                 </div>
               ))}
@@ -91,7 +91,7 @@ export default function System() {
           </Card>
           <Card tone="muted">
             <SectionTitle title="Demo scenario" subtitle={lastReset ? `Last reset ${formatDateTime(lastReset.updated_at)}` : 'Never reset'} />
-            <p className="text-xs text-ink-600 mb-3">
+            <p className="text-xs text-fg-muted mb-3">
               Restores the synthetic Harpreet scenario. Real (Google) accounts are never touched.
             </p>
             {reset.isError ? <Notice tone="danger">{errorMessage(reset.error)}</Notice> : null}
@@ -111,7 +111,7 @@ export default function System() {
               </Button>
             )}
           </Card>
-          <p className="text-[11px] text-ink-400 flex items-center gap-1.5">
+          <p className="text-[11px] text-fg-subtle flex items-center gap-1.5">
             <Server className="w-3 h-3" /> <ShieldAlert className="w-3 h-3" /> Admins never see worker profiles, skills or resumes.
           </p>
         </div>

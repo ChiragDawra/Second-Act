@@ -112,8 +112,11 @@ export type ImportSkill = { skill_id: string; level: number; mention_type: strin
 export function useImportSkills(id: string) {
   const invalidate = useInvalidateWorker(id);
   return useMutation({
-    mutationFn: (skills: ImportSkill[]) =>
-      api<{ imported: string[]; recommendations: Recommendations }>(`/profiles/${id}/skills/import`, { method: 'POST', body: { skills } }),
+    mutationFn: ({ skills, currentRoleId }: { skills: ImportSkill[]; currentRoleId?: string | null }) =>
+      api<{ imported: string[]; recommendations: Recommendations }>(`/profiles/${id}/skills/import`, {
+        method: 'POST',
+        body: { skills, current_role_id: currentRoleId ?? undefined },
+      }),
     onSuccess: invalidate,
   });
 }

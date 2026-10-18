@@ -6,7 +6,7 @@ import { useAuth } from '../auth/AuthProvider';
 import { errorMessage } from '../lib/api';
 import { useOnboard, useOnboardingOptions } from '../lib/queries';
 import type { Sector } from '../lib/types';
-import { Button, Card, Chips, cn, ErrorState, Field, FullPageLoader, Notice, Spinner, TextArea } from '../ui/kit';
+import { Button, Card, Chips, cn, ErrorState, Field, FullPageLoader, Notice, Spinner, TextArea, Wordmark } from '../ui/kit';
 
 type AccountType = 'worker' | 'mentor' | 'recruiter' | 'admin';
 
@@ -84,20 +84,21 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="min-h-screen bg-surface-subtle">
-      <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-sap-50 to-transparent pointer-events-none" />
+    <div className="relative min-h-screen bg-canvas grain overflow-hidden">
+      <div className="absolute inset-x-0 top-0 h-[420px] spotlight pointer-events-none" />
       <div className="relative max-w-3xl mx-auto px-5 py-12">
-        <div className="flex items-center gap-2.5 mb-10">
-          <div className="w-8 h-8 rounded-lg bg-sap-500 flex items-center justify-center text-white font-bold text-sm">II</div>
-          <span className="font-extrabold tracking-tight">Second Act</span>
-          <span className="ml-auto text-xs font-mono text-ink-400">Step {step} of 2</span>
+        <div className="flex items-center gap-2.5 mb-12">
+          <Wordmark size={26} />
+          <span className="ml-auto eyebrow">Step {step} of 2</span>
         </div>
 
         <AnimatePresence mode="wait">
           {step === 1 ? (
             <motion.div key="step1" initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 12 }}>
-              <h1 className="text-3xl font-extrabold tracking-tight text-ink-950">Welcome{suggested ? `, ${suggested.split(' ')[0]}` : ''}. How will you use Second Act?</h1>
-              <p className="text-ink-500 mt-2">You choose this once. It decides which dashboard you see.</p>
+              <h1 className="headline text-5xl sm:text-6xl">
+                Welcome{suggested ? `, ${suggested.split(' ')[0]}` : ''}. <em>Which part</em> will you play?
+              </h1>
+              <p className="text-fg-muted mt-4">You choose this once. It decides which dashboard you see.</p>
               <div className="grid sm:grid-cols-2 gap-4 mt-8">
                 {types.map((t) => (
                   <button
@@ -105,19 +106,19 @@ export default function Onboarding() {
                     type="button"
                     onClick={() => setType(t.id)}
                     className={cn(
-                      'text-left rounded-2xl border p-5 transition-all bg-white hover:shadow-elevated',
-                      type === t.id ? 'border-sap-500 ring-4 ring-sap-500/10' : 'border-ink-200',
+                      'text-left rounded-2xl border p-5 transition-all bg-surface hover:border-line-strong',
+                      type === t.id ? 'border-accent/50 bg-accent/[0.06] shadow-glow' : 'border-line',
                     )}
                   >
                     <div className="flex items-start justify-between">
-                      <div className={cn('w-10 h-10 rounded-xl flex items-center justify-center', type === t.id ? 'bg-sap-500 text-white' : 'bg-sap-50 text-sap-600')}>
+                      <div className={cn('w-10 h-10 rounded-xl flex items-center justify-center', type === t.id ? 'bg-accent text-accent-ink' : 'bg-accent/10 text-accent')}>
                         <t.icon className="w-5 h-5" />
                       </div>
-                      {type === t.id ? <Check className="w-5 h-5 text-sap-500" /> : null}
+                      {type === t.id ? <Check className="w-5 h-5 text-accent" /> : null}
                     </div>
-                    <p className="font-bold text-ink-950 mt-4">{t.title}</p>
-                    <p className="text-sm text-ink-500 mt-1 leading-relaxed">{t.body}</p>
-                    {'note' in t && t.note ? <p className="text-[11px] font-mono text-gapAmber-700 mt-3">{t.note}</p> : null}
+                    <p className="font-semibold text-fg mt-4">{t.title}</p>
+                    <p className="text-sm text-fg-subtle mt-1 leading-relaxed">{t.body}</p>
+                    {'note' in t && t.note ? <p className="text-[11px] font-mono text-coral mt-3">{t.note}</p> : null}
                   </button>
                 ))}
               </div>
@@ -129,7 +130,7 @@ export default function Onboarding() {
             </motion.div>
           ) : (
             <motion.div key="step2" initial={{ opacity: 0, x: 12 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -12 }} className="space-y-6">
-              <button type="button" onClick={() => setStep(1)} className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink-500 hover:text-ink-900">
+              <button type="button" onClick={() => setStep(1)} className="inline-flex items-center gap-1.5 text-xs font-semibold text-fg-subtle hover:text-fg">
                 <ArrowLeft className="w-3.5 h-3.5" /> Change account type
               </button>
 
@@ -139,8 +140,8 @@ export default function Onboarding() {
                 {type === 'worker' ? (
                   <>
                     <div>
-                      <p className="text-xs font-semibold text-ink-700">Which sector is your experience in?</p>
-                      <p className="text-[11px] text-ink-500">Your dashboard leads with roles in this sector. Nearby roles in other sectors still show when your skills fit.</p>
+                      <p className="text-xs font-semibold text-fg-muted">Which sector is your experience in?</p>
+                      <p className="text-[11px] text-fg-subtle">Your dashboard leads with roles in this sector. Nearby roles in other sectors still show when your skills fit.</p>
                       <div className="grid sm:grid-cols-2 gap-3 mt-3">
                         {options.data.sectors.map((s) => {
                           const Icon = SECTOR_ICON[s.id];
@@ -149,20 +150,20 @@ export default function Onboarding() {
                               key={s.id}
                               type="button"
                               onClick={() => setSector(s.id)}
-                              className={cn('text-left rounded-xl border p-4 bg-white transition-all', sector === s.id ? 'border-sap-500 ring-4 ring-sap-500/10' : 'border-ink-200 hover:border-sap-300')}
+                              className={cn('text-left rounded-xl border p-4 bg-surface transition-all', sector === s.id ? 'border-accent/40 ring-4 ring-accent/40' : 'border-line hover:border-accent/40')}
                             >
                               <div className="flex items-center gap-2.5">
-                                <Icon className={cn('w-4 h-4', sector === s.id ? 'text-sap-600' : 'text-ink-400')} />
-                                <span className="font-semibold text-sm text-ink-950">{s.label}</span>
+                                <Icon className={cn('w-4 h-4', sector === s.id ? 'text-accent' : 'text-fg-subtle')} />
+                                <span className="font-semibold text-sm text-fg">{s.label}</span>
                               </div>
-                              <p className="text-[11px] text-ink-500 mt-2 leading-relaxed">{s.roles.join(' · ')}</p>
+                              <p className="text-[11px] text-fg-subtle mt-2 leading-relaxed">{s.roles.join(' · ')}</p>
                             </button>
                           );
                         })}
                       </div>
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-ink-700 mb-2">Where in Delhi-NCR do you want to work? (optional)</p>
+                      <p className="text-xs font-semibold text-fg-muted mb-2">Where in Delhi-NCR do you want to work? (optional)</p>
                       <Chips options={options.data.cities.map((c) => ({ value: c, label: c }))} value={city} onChange={setCity} />
                     </div>
                     <Field label="Headline (optional)" placeholder="e.g. 9 years in retail banking operations" value={headline} onChange={(e) => setHeadline(e.target.value)} maxLength={120} />
@@ -174,18 +175,18 @@ export default function Onboarding() {
                     <Field label="Headline" placeholder="e.g. Business analyst, 12 years in BFSI" value={headline} onChange={(e) => setHeadline(e.target.value)} maxLength={120} />
                     <TextArea label="About you" hint="Your move, and how you help others make theirs (20+ characters)." value={bio} onChange={(e) => setBio(e.target.value)} maxLength={1000} />
                     <div>
-                      <p className="text-xs font-semibold text-ink-700 mb-2">Sectors you mentor in</p>
+                      <p className="text-xs font-semibold text-fg-muted mb-2">Sectors you mentor in</p>
                       <Chips multiple options={options.data.sectors.map((s) => ({ value: s.id, label: s.label }))} value={sectors} onChange={setSectors} />
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-ink-700">Skills you can help with ({skills.length}/15)</p>
+                      <p className="text-xs font-semibold text-fg-muted">Skills you can help with ({skills.length}/15)</p>
                       <div className="relative mt-2">
-                        <Search className="w-4 h-4 text-ink-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                        <Search className="w-4 h-4 text-fg-subtle absolute left-3 top-1/2 -translate-y-1/2" />
                         <input
                           value={skillSearch}
                           onChange={(e) => setSkillSearch(e.target.value)}
                           placeholder="Search skills"
-                          className="w-full rounded-xl border border-ink-200 pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sap-500/40"
+                          className="w-full rounded-xl border border-line pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent/40"
                         />
                       </div>
                       <div className="mt-3 max-h-52 overflow-y-auto flex flex-wrap gap-2 p-1">
@@ -199,7 +200,7 @@ export default function Onboarding() {
                               onClick={() => setSkills((prev) => (on ? prev.filter((x) => x !== s.id) : [...prev, s.id]))}
                               className={cn(
                                 'px-2.5 py-1 rounded-full border text-xs font-medium disabled:opacity-40',
-                                on ? 'bg-sap-500 text-white border-sap-500' : 'bg-white text-ink-700 border-ink-200 hover:border-sap-300',
+                                on ? 'bg-accent text-accent-ink border-accent' : 'bg-surface text-fg-muted border-line hover:border-accent/40',
                               )}
                             >
                               {s.name}
@@ -211,7 +212,7 @@ export default function Onboarding() {
                     <div className="grid sm:grid-cols-[160px_1fr] gap-4">
                       <Field label="Hours per week" type="number" min={1} max={20} value={hours} onChange={(e) => setHours(e.target.value)} />
                       <div>
-                        <p className="text-xs font-semibold text-ink-700 mb-2">Languages</p>
+                        <p className="text-xs font-semibold text-fg-muted mb-2">Languages</p>
                         <Chips multiple options={LANGUAGES.map((l) => ({ value: l, label: l }))} value={languages} onChange={setLanguages} />
                       </div>
                     </div>

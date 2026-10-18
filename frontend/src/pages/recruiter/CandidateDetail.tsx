@@ -13,7 +13,7 @@ export default function CandidateDetail() {
 
   return (
     <>
-      <Link to="/app/recruiter" className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink-500 hover:text-ink-900 mb-6">
+      <Link to="/app/recruiter" className="inline-flex items-center gap-1.5 text-xs font-semibold text-fg-subtle hover:text-fg mb-6">
         <ArrowLeft className="w-3.5 h-3.5" /> All candidates
       </Link>
       <div className="mb-6">
@@ -25,12 +25,12 @@ export default function CandidateDetail() {
           <SectionTitle title="Fit for your openings" subtitle="Only shown when the candidate shared role suitability" />
           {d.opportunity_fit === null ? (
             <Card tone="muted">
-              <p className="text-sm text-ink-500">The candidate did not share role suitability.</p>
+              <p className="text-sm text-fg-subtle">The candidate did not share role suitability.</p>
             </Card>
           ) : d.opportunity_fit.length === 0 ? (
             <Card tone="muted">
-              <p className="text-sm text-ink-500">
-                Post an opening to see how this candidate fits it. <Link to="/app/recruiter/openings" className="font-semibold text-sap-600 hover:underline">Openings</Link>
+              <p className="text-sm text-fg-subtle">
+                Post an opening to see how this candidate fits it. <Link to="/app/recruiter/openings" className="font-semibold text-accent hover:underline">Openings</Link>
               </p>
             </Card>
           ) : (
@@ -39,12 +39,12 @@ export default function CandidateDetail() {
                 <Card key={o.opportunity_id} className="flex items-center gap-4">
                   <FitDial score={o.evaluation?.role_fit_score ?? null} size={56} />
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-ink-950">{o.title}</p>
+                    <p className="font-semibold text-fg">{o.title}</p>
                     <div className="flex flex-wrap gap-1.5 mt-1">
                       {o.evaluation ? <ReadinessBadge status={o.evaluation.readiness_status} /> : null}
                       {o.is_simulated ? <Provenance kind="simulated" /> : <Provenance kind="employer" />}
                     </div>
-                    {!o.evaluation ? <p className="text-xs text-ink-500 mt-1">This role is outside the candidate&rsquo;s catalogue; no estimate.</p> : null}
+                    {!o.evaluation ? <p className="text-xs text-fg-subtle mt-1">This role is outside the candidate&rsquo;s catalogue; no estimate.</p> : null}
                   </div>
                 </Card>
               ))}

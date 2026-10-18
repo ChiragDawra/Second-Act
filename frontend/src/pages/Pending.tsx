@@ -16,13 +16,14 @@ export default function Pending() {
 
   const rejected = state.status === 'rejected';
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-surface-subtle">
-      <Card className="max-w-md w-full text-center p-8">
-        <div className={`mx-auto w-14 h-14 rounded-2xl flex items-center justify-center ${rejected ? 'bg-red-50 text-red-600' : 'bg-gapAmber-50 text-gapAmber-600'}`}>
+    <div className="min-h-screen flex items-center justify-center p-6 bg-canvas grain relative overflow-hidden">
+      <div className="absolute inset-0 spotlight" />
+      <Card className="relative max-w-md w-full text-center p-10">
+        <div className={`mx-auto w-14 h-14 rounded-2xl flex items-center justify-center ${rejected ? 'bg-ember/10 text-ember' : 'bg-coral/10 text-coral'}`}>
           {rejected ? <XCircle className="w-7 h-7" /> : <Clock className="w-7 h-7" />}
         </div>
-        <h1 className="text-xl font-extrabold text-ink-950 mt-5">{rejected ? 'Your account was not approved' : 'Waiting for approval'}</h1>
-        <p className="text-sm text-ink-500 mt-2 leading-relaxed">
+        <h1 className="headline text-4xl mt-6">{rejected ? 'Not approved' : <>Waiting in <em>the wings.</em></>}</h1>
+        <p className="text-sm text-fg-subtle mt-2 leading-relaxed">
           {rejected
             ? 'An administrator did not approve this account. If you think this is a mistake, contact the Second Act team.'
             : `Thanks, ${state.display_name.split(' ')[0]}. An administrator checks every ${ROLE[state.role] ?? state.role} account before it can see anyone's information. This page updates when you are approved.`}

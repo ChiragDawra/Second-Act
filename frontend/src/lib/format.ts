@@ -18,6 +18,18 @@ export const formatDateTime = (iso: string | null | undefined) =>
 
 export const firstName = (name: string) => name.trim().split(/\s+/)[0] ?? name;
 
+/** "40h" or "40h · ~7 weeks" when the worker set a weekly learning time. */
+export function hoursLabel(hours: number, weeklyHours?: number | null): string {
+  if (hours <= 0) return 'no study needed';
+  return weeklyHours && weeklyHours > 0 ? `${hours}h · ~${Math.ceil(hours / weeklyHours)} wk` : `${hours}h of study`;
+}
+
+/** Morning, afternoon or evening greeting in the viewer's own time zone. */
+export function greeting(date = new Date()): string {
+  const h = date.getHours();
+  return h < 5 ? 'Good evening' : h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+}
+
 /** The single most useful next step for a role: a mandatory blocker first, then the largest gap. */
 export function nextStep(e: RoleEvaluation): { kind: 'prove' | 'learn' | 'ready'; text: string } {
   const blocker = e.mandatory.find((m) => m.gate === 'blocker');

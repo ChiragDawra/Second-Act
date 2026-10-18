@@ -21,7 +21,7 @@ export function RequireAccount() {
   if (me.isPending) return <FullPageLoader label="Loading your account…" />;
   if (me.isError) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6 bg-surface-subtle">
+      <div className="min-h-screen flex items-center justify-center p-6 bg-canvas">
         <div className="max-w-md w-full space-y-3">
           <ErrorState error={me.error} onRetry={() => void me.refetch()} />
           <Button kind="secondary" onClick={() => void signOut()}>

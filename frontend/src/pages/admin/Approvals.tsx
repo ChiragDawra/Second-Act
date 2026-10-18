@@ -49,33 +49,33 @@ export default function Approvals() {
           {accounts.data.map((a) => (
             <Card key={a.user_id}>
               <div className="flex flex-col md:flex-row md:items-start gap-4">
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${a.role === 'mentor' ? 'bg-sap-50 text-sap-600' : 'bg-gapAmber-50 text-gapAmber-600'}`}>
+                <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${a.role === 'mentor' ? 'bg-accent/10 text-accent' : 'bg-coral/10 text-coral'}`}>
                   {a.role === 'mentor' ? <GraduationCap className="w-5 h-5" /> : <Briefcase className="w-5 h-5" />}
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
-                    <p className="font-bold text-ink-950">{a.display_name}</p>
-                    <Badge tone={a.role === 'mentor' ? 'sap' : 'amber'}>{a.role}</Badge>
-                    <Badge tone={a.status === 'active' ? 'green' : a.status === 'rejected' ? 'red' : 'grey'}>{a.status}</Badge>
+                    <p className="font-bold text-fg">{a.display_name}</p>
+                    <Badge tone={a.role === 'mentor' ? 'accent' : 'coral'}>{a.role}</Badge>
+                    <Badge tone={a.status === 'active' ? 'sage' : a.status === 'rejected' ? 'ember' : 'grey'}>{a.status}</Badge>
                   </div>
-                  <p className="text-sm text-ink-500">
+                  <p className="text-sm text-fg-subtle">
                     {a.email ?? 'no email'} · signed up {formatDateTime(a.onboarded_at ?? a.created_at)}
                   </p>
                   {a.org ? (
-                    <p className="text-sm text-ink-700 mt-2">
+                    <p className="text-sm text-fg-muted mt-2">
                       Organisation: <span className="font-semibold">{a.org.name}</span> <Badge>{a.org.status}</Badge>
                     </p>
                   ) : null}
                   {a.mentor ? (
                     <div className="mt-3 space-y-2">
-                      <p className="text-sm font-semibold text-ink-800">{a.mentor.headline}</p>
-                      <p className="text-sm text-ink-600">{a.mentor.bio}</p>
+                      <p className="text-sm font-semibold text-fg">{a.mentor.headline}</p>
+                      <p className="text-sm text-fg-muted">{a.mentor.bio}</p>
                       <div className="flex flex-wrap gap-1">
                         {a.mentor.skills.map((s) => (
                           <Badge key={s}>{s}</Badge>
                         ))}
                       </div>
-                      <p className="text-[11px] text-ink-400">
+                      <p className="text-[11px] text-fg-subtle">
                         {a.mentor.languages.join(', ')} · {a.mentor.availability_hours_per_week} h/week
                       </p>
                     </div>

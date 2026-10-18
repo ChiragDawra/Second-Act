@@ -18,17 +18,17 @@ export default function Activity() {
         <Empty icon={<ActivityIcon className="w-5 h-5" />} title="No activity yet" />
       ) : (
         <Card className="p-0 overflow-hidden">
-          <ol className="divide-y divide-ink-100">
+          <ol className="divide-y divide-line">
             {audit.data.map((e) => (
-              <li key={e.id} className={cn('flex items-start gap-4 px-5 py-4', e.outcome === 'denied' && 'bg-red-50/50')}>
-                <span className={cn('mt-1.5 w-2 h-2 rounded-full shrink-0', e.outcome === 'denied' ? 'bg-red-500' : e.action === 'share.viewed' ? 'bg-sap-500' : 'bg-ink-300')} />
+              <li key={e.id} className={cn('flex items-start gap-4 px-5 py-4', e.outcome === 'denied' && 'bg-ember/10')}>
+                <span className={cn('mt-1.5 w-2 h-2 rounded-full shrink-0', e.outcome === 'denied' ? 'bg-ember' : e.action === 'share.viewed' ? 'bg-accent' : 'bg-line-strong')} />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-ink-900">{describeEvent(e, true)}</p>
-                  <p className="text-[11px] font-mono text-ink-400 mt-0.5">
+                  <p className="text-sm text-fg">{describeEvent(e, true)}</p>
+                  <p className="text-[11px] font-mono text-fg-subtle mt-0.5">
                     {formatDateTime(e.created_at)} · {e.action}
                   </p>
                 </div>
-                {e.outcome === 'denied' ? <Badge tone="red" mono>Denied</Badge> : null}
+                {e.outcome === 'denied' ? <Badge tone="ember" mono>Denied</Badge> : null}
               </li>
             ))}
           </ol>
