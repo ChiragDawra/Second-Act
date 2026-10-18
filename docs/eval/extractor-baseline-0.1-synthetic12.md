@@ -11,7 +11,7 @@ Extractor `baseline-0.1` · dataset `ncr-roles-v1` · 12 resumes · 165 gold row
 | Negation leakage | 100.0% (1/1) |
 | Unsupported-skill rate | 0.0% (0/165) |
 | Evidence coverage | 100.0% (165/165) |
-| Canonicalization accuracy | 98.2% (162/165) |
+| Canonicalization accuracy | 98.8% (163/165) |
 | Candidate leakage (skills with evidence not in own resume) | 0 |
 | Ambiguous gold pairs predicted as current | 12/12 |
 

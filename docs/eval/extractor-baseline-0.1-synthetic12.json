@@ -40,23 +40,15 @@
     "value": 1
   },
   "canonicalization_accuracy": {
-    "num": 162,
+    "num": 163,
     "den": 165,
-    "value": 0.982
+    "value": 0.988
   },
   "candidate_leakage": {
     "skills_with_foreign_evidence": 0,
     "examples": []
   },
   "canonicalization_errors": [
-    {
-      "resume_id": "resume_05",
-      "skill_id": "team-leadership",
-      "category": "gold_skill_not_among_skills_from_same_evidence",
-      "gold_label": "explicit_current",
-      "extracted_as": "customer-support,customer-support,itsm-ticketing,customer-support,customer-support",
-      "sentence": "Supervise an 8-person Tier 2 customer service team"
-    },
     {
       "resume_id": "resume_08",
       "skill_id": "go-programming",
